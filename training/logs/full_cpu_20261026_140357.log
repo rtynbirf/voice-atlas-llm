@@ -1,0 +1,23 @@
+[train] device=cpu bf16=False
+[train] tokenizer: models/_base/Qwen2.5-0.5B-Instruct
+[train] model: models/_base/Qwen2.5-0.5B-Instruct
+[train] CPU: веса в bfloat16 (экономия RAM)
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 11949.70it/s]
+[train] gradient checkpointing: use_reentrant=False
+[train] LoRA trainable 8.80M / total 502.83M (1.75%)
+[train] examples: train=154 val=9
+[step 5/40] loss=3.2098 lr=1.97e-04 elapsed=592s
+[step 10/40] loss=1.9372 lr=1.79e-04 elapsed=1152s
+[epoch 1] val_loss=3.1061
+[step 15/40] loss=2.7559 lr=1.48e-04 elapsed=1813s
+[step 20/40] loss=1.6613 lr=1.08e-04 elapsed=2443s
+[epoch 2] val_loss=2.9012
+[step 25/40] loss=2.6051 lr=6.75e-05 elapsed=3148s
+[step 30/40] loss=1.3369 lr=3.23e-05 elapsed=3774s
+[epoch 3] val_loss=2.8305
+[step 35/40] loss=2.0204 lr=8.42e-06 elapsed=4466s
+[step 40/40] loss=1.3778 lr=0.00e+00 elapsed=5081s
+[epoch 4] val_loss=2.8237
+[train] save adapter -> /home/z/my-project/voice-atlas-llm/models/atlas-qwen-0.5b
+[train] done in 5099s
