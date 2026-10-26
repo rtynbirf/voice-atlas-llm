@@ -99,6 +99,10 @@ python evaluation/eval_qa.py --adapter models/atlas-qwen-0.5b --max-samples 40
   универсальные пороги калибруются — ровно как требует глава 20.
 - Лицензии инструментов, упомянутых в корпусе, проверяйте по первоисточникам:
   атлас содержит правку аудита (Seed-VC — GPL-3.0, а не MIT).
+- Политика движка — «эхо» (см. THREAT_MODEL T3 и docs/audit/VFE_050_REVIEW.md):
+  без разрешительных процедур; единственный жёсткий гейт — неприкосновенность
+  исходника; синтетика честно маркируется. Исполнительный контур фазы 4 —
+  проверенный Voice Fidelity Engine 0.5.0 (41/41 тестов воспроизведены независимо).
 
 ## Источники
 
@@ -116,6 +120,7 @@ python evaluation/eval_qa.py --adapter models/atlas-qwen-0.5b --max-samples 40
 | `docs/THREAT_MODEL.md` | модель угроз: инъекции, отравление корпуса, закон 7, supply-chain |
 | `docs/MODEL_CARD.md` / `docs/DATA_CARD.md` | карточки модели и данных |
 | `docs/audit/SYNTHESIS.md` | антигаллюцинационный синтез внешних LLM-ревизий: вердикты с доказательствами |
+| `docs/audit/VFE_050_REVIEW.md` | независимая ревизия Voice Fidelity Engine 0.5.0 (41/41 тестов в чистой среде, находки, эхо-политика) |
 | `docs/training_report.md` | отчёт о полном обучении (прогон 4) |
 | `docs/architecture.md` · `docs/roadmap.md` (v1) · `docs/sources.md` | архитектура, роадмап v1, источники |
 
