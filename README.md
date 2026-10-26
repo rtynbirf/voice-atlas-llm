@@ -114,6 +114,7 @@ python evaluation/eval_qa.py --adapter models/atlas-qwen-0.5b --max-samples 40
 
 | Документ | О чём |
 |---|---|
+| `docs/MISSION.md` | устав: голос, который переживёт создателя — для тех, кто придёт после |
 | `docs/SPEC_v0.3.md` | прототип ТЗ: требования, критерии приёмки, вне scope |
 | `docs/ROADMAP_v2.md` | дорожная карта v2.0: доверие к измерениям → знание → вкус → масштаб → голос |
 | `docs/EVALUATION_PLAN.md` | golden set 100+, абляция, антиутечка сплита, Judge-контур |
