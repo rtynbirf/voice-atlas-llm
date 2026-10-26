@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-27",
+  "model": "htdemucs",
+  "two_stems": true,
+  "segment_sec": 7,
+  "shifts": 0,
+  "device": "cpu 2 cores",
+  "source_file": "01. Where Do the Years Fly By.mp3",
+  "manifest_source_sha256": "e187ee3f799ee04c694d56f54fe72279868474998cfba88da0cbd8cf9e08e2cb",
+  "manifest_source_size": 7288310,
+  "input_file": "/home/z/my-project/voice_data_raw/ruvson/audio/01. Where Do the Years Fly By.mp3",
+  "input_file_sha256": "0984348796617c0fd036861d380d3867ec0ceab6fcae27db15ed1e79b390f2ab",
+  "integrity": {
+    "input_sha256": "0984348796617c0fd036861d380d3867ec0ceab6fcae27db15ed1e79b390f2ab",
+    "manifest_sha256": "e187ee3f799ee04c694d56f54fe72279868474998cfba88da0cbd8cf9e08e2cb",
+    "container_bytes_differ": true,
+    "pcm_md5_input": "2030814989ecbab83e964e82b99473ba",
+    "pcm_md5_manifest_original": "2030814989ecbab83e964e82b99473ba",
+    "audio_stream_identical": true,
+    "note": "копия в audio/ отличается от манифест-оригинала 1 байтом контейнера/тега; аудио-поток бит-в-бит — сепарация валидна для манифест-источника; для полного корпуса audio/ пересверить по чек-листу Ф4"
+  },
+  "vocals": {
+    "file": "vocals.wav",
+    "duration_sec": 182.18,
+    "codec": "pcm_s16le",
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "no_vocals": {
+    "file": "no_vocals.wav",
+    "duration_sec": 182.18,
+    "codec": "pcm_s16le",
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "metrics": {
+    "vocals_mean_rms_dbfs": -19.8,
+    "vocals_peak_dbfs": 2.3,
+    "no_vocals_mean_rms_dbfs": -10.3,
+    "no_vocals_peak_dbfs": 2.7,
+    "voiced_ratio_vocal_-40dBFS": 0.643,
+    "rms_corr_vocal_vs_music_per_sec": -0.511,
+    "vocal_share_of_energy_pct": 15.3
+  },
+  "metrics_note": "voiced_ratio и rms_corr — прокси чистоты сепарации; субъективное прослушивание не выполнялось (UNVERIFIED-флаг по уху)"
+}
