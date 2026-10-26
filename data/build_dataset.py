@@ -9,10 +9,17 @@
      (таблица терминов -> пары «Что такое X?» / определение)
 
 Валидация: непустые поля, минимальная длина ответа, кириллица,
-дедупликация по instruction, чистый train/val сплит.
+дедупликация по instruction, антиутечечный train/val сплит.
+
+Сплит (ROADMAP_v2 фаза 0.3, EVALUATION_PLAN §антиутечка):
+  - group  (по умолчанию): валидация набирается ЦЕЛЫМИ главами — близнецы
+    одного термина из одной главы не могут оказаться по обе стороны сплита;
+  - random: прежний случайный сплит по seed (воспроизведение прогонов до фазы 0.3).
+Плюс отчёт о «близнецах» — нормализованных инструкциях, встретившихся
+и в train, и в val.
 
 Запуск:
-    python data/build_dataset.py [--seed 42] [--val-frac 0.06]
+    python data/build_dataset.py [--seed 42] [--val-frac 0.06] [--split-mode group|random]
 
 Выход:
     data/dataset/train.jsonl
@@ -79,7 +86,40 @@ def generate_glossary_qa() -> list[dict]:
             "output": output,
             "meta": {"chapter": 18, "topic": "glossary_auto", "source": "18_glossary.md"},
         })
+    if not samples:
+        raise ValueError(
+            f"{gl.name}: парсер GLOSSARY_ROW не извлёк ни одной строки — "
+            "формат таблицы глоссария изменился; чинить разметку парсера, "
+            "а не молча пропускать (ROADMAP_v2 ф1, fail-loud)")
     return samples
+
+
+def group_key(s: dict) -> str:
+    """Группа антиутечки: глава, если известна, иначе файл-источник."""
+    m = s.get("meta", {})
+    return str(m.get("chapter") or m.get("source") or "?")
+
+
+def split_by_group(ok: list[dict], val_frac: float,
+                   rng: random.Random) -> tuple[list[dict], list[dict], list[str]]:
+    """Валидация набирается целыми главами; детерминировано по seed.
+    Возвращает (train, val, главы_val)."""
+    groups: dict[str, list[dict]] = {}
+    for s in ok:
+        groups.setdefault(group_key(s), []).append(s)
+    keys = sorted(groups)
+    rng.shuffle(keys)
+    target = max(1, round(len(ok) * val_frac))
+    val_keys: set[str] = set()
+    size = 0
+    for k in keys:
+        if size >= target:
+            break
+        val_keys.add(k)
+        size += len(groups[k])
+    val = [s for k in keys if k in val_keys for s in groups[k]]
+    train = [s for k in keys if k not in val_keys for s in groups[k]]
+    return train, val, [k for k in keys if k in val_keys]
 
 
 def validate(samples: list[dict]) -> tuple[list[dict], list[str]]:
@@ -114,6 +154,9 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--val-frac", type=float, default=0.06)
+    ap.add_argument("--split-mode", choices=("group", "random"), default="group",
+                    help="group: val целыми главами (антиутечка); "
+                         "random: прежний случайный сплит")
     args = ap.parse_args()
 
     curated = load_curated()
@@ -125,9 +168,20 @@ def main() -> int:
         print(f"  WARN {w}")
 
     rng = random.Random(args.seed)
-    rng.shuffle(ok)
-    n_val = max(1, int(len(ok) * args.val_frac))
-    val, train = ok[:n_val], ok[n_val:]
+    if args.split_mode == "group":
+        train, val, val_chapters = split_by_group(ok, args.val_frac, rng)
+    else:
+        rng.shuffle(ok)
+        n_val = max(1, int(len(ok) * args.val_frac))
+        val, train = ok[:n_val], ok[n_val:]
+        val_chapters = sorted({str(s.get("meta", {}).get("chapter", "?")) for s in val})
+
+    # Отчёт о близнецах: нормализованная инструкция в ОБОИХ выборках = утечка.
+    train_keys = {s["instruction"].strip().lower() for s in train}
+    twins = [s["instruction"] for s in val
+             if s["instruction"].strip().lower() in train_keys]
+    for t in twins:
+        print(f"  LEAK близнец train/val: {t[:70]!r}")
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     for name, part in (("train.jsonl", train), ("val.jsonl", val)):
@@ -151,6 +205,9 @@ def main() -> int:
         "by_chapter": dict(sorted(chapters.items(), key=lambda kv: str(kv[0]))),
         "seed": args.seed,
         "val_frac": args.val_frac,
+        "split_mode": args.split_mode,
+        "val_chapters": val_chapters,
+        "twin_overlap_train_val": len(twins),
     }
     (OUT_DIR / "dataset_stats.json").write_text(
         json.dumps(stats, ensure_ascii=False, indent=2), encoding="utf-8")

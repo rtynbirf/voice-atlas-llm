@@ -148,5 +148,21 @@
       3.415506993330153e-07,
       0.0
     ]
+  },
+  "library_versions": {
+    "python": "3.12 (журнал сессии обучения)",
+    "torch": "2.14.1+cpu (журнал сессии обучения; в requirements-ml.txt запинен)",
+    "transformers": "5.20.2 (журнал сессии обучения; в requirements-ml.txt запинен)",
+    "peft": "0.21.2 (adapter_config.json — верифицировано)",
+    "_note": "окружение этой песочницы вычищено; версии фиксируются по артефактам и журналу, следующий прогон запишет их автоматически (train_lora.py: library_versions)"
+  },
+  "checksums": {
+    "algorithm": "sha256",
+    "files": {
+      "data/dataset/train.jsonl": "9e34b504251e42a7c5878239c047235ca6280dd9343e898bb410a9560c2d91ba",
+      "data/dataset/val.jsonl": "07036008620d255ab4124916cba24d0a5fcee29eee38cb7551bbafb1e780b438",
+      "models/atlas-qwen-0.5b/adapter_model.safetensors": "5adaeebea16a765e692c4db344f3a5715ee492db86a6291086ed1d80a750e36b",
+      "models/atlas-qwen-0.5b/adapter_config.json": "a0b43d32c320d4b33794f8a55dfa7e5616d4347cb6cb6a01baa7f33c305b712c"
+    }
   }
 }

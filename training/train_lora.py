@@ -13,6 +13,7 @@ Smoke-прогон на CPU (модель 8 МБ, проверка пайпла�
     python training/train_lora.py --config training/configs/smoke-tiny.yaml
 """
 import argparse
+import hashlib
 import json
 import math
 import os
@@ -267,6 +268,36 @@ def main() -> int:
     tokenizer.save_pretrained(out_dir)
     (out_dir / "system_prompt.txt").write_text(
         (ROOT / cfg["system_prompt_file"]).read_text(encoding="utf-8"), encoding="utf-8")
+    # Воспроизводимость (ROADMAP_v2 фаза 0.1/0.2): версии стека и sha256
+    # артефактов пишутся автоматически, а не восстанавливаются по памяти.
+    def _sha256(path: Path) -> str:
+        h = hashlib.sha256()
+        with path.open("rb") as f:
+            for chunk in iter(lambda: f.read(1 << 20), b""):
+                h.update(chunk)
+        return h.hexdigest()
+
+    versions = {"python": sys.version.split()[0]}
+    try:
+        import peft  # noqa: E402
+        import transformers  # noqa: E402
+        versions.update({
+            "torch": torch.__version__,
+            "transformers": transformers.__version__,
+            "peft": peft.__version__,
+        })
+    except Exception as e:  # версии не должны ронять отчёт
+        versions["error"] = repr(e)
+
+    checksums = {}
+    for rel in (cfg["data"]["train"], cfg["data"]["val"]):
+        p = ROOT / rel
+        if p.exists():
+            checksums[rel] = _sha256(p)
+    adapter_file = out_dir / "adapter_model.safetensors"
+    if adapter_file.exists():
+        checksums[f"{out_dir.name}/adapter_model.safetensors"] = _sha256(adapter_file)
+
     report = {
         "base_model": base_model,
         "config": cfg,
@@ -276,6 +307,8 @@ def main() -> int:
         "train_examples": len(train_ds),
         "val_examples": len(val_ds),
         "elapsed_sec": round(time.time() - t0, 1),
+        "library_versions": versions,
+        "checksums": {"algorithm": "sha256", "files": checksums},
         "history": history,
     }
     (out_dir / "training_report.json").write_text(
