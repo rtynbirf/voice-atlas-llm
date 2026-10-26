@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install core deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+      - name: Build dataset
+        run: python data/build_dataset.py
+      - name: Unit tests
+        run: pytest tests/ -v
+      - name: RAG smoke
+        run: python inference/retriever.py "чем SVC отличается от SVS" --k 2
+      - name: Dry chat smoke
+        run: python inference/chat_cli.py --dry "пороги качества SIM WER UTMOS" --k 2

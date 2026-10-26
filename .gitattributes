@@ -1,0 +1,5 @@
+* text eol=lf
+*.jsonl text eol=lf
+*.md text eol=lf
+*.png binary
+*.safetensors binary

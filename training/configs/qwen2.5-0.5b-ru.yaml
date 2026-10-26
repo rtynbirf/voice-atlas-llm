@@ -1,0 +1,27 @@
+# Основной конфиг: Атлас-LLM на Qwen2.5-0.5B-Instruct.
+# RTX 3060 12 ГБ: ~25-40 минут. CPU: часы (рекомендуется GPU/Colab T4).
+base_model: Qwen/Qwen2.5-0.5B-Instruct
+output_dir: models/atlas-qwen-0.5b
+system_prompt_file: data/curated/system_prompt.txt
+max_len: 1536
+allow_gpu: true
+bf16: true
+gradient_checkpointing: true
+seed: 42
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+data:
+  train: data/dataset/train.jsonl
+  val: data/dataset/val.jsonl
+training:
+  epochs: 4
+  batch_size: 8
+  grad_accum: 2
+  lr: 0.0002
+  weight_decay: 0.01
+  warmup_frac: 0.06
+  log_every: 10
+  max_grad_norm: 1.0

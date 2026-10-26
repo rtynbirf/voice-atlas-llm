@@ -1,0 +1,7 @@
+# Обучение и инференс Атлас-LLM (CUDA-версия torch для RTX 3060+:
+# pip install torch --index-url https://download.pytorch.org/whl/cu121)
+torch>=2.2
+transformers>=4.44
+peft>=0.12
+accelerate>=0.33
+safetensors>=0.4

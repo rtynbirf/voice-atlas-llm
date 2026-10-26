@@ -1,0 +1,6 @@
+# Ядро (CI / RAG / сборка датасета) — без тяжёлого ML
+scikit-learn>=1.3
+numpy>=1.24
+PyYAML>=6.0
+
+# ML-слой (обучение и генерация) — в requirements-ml.txt
