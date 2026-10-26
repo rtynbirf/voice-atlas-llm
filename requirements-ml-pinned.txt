@@ -1,0 +1,13 @@
+# Пины проверенного стека полного обучения Атлас-LLM (фаза 0.1 ROADMAP_v2).
+# Зафиксирован по фактическому прогону 40/40 шагов (2026-10-26, CPU 2 ядра / 4 ГБ RAM):
+#   - peft 0.21.2        — подтверждено артефактом models/atlas-qwen-0.5b/adapter_config.json ("peft_version")
+#   - torch 2.14.1+cpu / transformers 5.20.2 — по записи журнала сессии обучения (training_report.json версий не хранит —
+#     см. ROADMAP_v2 фаза 0.2: добавить auto-запись версий в отчёт)
+#
+# Для GPU замени torch на CUDA-сборку той же версии:
+#   pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cu121
+torch==2.14.1
+transformers==5.20.2
+peft==0.21.2
+accelerate>=0.33
+safetensors>=0.4
