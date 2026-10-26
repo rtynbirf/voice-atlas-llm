@@ -1,0 +1,39 @@
+# Полное обучение Атлас-LLM: CPU-порт канонического qwen2.5-0.5b-ru.yaml.
+# Семантика обучения сохранена 1:1 (тот же датасет 154/9, LoRA r=16/alpha=32,
+# 7 target-модулей, 4 эпохи, lr 2e-4, cosine).
+# Отличия только аппаратные:
+#   batch_size 8->1 и grad_accum 2->16  (эффективный батч 16 сохранён;
+#     ограничение — logits 152k-словаря на CPU-хосте с 4 ГБ RAM)
+#   load_dtype_cpu: bfloat16            (веса 2 ГБ -> 1 ГБ)
+#   gradient_checkpointing: true        (use_reentrant=False в train_lora.py;
+#     чекпоинтинг активаций экономит ~1.2 ГБ на seq~600 — без него OOM на 4 ГБ;
+#     цена ~+40% времени шага)
+# Транзиентный пик памяти снижен точечным lm_head + чанкингом CE по 64 токена
+# (masked_lm_loss в train_lora.py): реальные длины пар 244-601 токенов.
+# Проверено: RSS плато ~2.9 ГБ, темп ~121 c/шаг, 40 шагов ~ 80-85 мин.
+base_model: Qwen/Qwen2.5-0.5B-Instruct
+output_dir: models/atlas-qwen-0.5b
+system_prompt_file: data/curated/system_prompt.txt
+max_len: 640
+allow_gpu: true
+bf16: true
+gradient_checkpointing: true
+seed: 42
+load_dtype_cpu: bfloat16
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+data:
+  train: data/dataset/train.jsonl
+  val: data/dataset/val.jsonl
+training:
+  epochs: 4
+  batch_size: 1
+  grad_accum: 16
+  lr: 0.0002
+  weight_decay: 0.01
+  warmup_frac: 0.06
+  log_every: 5
+  max_grad_norm: 1.0

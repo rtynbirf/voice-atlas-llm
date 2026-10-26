@@ -23,6 +23,7 @@ from pathlib import Path
 
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 import yaml
 from torch.utils.data import DataLoader, Dataset
 
@@ -92,15 +93,54 @@ def collate(batch: list[dict], pad_id: int) -> dict:
     }
 
 
+_CE_CHUNK = 64  # токенов на чанк lm_head+CE: live-логиты только одного чанка
+
+
+def _chunk_ce(base, h_chunk: torch.Tensor, t_chunk: torch.Tensor) -> torch.Tensor:
+    logits = base.lm_head(h_chunk).float()
+    return F.cross_entropy(logits, t_chunk, reduction="sum")
+
+
+def masked_lm_loss(model, batch: dict, device: str) -> torch.Tensor:
+    """CE только на позициях ответа + чанкинг lm_head (memory-efficient SFT).
+
+    1) Полный тензор логитов [B x seq x 152k] не материализуется никогда:
+       lm_head вызывается точечно на сдвинутых позициях, где labels != -100.
+       Математически эквивалентно стандартному CE с ignore_index=-100.
+    2) Ответ дополнительно режется на чанки по _CE_CHUNK токенов; каждый чанк
+       обёрнут в torch.utils.checkpoint(use_reentrant=False) — в backward
+       логиты чанка рекомпутируются, поэтому в памяти живёт только ОДИН чанк
+       (~140 МБ при чанке 64) независимо от длины ответа. Сумма CE по чанкам
+       / N эквивалентна усреднённому CE по всем ответным токенам.
+    LoRA-слои активны, т.к. живут внутри декодерных блоков базовой модели.
+    """
+    base = model.get_base_model()  # Qwen2ForCausalLM; LoRA внутри активна
+    out = base.model(
+        input_ids=batch["input_ids"].to(device),
+        attention_mask=batch["attention_mask"].to(device),
+        use_cache=False,
+    )
+    h = out.last_hidden_state[:, :-1, :]          # [B, T-1, H]
+    targets = batch["labels"][:, 1:].to(device)   # [B, T-1]
+    mask = targets != -100
+    sel_h = h[mask]                               # [N, H] — только ответ
+    sel_t = targets[mask]                         # [N]
+    from torch.utils.checkpoint import checkpoint
+    total = sel_t.new_zeros((), dtype=torch.float32)
+    for i in range(0, sel_t.numel(), _CE_CHUNK):
+        total = total + checkpoint(
+            _chunk_ce, base, sel_h[i:i + _CE_CHUNK], sel_t[i:i + _CE_CHUNK],
+            use_reentrant=False)
+    return total / sel_t.numel()
+
+
 @torch.no_grad()
 def eval_loss(model, loader: DataLoader, device: str) -> float:
     model.eval()
     total, ntok = 0.0, 0
     for batch in loader:
-        batch = {k: v.to(device) for k, v in batch.items()}
-        out = model(**batch)
         n = (batch["labels"] != -100).sum().item()
-        total += out.loss.item() * n
+        total += masked_lm_loss(model, batch, device).item() * n
         ntok += n
     model.train()
     return total / max(ntok, 1)
@@ -153,8 +193,17 @@ def main() -> int:
     )
     model = get_peft_model(model, lora_cfg)
     model.train()
-    if cfg.get("gradient_checkpointing", False) and hasattr(model, "enable_gradient_checkpointing"):
-        model.enable_gradient_checkpointing()
+    if cfg.get("gradient_checkpointing", False):
+        # Явно use_reentrant=False: при reentrant-варианте чекпоинтинг с
+        # замороженными эмбеддингами (LoRA не трогает embed_tokens) разрывает
+        # градиентный поток — лосс не падает. False-вариант градиенты сохраняет.
+        try:
+            model.gradient_checkpointing_enable(
+                gradient_checkpointing_kwargs={"use_reentrant": False})
+            print("[train] gradient checkpointing: use_reentrant=False")
+        except TypeError:
+            model.enable_gradient_checkpointing()
+            print("[train] gradient checkpointing: legacy API")
     trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
     total = sum(p.numel() for p in model.parameters())
     print(f"[train] LoRA trainable {trainable/1e6:.2f}M / total {total/1e6:.2f}M "
@@ -191,8 +240,7 @@ def main() -> int:
     gstep, running = 0, 0.0
     for epoch in range(1, tcfg["epochs"] + 1):
         for i, batch in enumerate(train_loader, 1):
-            batch = {k: v.to(device) for k, v in batch.items()}
-            loss = model(**batch).loss / tcfg["grad_accum"]
+            loss = masked_lm_loss(model, batch, device) / tcfg["grad_accum"]
             loss.backward()
             running += loss.item()
             if i % tcfg["grad_accum"] == 0 or i == len(train_loader):
