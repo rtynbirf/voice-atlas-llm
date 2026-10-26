@@ -1,7 +1,17 @@
-# Обучение и инференс Атлас-LLM (CUDA-версия torch для RTX 3060+:
-# pip install torch --index-url https://download.pytorch.org/whl/cu121)
-torch>=2.2
-transformers>=4.44
-peft>=0.12
+# Обучение и инференс Атлас-LLM. ВЕРСИИ ЗАПИНЕНЫ (ROADMAP_v2 фаза 0.1) —
+# этот файл = источник истины; requirements-ml-pinned.txt дублирует те же пины.
+#
+# Зафиксировано по фактическому прогону 40/40 шагов (2026-10-26, CPU 2 ядра / 4 ГБ RAM):
+#   - peft 0.21.2 — подтверждено артефактом models/atlas-qwen-0.5b/adapter_config.json
+#   - torch 2.14.1 / transformers 5.20.2 — по журналу сессии обучения
+# accelerate/safetensors сознательно НЕ пиннуты: их точные версии прогона
+# не зафиксированы в артефактах — пиннуть после следующего полного прогона
+# (честный незакрытый пункт, не по памяти).
+#
+# CUDA-сборка torch для RTX 3060+ (та же версия):
+#   pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cu121
+torch==2.14.1
+transformers==5.20.2
+peft==0.21.2
 accelerate>=0.33
 safetensors>=0.4
