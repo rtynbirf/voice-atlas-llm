@@ -1,0 +1,27 @@
+# Smoke-конфиг: проверка пайплайна обучения на CPU за ~2 минуты.
+# Модель sshleifer/tiny-gpt2 (8 МБ) — учимся не качеству, а исправности кода.
+base_model: sshleifer/tiny-gpt2
+output_dir: models/smoke-tiny
+system_prompt_file: data/curated/system_prompt.txt
+max_len: 1024   # лимит n_positions у tiny-gpt2; промпт обрежется слева, ответ сохранится
+allow_gpu: true
+bf16: true
+gradient_checkpointing: false
+seed: 42
+lora:
+  r: 4
+  alpha: 8
+  dropout: 0.05
+  target_modules: ["c_attn"]   # Conv1D-attention у GPT-2
+data:
+  train: data/dataset/train.jsonl
+  val: data/dataset/val.jsonl
+training:
+  epochs: 1
+  batch_size: 4
+  grad_accum: 1
+  lr: 0.0003
+  weight_decay: 0.0
+  warmup_frac: 0.05
+  log_every: 10
+  max_grad_norm: 1.0

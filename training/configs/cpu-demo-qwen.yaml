@@ -1,0 +1,29 @@
+# CPU-прогон по полному корпусу (демо-обучение на реальной модели).
+# 80 примеров, 1 эпоха, bf16-веса на CPU — ~40 шагов за 3-6 минут.
+# Полное качество даёт GPU-конфиг qwen2.5-0.5b-ru.yaml (RTX 3060, 4 эпохи).
+base_model: models/_base/Qwen2.5-0.5B-Instruct
+output_dir: models/cpu-demo-qwen-0.5b
+system_prompt_file: data/curated/system_prompt.txt
+max_len: 448
+load_dtype_cpu: bfloat16
+allow_gpu: true
+bf16: true
+gradient_checkpointing: false
+seed: 42
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.0
+  target_modules: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+data:
+  train: data/dataset/train.jsonl
+  val: data/dataset/val.jsonl
+training:
+  epochs: 1
+  batch_size: 1
+  grad_accum: 2
+  lr: 0.0002
+  weight_decay: 0.0
+  warmup_frac: 0.08
+  log_every: 5
+  max_grad_norm: 1.0

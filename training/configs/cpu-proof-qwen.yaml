@@ -1,0 +1,30 @@
+# CPU-proof конфиг: короткий доказательный прогон на РЕАЛЬНОЙ модели.
+# Несколько шагов на Qwen2.5-0.5B-Instruct (fp32, CPU) — проверка совместимости:
+# градиенты, сохранение адаптера, генерация. НЕ заменяет полное обучение.
+# base_model можно заменить на "Qwen/Qwen2.5-0.5B-Instruct" при наличии сети.
+base_model: models/_base/Qwen2.5-0.5B-Instruct
+output_dir: models/cpu-proof-qwen-0.5b
+system_prompt_file: data/curated/system_prompt.txt
+max_len: 512
+load_dtype_cpu: bfloat16
+allow_gpu: true
+bf16: true
+gradient_checkpointing: false
+seed: 42
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.0
+  target_modules: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+data:
+  train: data/dataset/train.jsonl
+  val: data/dataset/val.jsonl
+training:
+  epochs: 1
+  batch_size: 1
+  grad_accum: 1
+  lr: 0.0002
+  weight_decay: 0.0
+  warmup_frac: 0.08
+  log_every: 2
+  max_grad_norm: 1.0
