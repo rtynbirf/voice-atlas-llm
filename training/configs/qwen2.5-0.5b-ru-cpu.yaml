@@ -11,7 +11,9 @@
 # Транзиентный пик памяти снижен точечным lm_head + чанкингом CE по 64 токена
 # (masked_lm_loss в train_lora.py): реальные длины пар 244-601 токенов.
 # Проверено: RSS плато ~2.9 ГБ, темп ~121 c/шаг, 40 шагов ~ 80-85 мин.
-base_model: Qwen/Qwen2.5-0.5B-Instruct
+# base_model указывает на локальную копию (models/_base/), чтобы CPU-прогон
+# не зависел от HF Hub и его лимитов (в песочнице кэш ~/.cache непостоянен).
+base_model: models/_base/Qwen2.5-0.5B-Instruct
 output_dir: models/atlas-qwen-0.5b
 system_prompt_file: data/curated/system_prompt.txt
 max_len: 640
