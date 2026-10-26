@@ -79,7 +79,7 @@ python evaluation/eval_qa.py --adapter models/atlas-qwen-0.5b --max-samples 40
 
 | Ступень | Статус | Что даёт |
 |---|---|---|
-| 1. RAG-клон (этот репозиторий) | ✅ готово | сходство 75–85% по лестнице главы 10, 0 GPU |
+| 1. RAG-клон (этот репозиторий) | ✅ готово | ожидание 75–85% по лестнице гл. 10 (не калибровано), 0 GPU |
 | 2. LoRA 0.5B (полный прогон) | ✅ готово: адаптер `models/atlas-qwen-0.5b`, val 3.52→2.82 | 90–95%, адаптер съёмный |
 | 3. DPO на парах «верно/карикатура» | 📋 roadmap | вкус ответов, борьба с карикатурой (закон 3) |
 | 4. QLoRA 7–8B (Qwen2.5-7B) | 📋 roadmap | полнота рассуждений, 12 ГБ VRAM |
@@ -105,6 +105,19 @@ python evaluation/eval_qa.py --adapter models/atlas-qwen-0.5b --max-samples 40
 - Технический атлас 2026 (19 глав) — корпус `data/atlas/`
 - Voice Audit Pack 0.1.1 — CLAIMS_LEDGER (глава 20 ревизии)
 - Voice Fidelity Engine 0.3.0 — реестр компонентов
+
+## Документация
+
+| Документ | О чём |
+|---|---|
+| `docs/SPEC_v0.3.md` | прототип ТЗ: требования, критерии приёмки, вне scope |
+| `docs/ROADMAP_v2.md` | дорожная карта v2.0: доверие к измерениям → знание → вкус → масштаб → голос |
+| `docs/EVALUATION_PLAN.md` | golden set 100+, абляция, антиутечка сплита, Judge-контур |
+| `docs/THREAT_MODEL.md` | модель угроз: инъекции, отравление корпуса, закон 7, supply-chain |
+| `docs/MODEL_CARD.md` / `docs/DATA_CARD.md` | карточки модели и данных |
+| `docs/audit/SYNTHESIS.md` | антигаллюцинационный синтез внешних LLM-ревизий: вердикты с доказательствами |
+| `docs/training_report.md` | отчёт о полном обучении (прогон 4) |
+| `docs/architecture.md` · `docs/roadmap.md` (v1) · `docs/sources.md` | архитектура, роадмап v1, источники |
 
 ## Лицензия
 
