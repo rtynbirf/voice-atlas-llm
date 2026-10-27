@@ -326,6 +326,58 @@ audio_resync_report.json с вердиктом IDENTICAL.
 
 ---
 
+## Голос-контур: текст → речь голосом RUVSON (2026-10-27)
+
+**Замысел (Фаза 0 этого шага):** владелец потребовал КОНКРЕТНЫЙ РЕЗУЛЬТАТ —
+работающий алгоритм с кодом, а не хронику подготовительных фаз. Контур собран
+по слоям атласа (гл. 7 TTS + гл. 6 VC): контент генерирует нейтральный TTS,
+тембр переносит tone-color конвертер; референс тембра — вокал трека 01 из
+корпуса (стем htdemucs, separation_01_report.json).
+
+**Что исполнено (всё — выполнено здесь, CPU 2 ядра / 4 ГБ):**
+
+```bash
+# Компоненты (версии как есть):
+#   piper-tts + ru_RU-irina-medium.onnx (63 МБ, HF rhasspy/piper-voices, rev main)
+#   OpenVoice V2 ToneColorConverter (131 МБ, HF myshell-ai/OpenVoiceV2, путь converter/)
+#   faster-whisper small int8 — ASR-гейт разборчивости
+#   Окружение: venv-vc, torch 2.14.1+cpu, numpy 2.5.4, librosa 1.0.0
+# Полный прогон (текст → TTS → SE-эмбеддинги → convert → метрики → ASR):
+/home/z/my-project/venv-vc/bin/python /home/z/my-project/scripts/voice_clone_piper_openvoice.py
+# ИТОГ: 18.8 c wall-time; TTS 6.8 c речи за 2.6 c; convert за 3.7 c
+```
+
+**Измеренные результаты (voice_clone_report.json):**
+- **Перенос тембра**: SE-cosine к RUVSON (энкодер OpenVoice) — источник
+  −0.19 → выход **+0.82**; источник↔выход −0.04 (тембр заменён полностью).
+- **Разборчивость не пострадала**: WER(faster-whisper small, ru) — источник
+  0.143 = выход **0.143** (перенос тембра добавил 0 ошибок); ASR-текст выхода:
+  «куда летят годы, туда и мы летим, этот голос сохраню, чтобы говорить и после».
+- Честные оговорки: референс — ПЕНИЕ (вокал песни), тембр перенесён из пения
+  в речь; pyin-F0 на выходе неинтерпретируем (мало озвученных кадров);
+  env_corr околонулевой при полностью разборчивой речи — НЕ метрика качества
+  (формантный сдвиг); вердикт по уху — UNVERIFIED (в песочнице не послушать).
+
+**Пойманные ловушки этого шага:**
+1. HF-пути: у OpenVoiceV2 чекпоинт лежит в `converter/`, НЕ
+   `checkpoints_v2/converter/` (страница README вводит в заблуждение);
+   у piper-voices рабочая ревизия — `main` (`v1.0` даёт «Invalid rev id»).
+2. faster-whisper требует `av<14` — свежий PyAV убрал kwarg `metadata_errors`.
+3. librosa 1.0: у pyin больше нет `threshold`; numpy 2.5 + librosa 1.0
+   совместимы с OpenVoice, если ставить его с `--no-deps` и добор вручную.
+4. Метрика-ловушка: корреляция огибающих как «проверка сохранности речи» —
+   ложный прокси при смене тембра; решающие метрики — WER + SE-cosine.
+
+**Ограничение среды:** XTTS v2 (прямой клон TTS) не пробован — пиковая RAM
+рискует 4 ГБ песочницы; на ПК владельца (GPU) — путь из ROADMAP Ф3.
+
+**Доказательство:** data/ruvson/voice_clone_report.json (с sha256 всех
+артефактов); scripts/voice_clone_piper_openvoice.py; аудио у владельца:
+download/ruvson_voice_clone/ (tts_source_neutral.wav,
+output_ruvson_timbre.wav, reference_ruvson_vocal01_182s.wav).
+
+---
+
 ## Запретный список (измеренно НЕ работает — не повторять)
 
 | Попытка | Измеренный исход |
