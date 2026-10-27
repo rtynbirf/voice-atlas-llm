@@ -30,6 +30,7 @@ inference/
 evaluation/
   eval_qa.py        гейт качества: token_f1, keyword_coverage, честность
 tests/              pytest: датасет, промпт-формат, RAG
+scripts/            код реально исполненных рецептов (на ветке proven-recipes)
 .github/workflows/  CI: сборка датасета + тесты + RAG-smoke
 ```
 
@@ -122,6 +123,7 @@ python evaluation/eval_qa.py --adapter models/atlas-qwen-0.5b --max-samples 40
 | `docs/MODEL_CARD.md` / `docs/DATA_CARD.md` | карточки модели и данных |
 | `docs/audit/SYNTHESIS.md` | антигаллюцинационный синтез внешних LLM-ревизий: вердикты с доказательствами |
 | `docs/audit/VFE_050_REVIEW.md` | независимая ревизия Voice Fidelity Engine 0.5.0 (41/41 тестов в чистой среде, находки, эхо-политика) |
+| `docs/WORKS.md` | хроника ТОЛЬКО проверенного: правило + полная цепочка Фаза 0 (замысел) → Фаза 9 (файл на ПК) + запретный список. Полная версия с кодом рецептов (`scripts/`) — на ветке `proven-recipes` |
 | `docs/training_report.md` | отчёт о полном обучении (прогон 4) |
 | `docs/architecture.md` · `docs/roadmap.md` (v1) · `docs/sources.md` | архитектура, роадмап v1, источники |
 
