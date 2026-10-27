@@ -1,5 +1,4 @@
-* text eol=lf
-*.jsonl text eol=lf
-*.md text eol=lf
-*.png binary
-*.safetensors binary
+*.wav binary
+*.onnx binary
+*.pth binary
+*.mp3 binary
