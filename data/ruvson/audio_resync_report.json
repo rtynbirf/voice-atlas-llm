@@ -1,0 +1,489 @@
+{
+  "date": "2026-10-27",
+  "note": "аудио-слой восстановлен после вайпа песочницы ре-инжестом по манифесту (50/50, sha256 на приёме); пересверка — контроль всего extraction-пути",
+  "checked_files": 52,
+  "manifest_entries": 50,
+  "summary": {
+    "EXTRACT_BITIDENTICAL": 48,
+    "TAG_ONLY_DIFF": 2,
+    "NO_MANIFEST_TWIN": 2
+  },
+  "defects": [
+    {
+      "file": "01_Where_Do_the_Years_Fly_By.mp3",
+      "size_bytes": 7288309,
+      "sha256": "0984348796617c0fd036861d380d3867ec0ceab6fcae27db15ed1e79b390f2ab",
+      "status": "NO_MANIFEST_TWIN"
+    },
+    {
+      "file": "03_Where_is_whats_real.m4a",
+      "size_bytes": 3391,
+      "sha256": "c3f8ea9524a81338e32aa2c50936f9750c5317e1b964314a4ad4acb1b650ff90",
+      "status": "NO_MANIFEST_TWIN"
+    }
+  ],
+  "results": [
+    {
+      "file": "01. Where Do the Years Fly By.m4a",
+      "size_bytes": 2946440,
+      "sha256": "c7af8688eaf3fd3794f4f5a08ad0742b6b0e1e3ece5446155bd31ae662ab4fad",
+      "manifest_name": "01. Where Do the Years Fly By.mp4",
+      "pcm_md5": "cc383065e89c4aeab512a9400211e1f8",
+      "original_pcm_md5": "cc383065e89c4aeab512a9400211e1f8",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "01. Where Do the Years Fly By.mp3",
+      "size_bytes": 7288309,
+      "sha256": "0984348796617c0fd036861d380d3867ec0ceab6fcae27db15ed1e79b390f2ab",
+      "manifest_name": "01. Where Do the Years Fly By.mp3",
+      "pcm_md5": "2030814989ecbab83e964e82b99473ba",
+      "original_pcm_md5": "2030814989ecbab83e964e82b99473ba",
+      "status": "TAG_ONLY_DIFF"
+    },
+    {
+      "file": "01_Where_Do_the_Years_Fly_By.mp3",
+      "size_bytes": 7288309,
+      "sha256": "0984348796617c0fd036861d380d3867ec0ceab6fcae27db15ed1e79b390f2ab",
+      "status": "NO_MANIFEST_TWIN"
+    },
+    {
+      "file": "02. RUVSON — Two Voices (Premiere 2026).m4a",
+      "size_bytes": 2869458,
+      "sha256": "3c6e6e1d9dde4ff92d00ecbc1100a7e45e1b9d04a67e1e164a49aa2dbabf25a7",
+      "manifest_name": "02. RUVSON — Two Voices (Premiere 2026).mp4",
+      "pcm_md5": "e2b239902909b0b27e5800dd3f988610",
+      "original_pcm_md5": "e2b239902909b0b27e5800dd3f988610",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "03. Where is what's real _ RUVSON (Premiere 2026).m4a",
+      "size_bytes": 3391,
+      "sha256": "c3f8ea9524a81338e32aa2c50936f9750c5317e1b964314a4ad4acb1b650ff90",
+      "manifest_name": "03. Where is what's real _ RUVSON (Premiere 2026).mp3",
+      "pcm_md5": "dc7621b8b1304779367fdb0001d7008b",
+      "original_pcm_md5": "dc7621b8b1304779367fdb0001d7008b",
+      "status": "TAG_ONLY_DIFF"
+    },
+    {
+      "file": "03_Where_is_whats_real.m4a",
+      "size_bytes": 3391,
+      "sha256": "c3f8ea9524a81338e32aa2c50936f9750c5317e1b964314a4ad4acb1b650ff90",
+      "status": "NO_MANIFEST_TWIN"
+    },
+    {
+      "file": "04. RUVSON — Light in the Darkness ‣ A song for those who are struggling right now.m4a",
+      "size_bytes": 3018903,
+      "sha256": "7ab961bbebff4b22801296528eb65c57b030eba9a08e8cee48054a6b5db253e4",
+      "manifest_name": "04. RUVSON — Light in the Darkness ‣ A song for those who are struggling right now.mp4",
+      "pcm_md5": "584c31468789efa12e6fac5c16740051",
+      "original_pcm_md5": "584c31468789efa12e6fac5c16740051",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "05. RUVSON — Scream in the Silence ‣ (Remix 2026) .m4a",
+      "size_bytes": 3590835,
+      "sha256": "59f5d4ca5b67aa3a1d7ee45ce8de56f884960de862178fccec1601aed1d2fd87",
+      "manifest_name": "05. RUVSON — Scream in the Silence ‣ (Remix 2026) .mp4",
+      "pcm_md5": "648a5c8dd6c4c00d6fa6c9c877aa5704",
+      "original_pcm_md5": "648a5c8dd6c4c00d6fa6c9c877aa5704",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "06. Cherish the moments remix.m4a",
+      "size_bytes": 2809766,
+      "sha256": "31a7d64962314a170a0d8802673f1ade049787e25826f00355d3fc20b247305c",
+      "manifest_name": "06. Cherish the moments remix.mp4",
+      "pcm_md5": "c9d9470e48ac6999d8156709c4a1bbbb",
+      "original_pcm_md5": "c9d9470e48ac6999d8156709c4a1bbbb",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "07. RUVSON — What If YES ‣ (Remix 2026) .m4a",
+      "size_bytes": 3800011,
+      "sha256": "2f320f983bb86bcdb2f2a4b43c1062fe9074c8b8fe4895fddbe251bfb96b42d0",
+      "manifest_name": "07. RUVSON — What If YES ‣ (Remix 2026) .mp4",
+      "pcm_md5": "683184d0303f418259550a61c17bac52",
+      "original_pcm_md5": "683184d0303f418259550a61c17bac52",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "08. What If It Is _ RUVSON (Premiere 2026).m4a",
+      "size_bytes": 2874874,
+      "sha256": "b56241da1ff9ed2c133b62d7f7e6b730d124c8bf89345166730ba774c8889370",
+      "manifest_name": "08. What If It Is _ RUVSON (Premiere 2026).mp4",
+      "pcm_md5": "ace1ec619209251be1c89e23c98d1589",
+      "original_pcm_md5": "ace1ec619209251be1c89e23c98d1589",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "09. RUVSON — My Own Worst Enemy _ A song about inner struggle.m4a",
+      "size_bytes": 3262709,
+      "sha256": "ca6a3bbeb22726aad58a712a16e65d44d3de4cc1e8b0ea01a09092da907743ba",
+      "manifest_name": "09. RUVSON — My Own Worst Enemy _ A song about inner struggle.mp4",
+      "pcm_md5": "76801782346b9c9dbecfb8bf9670c20e",
+      "original_pcm_md5": "76801782346b9c9dbecfb8bf9670c20e",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "10. Live Your Own Way _ RUVSON (2026 Premiere).m4a",
+      "size_bytes": 3796619,
+      "sha256": "02314962b4d80edd1990c1040ac96eebd0cc1fc230ee8155fed1164f4bf3bc92",
+      "manifest_name": "10. Live Your Own Way _ RUVSON (2026 Premiere).mp4",
+      "pcm_md5": "a3dfae296fc682689f822e01e5a2c167",
+      "original_pcm_md5": "a3dfae296fc682689f822e01e5a2c167",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "11. When You Are Convenient _ RUVSON (2026 Premiere).m4a",
+      "size_bytes": 4288202,
+      "sha256": "aaa0fb804f88f42615fb4d8690dfd9833ff3a05713b9a69ea42135b23ef780bf",
+      "manifest_name": "11. When You Are Convenient _ RUVSON (2026 Premiere).mp4",
+      "pcm_md5": "ff80446982c9d289134980728c86d916",
+      "original_pcm_md5": "ff80446982c9d289134980728c86d916",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "12. What Do You Dream About _ RUVSON (2026 Premiere).m4a",
+      "size_bytes": 5171048,
+      "sha256": "3562bcdb084e1c5b4b3ae8bb69324d509d913a99ba26a74df17478f1cef7d4ee",
+      "manifest_name": "12. What Do You Dream About _ RUVSON (2026 Premiere).mp4",
+      "pcm_md5": "20defd701b3a9420385204d18575be1a",
+      "original_pcm_md5": "20defd701b3a9420385204d18575be1a",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "13. What's the meaning - A track that changes your outlook on life _ RUVSON.m4a",
+      "size_bytes": 4521376,
+      "sha256": "4719dfbbf975e077e2c4ff217f48264b8d9c5e094bab974565d45adeafabd388",
+      "manifest_name": "13. What's the meaning - A track that changes your outlook on life _ RUVSON.mp4",
+      "pcm_md5": "cdce74b870a8dffd93bab06025031c60",
+      "original_pcm_md5": "cdce74b870a8dffd93bab06025031c60",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "14. Where You Are - A Song About Unconditional Love _ RUVSON.m4a",
+      "size_bytes": 2946052,
+      "sha256": "012d842d380acd09cf58cf60edf6736823de86110eca532d703034692f6e4d2e",
+      "manifest_name": "14. Where You Are - A Song About Unconditional Love _ RUVSON.mp4",
+      "pcm_md5": "d13cfa5e7f4f34aa223a60f941abb19b",
+      "original_pcm_md5": "d13cfa5e7f4f34aa223a60f941abb19b",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "15. Live In The Now - A track about the life we put off for later _ RUVSON.m4a",
+      "size_bytes": 4311848,
+      "sha256": "5cfb6a45e48c0ef503f55d1af05c17b61483d9ecfb293aa1cbf08e623bfbdf1a",
+      "manifest_name": "15. Live In The Now - A track about the life we put off for later _ RUVSON.mp4",
+      "pcm_md5": "75daa7ed754b759dff4e90fd22b2f984",
+      "original_pcm_md5": "75daa7ed754b759dff4e90fd22b2f984",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "16. RUVSON — Your Voyage Isn't Eternal (Official Music Video).m4a",
+      "size_bytes": 3843547,
+      "sha256": "4ad4479aac727af4e77e3018bf063f44dd21998914f73f6fef6d322c46d92080",
+      "manifest_name": "16. RUVSON — Your Voyage Isn't Eternal (Official Music Video).mp4",
+      "pcm_md5": "f4800fef5e348b0d401469a28cf49365",
+      "original_pcm_md5": "f4800fef5e348b0d401469a28cf49365",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "17. Unbreakable — A song about freedom of spirit in a world of lies _ RUVSON.m4a",
+      "size_bytes": 4200265,
+      "sha256": "db2367bb8aa6c364e028e2581ceca3f1a25f40ee7cf625f7f87603ec2c5b466c",
+      "manifest_name": "17. Unbreakable — A song about freedom of spirit in a world of lies _ RUVSON.mp4",
+      "pcm_md5": "78743352b989090f4013a04d5aa78bdf",
+      "original_pcm_md5": "78743352b989090f4013a04d5aa78bdf",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "18. RUVSON — Не спеши осуждать (Official Music Video).m4a",
+      "size_bytes": 2712867,
+      "sha256": "7a2c8cbd9718138b0507f3aabc957e603759f308ac42b6e79e55d91fff24f38b",
+      "manifest_name": "18. RUVSON — Не спеши осуждать (Official Music Video).mp4",
+      "pcm_md5": "d4bf820c391d2ee2fac822406d5190d7",
+      "original_pcm_md5": "d4bf820c391d2ee2fac822406d5190d7",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "19. Loss Teaches Us — A track about what makes us Stronger _ RUVSON.m4a",
+      "size_bytes": 4093655,
+      "sha256": "34dab403ece1ac2db43992946682755c4c48bd5c6210682f5117ae66e656172a",
+      "manifest_name": "19. Loss Teaches Us — A track about what makes us Stronger _ RUVSON.mp4",
+      "pcm_md5": "0cb8aaf971678127c04eff560f5c98eb",
+      "original_pcm_md5": "0cb8aaf971678127c04eff560f5c98eb",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "20. RUVSON — You Don't Live My Life (Official Music Video).m4a",
+      "size_bytes": 2712867,
+      "sha256": "7a2c8cbd9718138b0507f3aabc957e603759f308ac42b6e79e55d91fff24f38b",
+      "manifest_name": "20. RUVSON — You Don't Live My Life (Official Music Video).mp4",
+      "pcm_md5": "d4bf820c391d2ee2fac822406d5190d7",
+      "original_pcm_md5": "d4bf820c391d2ee2fac822406d5190d7",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "22. I Am My Own Judge _ RUVSON (2026 Premiere).m4a",
+      "size_bytes": 2713993,
+      "sha256": "17edf595ca44969a1341384457ead43420084fe2739d1eb778360aa1f242e9b2",
+      "manifest_name": "22. I Am My Own Judge _ RUVSON (2026 Premiere).mp4",
+      "pcm_md5": "128a399983a59c65c1c252ed2ac3b680",
+      "original_pcm_md5": "128a399983a59c65c1c252ed2ac3b680",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "23. Shadow of the Departed - A Track About Those Who Are Not With Us (Lyric Video) _ RUVSON.m4a",
+      "size_bytes": 3744798,
+      "sha256": "bbf310e4be9485feec909b1b5397d7b484915764ed62203590dff2aaac1d7261",
+      "manifest_name": "23. Shadow of the Departed - A Track About Those Who Are Not With Us (Lyric Video) _ RUVSON.mp4",
+      "pcm_md5": "cd92e25c7b542428a6dee88b97b6aa00",
+      "original_pcm_md5": "cd92e25c7b542428a6dee88b97b6aa00",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "24. Out of Range - A Song About Inner Emptiness and Loneliness _ RUVSON.m4a",
+      "size_bytes": 3349751,
+      "sha256": "cfb3f76e82aa0c63f2065157b1af295a36d1305df0185a5375bb6010e5370efe",
+      "manifest_name": "24. Out of Range - A Song About Inner Emptiness and Loneliness _ RUVSON.mp4",
+      "pcm_md5": "892acc62db1b1f74fc71376df77610c9",
+      "original_pcm_md5": "892acc62db1b1f74fc71376df77610c9",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "25. Don't Miss a Chance - A Track About Missed Moments and Time That Can't Be Returned _ RUVSON.m4a",
+      "size_bytes": 2426345,
+      "sha256": "bdcfe6bbf950f2fb913019a356a17e1fd609a7fdaa73685906f6ec322c8c912a",
+      "manifest_name": "25. Don't Miss a Chance - A Track About Missed Moments and Time That Can't Be Returned _ RUVSON.mp4",
+      "pcm_md5": "a5e45ac482d771c49093f664a1161b27",
+      "original_pcm_md5": "a5e45ac482d771c49093f664a1161b27",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "26. Act Now - A Track That Will Make You START _ RUVSON.m4a",
+      "size_bytes": 2482286,
+      "sha256": "93040b8ce3c8bca0c9586392dc3c686331b68f916188e068b343bdb501c06408",
+      "manifest_name": "26. Act Now - A Track That Will Make You START _ RUVSON.mp4",
+      "pcm_md5": "5b2018cb37b40405ae14fd1892c739e1",
+      "original_pcm_md5": "5b2018cb37b40405ae14fd1892c739e1",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "27. Just Love - A Song About What Makes Us Real _ RUVSON.m4a",
+      "size_bytes": 3787994,
+      "sha256": "130f6eac3306256b023edbcc37e69253eb99c10ceae51374d39a84b66a81c61e",
+      "manifest_name": "27. Just Love - A Song About What Makes Us Real _ RUVSON.mp4",
+      "pcm_md5": "99f5bb875834ec3aa097435c61c9cecf",
+      "original_pcm_md5": "99f5bb875834ec3aa097435c61c9cecf",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "28. Code of Change - A Track About a Rule-Breaking Reality _ RUVSON.m4a",
+      "size_bytes": 3053087,
+      "sha256": "ea0125526a26f65645ee1887add3efc531b9c2ba381bbe83ed90606f0ca24e57",
+      "manifest_name": "28. Code of Change - A Track About a Rule-Breaking Reality _ RUVSON.mp4",
+      "pcm_md5": "4f60729f7d113b8219844bdba5c56853",
+      "original_pcm_md5": "4f60729f7d113b8219844bdba5c56853",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "29. RUVSON - Compass for the House (Official Audio).m4a",
+      "size_bytes": 3282158,
+      "sha256": "0d3e72d680509b989091c9b874f17623c3657a0f5f25dcf6fa00f4f7f8b9d1dc",
+      "manifest_name": "29. RUVSON - Compass for the House (Official Audio).mp4",
+      "pcm_md5": "c8001682ba48670052c188840f0627ec",
+      "original_pcm_md5": "c8001682ba48670052c188840f0627ec",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "30. Start Over - A Track That Motivates You to Never Give Up _ RUVSON.m4a",
+      "size_bytes": 2599460,
+      "sha256": "2dd15d4eebe9be68f37de855f7fdc0a03d5415eb3409f8d8deb35c6448c5a07f",
+      "manifest_name": "30. Start Over - A Track That Motivates You to Never Give Up _ RUVSON.mp4",
+      "pcm_md5": "5d6668afcfda2dd5702ce4d24f33c7a0",
+      "original_pcm_md5": "5d6668afcfda2dd5702ce4d24f33c7a0",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "31. Remain Human (Remix Version) _ RUVSON.m4a",
+      "size_bytes": 2869458,
+      "sha256": "eed8e14166c7c0e9c372c2e288ec6265da0feb033a61854f43062a93486ef2c0",
+      "manifest_name": "31. Remain Human (Remix Version) _ RUVSON.mp4",
+      "pcm_md5": "b40719f1a91780f6aac2b761122f47cb",
+      "original_pcm_md5": "b40719f1a91780f6aac2b761122f47cb",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "32. Angel Without Wings (Lyric Video) _ RUVSON.m4a",
+      "size_bytes": 3981387,
+      "sha256": "f4f3612b1b36d9626d0ef8ac1e3a63c674d274629d1c602ad107384f12c9d1c1",
+      "manifest_name": "32. Angel Without Wings (Lyric Video) _ RUVSON.mp4",
+      "pcm_md5": "33de56abf69a5ab96ac4ab33f9eb7705",
+      "original_pcm_md5": "33de56abf69a5ab96ac4ab33f9eb7705",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "33. RUVSON — It All Starts with You (Official Audio).m4a",
+      "size_bytes": 3551417,
+      "sha256": "3d9b816b246f7927368b92c2edc5695c0ced7096d41a8b7b94404267178694b2",
+      "manifest_name": "33. RUVSON — It All Starts with You (Official Audio).mp4",
+      "pcm_md5": "ea670abc4da3ba60478780a25ce3ea90",
+      "original_pcm_md5": "ea670abc4da3ba60478780a25ce3ea90",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "34. Stay Young - A Song-Message Just for You _ RUVSON.m4a",
+      "size_bytes": 4137966,
+      "sha256": "0bd882e3d1f6f9be96fedf3950f13a48caaa43934789e5682d2d8eb66e0de3fc",
+      "manifest_name": "34. Stay Young - A Song-Message Just for You _ RUVSON.mp4",
+      "pcm_md5": "3cfad43013c12bd816f9e24d095f5ec7",
+      "original_pcm_md5": "3cfad43013c12bd816f9e24d095f5ec7",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "35. The Answer is in the Sky ‣ A Song About Unanswered Questions _ RUVSON.m4a",
+      "size_bytes": 3371532,
+      "sha256": "78a6629a7732a10aa2d6930111dd3acbe96010a42705e3f1667a60b362a53aac",
+      "manifest_name": "35. The Answer is in the Sky ‣ A Song About Unanswered Questions _ RUVSON.mp4",
+      "pcm_md5": "5465713096ef83c9faf23bbe268b0355",
+      "original_pcm_md5": "5465713096ef83c9faf23bbe268b0355",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "36. Time Drips (Remix) ‣ Music with Meaning _ RUVSON.m4a",
+      "size_bytes": 2783464,
+      "sha256": "432ce5ebf3b47c397ee689dd330f971f0aebe85eb020f2df4562e5eed51b1138",
+      "manifest_name": "36. Time Drips (Remix) ‣ Music with Meaning _ RUVSON.mp4",
+      "pcm_md5": "4800bd93f757c0d5cba7aa4b9c6794a8",
+      "original_pcm_md5": "4800bd93f757c0d5cba7aa4b9c6794a8",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "37. Time Like Water - A Song About the Value of Time _ RUVSON.m4a",
+      "size_bytes": 2389157,
+      "sha256": "a331ee6f14beaf9b52ce268b513f45e682ebe748959d474670e7e116aa2ec259",
+      "manifest_name": "37. Time Like Water - A Song About the Value of Time _ RUVSON.mp4",
+      "pcm_md5": "986abaabd9fad107004ab5b7128f4e62",
+      "original_pcm_md5": "986abaabd9fad107004ab5b7128f4e62",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "38. Don't Play with Love ‣ A song about how playing with love ruins your life _ RUVSON.m4a",
+      "size_bytes": 3618623,
+      "sha256": "632477fb988afc62ed2212501edac4489f0e224f294c2a7b47d522961568f9ea",
+      "manifest_name": "38. Don't Play with Love ‣ A song about how playing with love ruins your life _ RUVSON.mp4",
+      "pcm_md5": "d58b5204835b4ec2d70d0926536b312c",
+      "original_pcm_md5": "d58b5204835b4ec2d70d0926536b312c",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "39. Cherish the Moments - a thought-provoking track _ Music for the Soul.m4a",
+      "size_bytes": 2443244,
+      "sha256": "03b7d39006ee57a48ed8926b1630c3e63ebb2ea7dd5f56b2723ae1e9162cc91d",
+      "manifest_name": "39. Cherish the Moments - a thought-provoking track _ Music for the Soul.mp4",
+      "pcm_md5": "7f6ab5f1d96ac21c167b5698b8c5f659",
+      "original_pcm_md5": "7f6ab5f1d96ac21c167b5698b8c5f659",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "40. When the Lights Go Out - A track about what's important in life _ RUVSON.m4a",
+      "size_bytes": 3016303,
+      "sha256": "c601cccddb2a6344a32c3d80643919d9d7fe7fffaeef50957009da7eb11d12f0",
+      "manifest_name": "40. When the Lights Go Out - A track about what's important in life _ RUVSON.mp4",
+      "pcm_md5": "b9cd7739be0c40b3c01eba05e94a9b41",
+      "original_pcm_md5": "b9cd7739be0c40b3c01eba05e94a9b41",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "41. The Meaning of Life is Simple - A Song About the Meaning of Life and the Value of Every Day _ RUVSON.m4a",
+      "size_bytes": 2647526,
+      "sha256": "8538dd633ad6ed5565550d430ad6acbee95f0b60ea9f2eda413ea42e152f6b70",
+      "manifest_name": "41. The Meaning of Life is Simple - A Song About the Meaning of Life and the Value of Every Day _ RUVSON.mp4",
+      "pcm_md5": "c31594698755367dba8b2caec402405b",
+      "original_pcm_md5": "c31594698755367dba8b2caec402405b",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "42. Prisoners of the Past ‣ A song about how the past influences us _ RUVSON.m4a",
+      "size_bytes": 3091754,
+      "sha256": "a916613e265d566fab0f81e8cfbe880d73bf228577d34b556c0b4f195bacad5f",
+      "manifest_name": "42. Prisoners of the Past ‣ A song about how the past influences us _ RUVSON.mp4",
+      "pcm_md5": "2319cb96a7222dce794415a90aa224d7",
+      "original_pcm_md5": "2319cb96a7222dce794415a90aa224d7",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "43. Pride is killing us - A song about pride that destroys our lives _ RUVSON.m4a",
+      "size_bytes": 3083504,
+      "sha256": "f4cd165f51af8a965839a580108fb6d7de82c7e9329c790c01d0d9b440d1f127",
+      "manifest_name": "43. Pride is killing us - A song about pride that destroys our lives _ RUVSON.mp4",
+      "pcm_md5": "98c73f7c9ce7fabb62211ec068c0b932",
+      "original_pcm_md5": "98c73f7c9ce7fabb62211ec068c0b932",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "44. Don't Wait for Tomorrow - A Song About the Life We Put Off _ RUVSON.m4a",
+      "size_bytes": 3171739,
+      "sha256": "8c31698cf58d54c38f38e75a124b6b09a8330a4f864e1a912224a002a1b65b07",
+      "manifest_name": "44. Don't Wait for Tomorrow - A Song About the Life We Put Off _ RUVSON.mp4",
+      "pcm_md5": "bd18d7354ad4defd10e45be586c0613e",
+      "original_pcm_md5": "bd18d7354ad4defd10e45be586c0613e",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "45. Loneliness Among People ‣ A song about inner loneliness in society _ RUVSON.m4a",
+      "size_bytes": 3946815,
+      "sha256": "40955af9bc0e31b26902f62ddf3ad9439a27dc93355bdd791b09ea31efa62d4f",
+      "manifest_name": "45. Loneliness Among People ‣ A song about inner loneliness in society _ RUVSON.mp4",
+      "pcm_md5": "8f56bfee1f11ebc1a33887c1c072f20f",
+      "original_pcm_md5": "8f56bfee1f11ebc1a33887c1c072f20f",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "46. Faith Remains ‣ A Song About the Faith Living Within Us _ RUVSON.m4a",
+      "size_bytes": 2836352,
+      "sha256": "fbdf0f2c0aff261578635c6e3f6307855ecc76f8faa5b1755f2a8f67ca80d6ff",
+      "manifest_name": "46. Faith Remains ‣ A Song About the Faith Living Within Us _ RUVSON.mp4",
+      "pcm_md5": "d3bf6e8dff9bc43d536442e3123a0c2a",
+      "original_pcm_md5": "d3bf6e8dff9bc43d536442e3123a0c2a",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "47. The essence is simple ‣ A song about what's important in life _ RUVSON.m4a",
+      "size_bytes": 3252169,
+      "sha256": "93fb9e8cd3c01b44746473d923ece0a502c2bb390306bcd157c5c34472529e65",
+      "manifest_name": "47. The essence is simple ‣ A song about what's important in life _ RUVSON.mp4",
+      "pcm_md5": "7dc9ba2df322b44f7abaa4d5abf20f19",
+      "original_pcm_md5": "7dc9ba2df322b44f7abaa4d5abf20f19",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "48. Fear Is Not Weakness ‣ A Song About Embracing Fear _ RUVSON.m4a",
+      "size_bytes": 4163502,
+      "sha256": "2770093d833de0aeff7d87f66b4f23ab2fbdac39ee5e58e26e78e4c7431152e4",
+      "manifest_name": "48. Fear Is Not Weakness ‣ A Song About Embracing Fear _ RUVSON.mp4",
+      "pcm_md5": "874801b3e9e43c5b498d0f43b68dd971",
+      "original_pcm_md5": "874801b3e9e43c5b498d0f43b68dd971",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "49. When We Lose - a track about true values u200bu200b_ RUVSON.m4a",
+      "size_bytes": 4045964,
+      "sha256": "4ffaced8715a3e6d07e7227561a9ef54c144a2020666ea5377f84587ade79315",
+      "manifest_name": "49. When We Lose - a track about true values u200bu200b_ RUVSON.mp4",
+      "pcm_md5": "d0fcd4156775689b94f97c328c98944a",
+      "original_pcm_md5": "d0fcd4156775689b94f97c328c98944a",
+      "status": "EXTRACT_BITIDENTICAL"
+    },
+    {
+      "file": "50. Remain Human ‣ A Song About Humanity _ RUVSON.m4a",
+      "size_bytes": 3234842,
+      "sha256": "8ad36b86f345b2eb428c23b24899fc9be5082538719a83bd7f5308c6adc2406f",
+      "manifest_name": "50. Remain Human ‣ A Song About Humanity _ RUVSON.mp4",
+      "pcm_md5": "47fdc9256b10e5d6dc6ec98085960950",
+      "original_pcm_md5": "47fdc9256b10e5d6dc6ec98085960950",
+      "status": "EXTRACT_BITIDENTICAL"
+    }
+  ]
+}
