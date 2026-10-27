@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-27",
+  "pipeline": "piper-TTS (ru_RU-irina-medium) -> OpenVoiceV2 ToneColorConverter",
+  "text": "Куда летят года — туда и мы летим. Этот голос сохранён, чтобы говорить и после.",
+  "reference": "/tmp/my-project/voice_data_raw/ruvson/separation/htdemucs/01. Where Do the Years Fly By/vocals.wav",
+  "device": "cpu (2 cores / 4 GB RAM)",
+  "tts": {
+    "wall_sec": 2.6,
+    "duration_sec": 6.82,
+    "sample_rate": 22050,
+    "rms_dbfs": -17.5
+  },
+  "reference_info": {
+    "duration_sec_full": 182.18,
+    "loaded_sec_for_metrics": 30.0,
+    "sample_rate": 44100,
+    "rms_dbfs": -18.8
+  },
+  "convert": {
+    "model_load_sec": 0.8,
+    "embeddings_sec": 1.0,
+    "convert_wall_sec": 3.7,
+    "output_duration_sec": 6.82,
+    "sample_rate": 22050,
+    "rms_dbfs": -5.9
+  },
+  "metrics": {
+    "se_cosine_source_vs_ref": -0.1877,
+    "se_cosine_output_vs_ref": 0.8215,
+    "se_cosine_source_vs_output": -0.0441,
+    "env_corr_source_vs_output": -0.095,
+    "f0_source": {
+      "median_hz": 176.1,
+      "iqr_hz": 24.2,
+      "voiced_frames": 206
+    },
+    "f0_output": null,
+    "f0_reference_first15s": {
+      "median_hz": 288.5,
+      "iqr_hz": 60.9,
+      "voiced_frames": 334
+    },
+    "asr_source_text": "куда летят годы, туда и мы летим. Этот голос сохранен, чтобы говорить и после.",
+    "asr_output_text": "куда летят годы, туда и мы летим, этот голос сохраню, чтобы говорить и после.",
+    "wer_source_vs_text": 0.143,
+    "wer_output_vs_text": 0.143
+  },
+  "asr_wall_sec": 6.0,
+  "metrics_notes": "env_corr НЕ годится как метрика качества при смене тембра (формантный сдвиг делает корреляцию огибающих околонулевой при полностью разборчивой речи — доказано ASR); решающая метрика контента — WER. pyin на выходе ненадёжен (мало озвученных кадров после смены тембра) — F0 выхода не интерпретируется. Основные метрики: WER и SE-cosine.",
+  "artifacts": {
+    "tts_source_neutral.wav": {
+      "sha256": "c4db7b6950e305f6eab5c7306e0fbd16227907905b8886048a9cfba9365d2073",
+      "bytes": 300588
+    },
+    "output_ruvson_timbre.wav": {
+      "sha256": "905510e814bc06a382c4462ee9cf711e84742d449bb88858dbddf2619f9587ab",
+      "bytes": 300588
+    },
+    "vocals.wav": {
+      "sha256": "0242c2c35b94640b793be76bc912256f4fb7055d957412ea9944f45dec538f05",
+      "bytes": 32136236
+    }
+  },
+  "total_wall_sec": 18.8,
+  "honesty": "метрики — прокси (SE-энкодер OpenVoice, pyin); прослушивание в песочнице невозможно — вердикт по уху UNVERIFIED; синтетика честно маркирована (закон 7: результат — копия-наследник, не двойник)"
+}
