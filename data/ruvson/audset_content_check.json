@@ -1,0 +1,90 @@
+[
+ {
+  "audset": "01x_Kudaleyatgoda_audset46344685.mp3",
+  "corpus": "01. Where Do the Years Fly By.mp3",
+  "label": "01",
+  "corr": 0.974,
+  "offset_sec": 0,
+  "overlap_sec": 182,
+  "len_a_sec": 182,
+  "len_b_sec": 182,
+  "verdict": "SAME TAKE"
+ },
+ {
+  "audset": "05x_Krik_342_audset46344684.mp3",
+  "corpus": "05. RUVSON — Scream in the Silence ‣ (Remix 2026) .mp4",
+  "label": "05",
+  "corr": 0.968,
+  "offset_sec": 0,
+  "overlap_sec": 221,
+  "len_a_sec": 221,
+  "len_b_sec": 221,
+  "verdict": "SAME TAKE"
+ },
+ {
+  "audset": "07x_Neigrayvlyubov_Remix_audset46682880.mp3",
+  "corpus": "07. RUVSON — What If YES ‣ (Remix 2026) .mp4",
+  "label": "07",
+  "corr": 0.395,
+  "offset_sec": -185,
+  "overlap_sec": 49,
+  "len_a_sec": 232,
+  "len_b_sec": 234,
+  "verdict": "РАЗНЫЙ материал"
+ },
+ {
+  "audset": "07x_Neigrayvlyubov_Remix_audset46682880.mp3",
+  "corpus": "48. Fear Is Not Weakness ‣ A Song About Embracing Fear _ RUVSON.mp4",
+  "label": "48 (гипотеза 257с)",
+  "corr": 0.604,
+  "offset_sec": -212,
+  "overlap_sec": 45,
+  "len_a_sec": 232,
+  "len_b_sec": 257,
+  "verdict": "SAME SONG / другой мастер"
+ },
+ {
+  "audset": "krik_249_audset45283972.mp3",
+  "corpus": "05. RUVSON — Scream in the Silence ‣ (Remix 2026) .mp4",
+  "label": "05 (по названию)",
+  "corr": 0.399,
+  "offset_sec": 113,
+  "overlap_sec": 56,
+  "len_a_sec": 169,
+  "len_b_sec": 221,
+  "verdict": "РАЗНЫЙ материал"
+ },
+ {
+  "audset": "krik_249_audset45283972.mp3",
+  "corpus": "20. RUVSON — You Don't Live My Life (Official Music Video).mp4",
+  "label": "20 (168с)",
+  "corr": 0.485,
+  "offset_sec": 113,
+  "overlap_sec": 56,
+  "len_a_sec": 169,
+  "len_b_sec": 167,
+  "verdict": "РАЗНЫЙ материал"
+ },
+ {
+  "audset": "krik_249_audset45283972.mp3",
+  "corpus": "18. RUVSON — Не спеши осуждать (Official Music Video).mp4",
+  "label": "18 (168с)",
+  "corr": 0.485,
+  "offset_sec": 113,
+  "overlap_sec": 56,
+  "len_a_sec": 169,
+  "len_b_sec": 167,
+  "verdict": "РАЗНЫЙ материал"
+ },
+ {
+  "audset": "krik_249_audset45283972.mp3",
+  "corpus": "47. The essence is simple ‣ A song about what's important in life _ RUVSON.mp4",
+  "label": "47 (гипотеза 201с)",
+  "corr": 0.41,
+  "offset_sec": -142,
+  "overlap_sec": 59,
+  "len_a_sec": 169,
+  "len_b_sec": 201,
+  "verdict": "РАЗНЫЙ материал"
+ }
+]
