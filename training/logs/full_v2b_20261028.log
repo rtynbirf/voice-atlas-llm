@@ -1,0 +1,9 @@
+[train] device=cpu bf16=False
+[train] tokenizer: models/_base/Qwen2.5-0.5B-Instruct
+[train] model: models/_base/Qwen2.5-0.5B-Instruct
+[train] CPU: веса в bfloat16 (экономия RAM)
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 11018.64it/s]
+[train] gradient checkpointing: use_reentrant=False
+[train] LoRA trainable 8.80M / total 502.83M (1.75%)
+[train] examples: train=353 val=30

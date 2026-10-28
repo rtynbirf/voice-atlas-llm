@@ -162,6 +162,10 @@ def main() -> int:
     ap.add_argument("--config", required=True)
     ap.add_argument("--limit", type=int, default=None,
                     help="ограничить число train/val примеров (proof-run на CPU)")
+    ap.add_argument("--resume", action="store_true",
+                    help="продолжить из resume_state.pt в output_dir, если есть")
+    ap.add_argument("--max-minutes", type=float, default=None,
+                    help="окно чанка: сохранить чекпоинт и чисто выйти по истечении")
     args = ap.parse_args()
 
     cfg = yaml.safe_load(Path(args.config).read_text(encoding="utf-8"))
@@ -248,15 +252,63 @@ def main() -> int:
     from transformers import get_cosine_schedule_with_warmup
     scheduler = get_cosine_schedule_with_warmup(optimizer, warmup, total_steps)
 
-    history = {"train_loss": [], "val_loss": [], "lr": []}
+    history = {"train_loss": [], "val_loss": [], "lr": [], "elapsed_sec": 0.0}
     t0 = time.time()
+    chunk_t0 = time.time()
     gstep, running = 0, 0.0
-    for epoch in range(1, tcfg["epochs"] + 1):
-        for i, batch in enumerate(train_loader, 1):
+    start_epoch, start_bidx = 1, 0
+
+    # --- РЕЗЮМ: песочница косит фоновые процессы после каждого вызова, поэтому
+    # обучение идёт форграундными окнами (--max-minutes), состояние — в resume_state.pt
+    train_params = {k for k, p in model.named_parameters() if p.requires_grad}
+
+    def _save_resume(epoch: int, bidx: int) -> None:
+        torch.save({
+            "lora": {k: v.detach().cpu().clone()
+                     for k, v in model.state_dict().items() if k in train_params},
+            "optimizer": optimizer.state_dict(),
+            "scheduler": scheduler.state_dict(),
+            "torch_rng": torch.get_rng_state(),
+            "py_rng": random.getstate(),
+            "gstep": gstep, "running": running,
+            "epoch": epoch, "bidx": bidx,
+            "history": history,
+            "elapsed_sec": history.get("elapsed_sec", 0.0) + (time.time() - t0),
+        }, out_dir / "resume_state.pt")
+
+    if args.resume:
+        rs_path = out_dir / "resume_state.pt"
+        if rs_path.exists():
+            rs = torch.load(rs_path, map_location="cpu", weights_only=False)
+            model.load_state_dict(rs["lora"], strict=False)
+            optimizer.load_state_dict(rs["optimizer"])
+            scheduler.load_state_dict(rs["scheduler"])
+            torch.set_rng_state(rs["torch_rng"])
+            random.setstate(rs["py_rng"])
+            gstep, running = rs["gstep"], rs["running"]
+            start_epoch, start_bidx = rs["epoch"], rs["bidx"]
+            history = rs["history"]
+            history["elapsed_sec"] = rs["elapsed_sec"]  # накопленное время всех чанков
+            print(f"[resume] gstep={gstep}/{total_steps} epoch={start_epoch} "
+                  f"bidx={start_bidx} elapsed={history.get('elapsed_sec', 0):.0f}s")
+        else:
+            print("[resume] состояния нет — старт с нуля")
+
+    for epoch in range(start_epoch, tcfg["epochs"] + 1):
+        # детерминизм: перестановка эпохи из отдельного генератора (seed*1000+epoch),
+        # резюм продолжает с индекса bidx без пропуска forward-проходов
+        gdata = torch.Generator()
+        gdata.manual_seed(cfg.get("seed", 42) * 1000 + epoch)
+        perm = torch.randperm(len(train_ds), generator=gdata).tolist()
+        n = len(perm)
+        i = start_bidx if epoch == start_epoch else 0
+        while i < n:
+            batch = coll([train_ds[perm[i]]])
+            i += 1
             loss = masked_lm_loss(model, batch, device) / tcfg["grad_accum"]
             loss.backward()
             running += loss.item()
-            if i % tcfg["grad_accum"] == 0 or i == len(train_loader):
+            if i % tcfg["grad_accum"] == 0 or i == n:
                 torch.nn.utils.clip_grad_norm_(
                     [p for p in model.parameters() if p.requires_grad],
                     tcfg.get("max_grad_norm", 1.0))
@@ -267,13 +319,25 @@ def main() -> int:
                 history["train_loss"].append(running)
                 history["lr"].append(scheduler.get_last_lr()[0])
                 if gstep % tcfg.get("log_every", 10) == 0:
-                    el = time.time() - t0
+                    el = history.get("elapsed_sec", 0.0) + (time.time() - t0)
                     print(f"[step {gstep}/{total_steps}] loss={running:.4f} "
                           f"lr={scheduler.get_last_lr()[0]:.2e} elapsed={el:.0f}s")
                 running = 0.0
+                if args.max_minutes and (time.time() - chunk_t0) > args.max_minutes * 60:
+                    _save_resume(epoch, i)
+                    print(f"[chunk] окно {args.max_minutes} мин: чекпоинт "
+                          f"gstep={gstep} epoch={epoch} bidx={i} сохранён, чистый выход")
+                    return 0
+        start_bidx = 0
         vl = eval_loss(model, val_loader, device)
         history["val_loss"].append({"epoch": epoch, "loss": vl})
         print(f"[epoch {epoch}] val_loss={vl:.4f}")
+        if args.max_minutes and epoch < tcfg["epochs"] \
+                and (time.time() - chunk_t0) > args.max_minutes * 60:
+            _save_resume(epoch + 1, 0)
+            print(f"[chunk] окно {args.max_minutes} мин: эпоха {epoch} закрыта, "
+                  f"чекпоинт сохранён, чистый выход")
+            return 0
 
     print(f"[train] save adapter -> {out_dir}")
     model.save_pretrained(out_dir)
@@ -318,7 +382,7 @@ def main() -> int:
         "total_params": total,
         "train_examples": len(train_ds),
         "val_examples": len(val_ds),
-        "elapsed_sec": round(time.time() - t0, 1),
+        "elapsed_sec": round(history.get("elapsed_sec", 0.0) + (time.time() - t0), 1),
         "library_versions": versions,
         "checksums": {"algorithm": "sha256", "files": checksums},
         "history": history,
