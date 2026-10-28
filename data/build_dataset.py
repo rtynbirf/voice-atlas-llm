@@ -20,6 +20,7 @@
 
 Запуск:
     python data/build_dataset.py [--seed 42] [--val-frac 0.06] [--split-mode group|random]
+        [--auto glossary|full]   # full = глоссарий + таблицы/законы/термины (auto_qa)
 
 Выход:
     data/dataset/train.jsonl
@@ -66,6 +67,13 @@ def load_curated() -> list[dict]:
 
 
 GLOSSARY_ROW = re.compile(r"^\|\s*([^|`]+?)\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|$", re.M)
+
+try:
+    import auto_qa  # type: ignore  # лежит рядом (data/)
+except ImportError:  # pragma: no cover
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import auto_qa  # type: ignore
 
 
 def generate_glossary_qa() -> list[dict]:
@@ -157,11 +165,17 @@ def main() -> int:
     ap.add_argument("--split-mode", choices=("group", "random"), default="group",
                     help="group: val целыми главами (антиутечка); "
                          "random: прежний случайный сплит")
+    ap.add_argument("--auto", choices=("glossary", "full"), default="full",
+                    help="glossary: только глоссарий (воспроизведение v1); "
+                         "full: глоссарий + таблицы/законы/термины (волна «Гибрид»)")
     args = ap.parse_args()
 
     curated = load_curated()
     auto = generate_glossary_qa()
-    all_samples = curated + auto
+    extra: dict[str, list] = {}
+    if args.auto == "full":
+        extra = auto_qa.extract_all(ATLAS_DIR)
+    all_samples = curated + auto + [s for part in extra.values() for s in part]
 
     ok, warns = validate(all_samples)
     for w in warns:
@@ -200,6 +214,7 @@ def main() -> int:
         "val": len(val),
         "curated": len(curated),
         "auto_glossary": len(auto),
+        "auto_extra": {k: len(v) for k, v in extra.items()},
         "dropped": len(all_samples) - len(ok),
         "warnings": len(warns),
         "by_chapter": dict(sorted(chapters.items(), key=lambda kv: str(kv[0]))),

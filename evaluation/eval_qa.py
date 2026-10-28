@@ -82,12 +82,19 @@ def main() -> int:
 
     results, t0 = [], time.time()
     if args.retrieval_only:
+        # v2 «Гибрид»: метрика = покрытие ключевых слов эталона КОНТЕКСТОМ,
+        # который реально получает модель (union top-k), + top1 для сравнения
+        # со старым протоколом.
         for row in rows:
             hits = retriever.search(row["instruction"], 3)
             top1 = hits[0]["text"].lower() if hits else ""
+            union = " ".join(h["text"] for h in hits).lower()
             ref_kw = [t for t in tokenize(row["output"]) if len(t) >= 4]
-            covered = sum(1 for kw in ref_kw if kw in top1) / max(len(ref_kw), 1)
-            results.append({"question": row["instruction"], "rag_coverage": covered})
+            covered_top1 = sum(1 for kw in ref_kw if kw in top1) / max(len(ref_kw), 1)
+            covered_union = sum(1 for kw in ref_kw if kw in union) / max(len(ref_kw), 1)
+            results.append({"question": row["instruction"],
+                            "rag_coverage_top1": covered_top1,
+                            "rag_coverage": covered_union})
     else:
         import torch
         from transformers import AutoModelForCausalLM, AutoTokenizer
