@@ -48,10 +48,12 @@ def load_jsonl(path: Path) -> list[dict]:
 class SFTDataset(Dataset):
     """Токенизированные пары с маской лосса: лосс только на ответе."""
 
-    def __init__(self, rows: list[dict], tokenizer, system: str, max_len: int):
+    def __init__(self, rows: list[dict], tokenizer, system: str, max_len: int,
+                 drop_long: bool = False):
         self.examples = []
         eos = tokenizer.eos_token_id
         tail = [eos] if eos is not None else []
+        dropped = 0
         for row in rows:
             prompt_text, answer_text = build_training_pair(
                 system, row["instruction"], row["output"])
@@ -60,9 +62,12 @@ class SFTDataset(Dataset):
             # Ответ должен поместиться целиком: промпт режем СЛЕВА.
             max_prompt = max_len - len(ans)
             if max_prompt <= 0:
+                if drop_long:
+                    dropped += 1
+                    continue
                 raise ValueError(
                     f"answer длиннее max_len ({len(ans)} > {max_len}); "
-                    "увеличь max_len в конфиге")
+                    "увеличь max_len в конфиге или включи drop_long")
             if len(prompt_ids) > max_prompt:
                 prompt_ids = prompt_ids[-max_prompt:]
             input_ids = prompt_ids + ans
@@ -70,6 +75,9 @@ class SFTDataset(Dataset):
             if all(l == -100 for l in labels):
                 raise ValueError("пример без обучающих токенов")
             self.examples.append({"input_ids": input_ids, "labels": labels})
+        if dropped:
+            print(f"[data] drop_long: выброшено {dropped} примеров "
+                  f"длиннее max_len={max_len} (громко, не молча)")
 
     def __len__(self) -> int:
         return len(self.examples)
@@ -115,8 +123,10 @@ def masked_lm_loss(model, batch: dict, device: str) -> torch.Tensor:
        / N эквивалентна усреднённому CE по всем ответным токенам.
     LoRA-слои активны, т.к. живут внутри декодерных блоков базовой модели.
     """
-    base = model.get_base_model()  # Qwen2ForCausalLM; LoRA внутри активна
-    out = base.model(
+    base = model.get_base_model()  # Qwen2ForCausalLM / GPT2LMHeadModel; LoRA активна
+    # Бэкбон по семейству: Qwen2 -> .model, GPT2 -> .transformer (smoke-модель)
+    backbone = getattr(base, "model", None) or base.transformer
+    out = backbone(
         input_ids=batch["input_ids"].to(device),
         attention_mask=batch["attention_mask"].to(device),
         use_cache=False,
@@ -217,8 +227,10 @@ def main() -> int:
         train_rows = train_rows[: args.limit]
         val_rows = val_rows[: max(1, args.limit // 8)]
     tcfg = cfg["training"]
-    train_ds = SFTDataset(train_rows, tokenizer, system, cfg["max_len"])
-    val_ds = SFTDataset(val_rows, tokenizer, system, cfg["max_len"])
+    train_ds = SFTDataset(train_rows, tokenizer, system, cfg["max_len"],
+                          drop_long=bool(cfg.get("data", {}).get("drop_long", False)))
+    val_ds = SFTDataset(val_rows, tokenizer, system, cfg["max_len"],
+                        drop_long=bool(cfg.get("data", {}).get("drop_long", False)))
     pad_id = tokenizer.pad_token_id
     coll = lambda b: collate(b, pad_id)
     train_loader = DataLoader(train_ds, batch_size=tcfg["batch_size"], shuffle=True,

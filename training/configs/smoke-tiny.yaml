@@ -3,7 +3,7 @@
 base_model: sshleifer/tiny-gpt2
 output_dir: models/smoke-tiny
 system_prompt_file: data/curated/system_prompt.txt
-max_len: 1024   # лимит n_positions у tiny-gpt2; промпт обрежется слева, ответ сохранится
+max_len: 1024   # лимит n_positions у tiny-gpt2; промпт обрезается слева, ответ сохранится
 allow_gpu: true
 bf16: true
 gradient_checkpointing: false
@@ -16,6 +16,7 @@ lora:
 data:
   train: data/dataset/train.jsonl
   val: data/dataset/val.jsonl
+  drop_long: true   # v2-корпус длиннее v1; для SMOKE длинные строки громко выбрасываются
 training:
   epochs: 1
   batch_size: 4
