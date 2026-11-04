@@ -73,6 +73,8 @@ def main() -> int:
     ap.add_argument("--out", default="evaluation/report.json")
     ap.add_argument("--retrieval-only", action="store_true",
                     help="оценить только RAG-покрытие без генерации")
+    ap.add_argument("--start", type=int, default=0,
+                    help="начать с вопроса N (резюм убитого окна: отчёт пишется инкрементально)")
     args = ap.parse_args()
 
     val_path = ROOT / args.val
@@ -80,7 +82,14 @@ def main() -> int:
     rows = rows[: args.max_samples]
     retriever = TfidfRetriever(load_corpus())
 
-    results, t0 = [], time.time()
+    # Резюм окон: если частичный отчёт уже есть — берём готовые результаты
+    out_path = ROOT / args.out
+    results = []
+    if args.start and out_path.exists():
+        prev = json.loads(out_path.read_text(encoding="utf-8"))
+        results = list(prev.get("results", []))[: args.start]
+        print(f"[eval] резюм: загружено {len(results)} готовых результатов из {args.out}")
+    t0 = time.time()
     if args.retrieval_only:
         # v2 «Гибрид»: метрика = покрытие ключевых слов эталона КОНТЕКСТОМ,
         # который реально получает модель (union top-k), + top1 для сравнения
@@ -114,7 +123,7 @@ def main() -> int:
         device = "cuda" if torch.cuda.is_available() else "cpu"
         model.to(device)
 
-        for row in rows:
+        for row in rows[args.start:]:
             hits = retriever.search(row["instruction"], 3)
             ctx = "\n\n".join(f"[{h['id']}] {h['text']}" for h in hits)[:2400]
             grounded = (system.strip()
@@ -137,6 +146,10 @@ def main() -> int:
                 "honest_uncertainty": bool(
                     re.search(r"не подтвержд|неизвестн|не проверен", pred.lower())),
             })
+            # инкрементальный отчёт после каждого вопроса: окно умерло — результат жив
+            out_path.write_text(json.dumps(
+                {"mode": "partial", "n_done": len(results), "results": results},
+                ensure_ascii=False, indent=2), encoding="utf-8")
 
     agg = {}
     if results and "token_f1" in results[0]:
