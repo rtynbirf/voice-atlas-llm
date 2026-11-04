@@ -19,5 +19,5 @@
 [step 35/40] loss=2.0204 lr=8.42e-06 elapsed=4466s
 [step 40/40] loss=1.3778 lr=0.00e+00 elapsed=5081s
 [epoch 4] val_loss=2.8237
-[train] save adapter -> /home/z/my-project/voice-atlas-llm/models/atlas-qwen-0.5b
+[train] save adapter -> ~/voice-atlas-llm/models/atlas-qwen-0.5b
 [train] done in 5099s

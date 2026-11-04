@@ -8,7 +8,7 @@
   "source_file": "01. Where Do the Years Fly By.mp3",
   "manifest_source_sha256": "e187ee3f799ee04c694d56f54fe72279868474998cfba88da0cbd8cf9e08e2cb",
   "manifest_source_size": 7288310,
-  "input_file": "/home/z/my-project/voice_data_raw/ruvson/audio/01. Where Do the Years Fly By.mp3",
+  "input_file": "~/voice_data_raw/ruvson/audio/01. Where Do the Years Fly By.mp3",
   "input_file_sha256": "0984348796617c0fd036861d380d3867ec0ceab6fcae27db15ed1e79b390f2ab",
   "integrity": {
     "input_sha256": "0984348796617c0fd036861d380d3867ec0ceab6fcae27db15ed1e79b390f2ab",
