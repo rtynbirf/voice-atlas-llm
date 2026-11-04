@@ -53,12 +53,12 @@
 ```bash
 # 1) Python-стек — ВСЕГДА в venv: системный pip заблокирован (PEP 668,
 #    externally managed environment) — измерено, установка torch в систему падает.
-python3 -m venv /home/z/my-project/venv-demucs
-/home/z/my-project/venv-demucs/bin/pip install demucs
+python3 -m venv ~/venv-demucs
+~/venv-demucs/bin/pip install demucs
 #    Результат: torch 2.14.1+cpu, demucs 4.1.0, numpy 2.5.4 — работает на CPU.
 
 # 2) Восстановление после вайпа — отработано 3 раза (Task 11, 12, 13):
-cd /home/z/my-project/voice-atlas-llm
+cd ~/voice-atlas-llm
 git config core.fileMode false          # иначе шум mode-прав на свежем клоне
 git remote set-url origin "https://<PAT>@github.com/rtynbirf/voice-atlas-llm.git"
 git fetch origin && git reset --hard origin/main
@@ -208,11 +208,11 @@ audset_download_manifest.json; коммит b835031.
 ## Фаза 6. Вокал-сепарация на CPU (2 ядра): реальный рецепт
 
 ```bash
-# Окружение: /home/z/my-project/venv-demucs (torch 2.14.1+cpu, demucs 4.1.0).
-/home/z/my-project/venv-demucs/bin/demucs \
+# Окружение: ~/venv-demucs (torch 2.14.1+cpu, demucs 4.1.0).
+~/venv-demucs/bin/demucs \
   -n htdemucs --two-stems=vocals \
   --segment 7 --shifts 0 -j 1 \
-  -o /home/z/my-project/voice_data_raw/ruvson/separation \
+  -o ~/voice_data_raw/ruvson/separation \
   "<вход.mp3>"
 ```
 
@@ -259,7 +259,7 @@ UNVERIFIED по уху остаётся в отчёте честно.
 - Push: PAT в remote URL (`git remote set-url origin https://<PAT>@github…`),
   после пуша обязательная верификация `git ls-remote origin main` —
   API GitHub из песочницы ловит rate-limit, git-транспорт — нет.
-- Параллельный журнал сессий — `/home/z/my-project/worklog.md`
+- Параллельный журнал сессий — `~/worklog.md`
   (Task ID, шаги, артефакты); репо и worklog переживают друг друга.
 - Правило `git add`: **поимённо перечислять файлы** — `git add -A` на свежем
   клоне захватывает шум mode-прав (измерено, перезаписано коммитом).
@@ -340,7 +340,7 @@ torch 2.14.1+cpu, XTTS-v2, ядро GPT в bf16. Симптомы шли цеп�
 - Корейский: длинная фраза с грамматикой «거란 걸» даёт 0.53–0.59; упрощённая
   «그러던 어느 날, 고요한 속에서, 혼자서 모든 걸 깨닫게 돼» → 0.871.
 - Код: `scripts/ruvson_xtts_20langs.py` (генерация), `qc_roundtrip.py` (QC), `pack_onevoice_v2.py`
-  (упаковка), `upload_release_onevoice_v2.sh` (релиз) — в песочнице `/home/z/my-project/scripts/`.
+  (упаковка), `upload_release_onevoice_v2.sh` (релиз) — в песочнице `~/scripts/`.
 
 **Не сделано (честно):** конвейер дубляжа «его живой вокал + машинный перевод + конверсия голоса
 до герца» — следующий этап; расширение 20 → 30+ языков; программа «Балабол».
