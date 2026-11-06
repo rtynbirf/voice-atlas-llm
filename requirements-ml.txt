@@ -9,8 +9,8 @@
 # (честный незакрытый пункт, не по памяти).
 #
 # CUDA-сборка torch для RTX 3060+ (та же версия):
-#   pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cu121
-torch==2.14.1
+#   pip install torch==2.15.0 --index-url https://download.pytorch.org/whl/cu121
+torch==2.15.0
 transformers==5.20.2
 peft==0.21.2
 accelerate>=0.33
