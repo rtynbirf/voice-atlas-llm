@@ -1,17 +1,18 @@
-name: "ПУЛЬС — еженедельный самоаудит"
+name: "ПУЛЬС v2 — еженедельный самоаудит"
 
-# Принципы «Живого Пульса»:
-#   1. Журнал-из-фактов  — замер собирается только из реального состояния репо;
-#   2. Гомеостаз         — репозиторий сам себя обследует и пишет себе PULSE.md;
-#   3. Только-добавление — воркфлоу ничего не удаляет и не перезаписывает чужое;
-#   4. Смещённый ритм    — не на ровном часу, чтобы не конкурировать с толпой CI.
+# ПУЛЬС-протокол v2 (PID1). Эволюция v1 после бенчмарка с учителями:
+#   OpenSSF Scorecard → зависимости пинуются полным SHA (проверка Pinned-Dependencies);
+#   RepoHealth/Scorecard → детерминированная пульс-оценка 0-100;
+#   bernstein «project pulse» → ритм без шума: коммит только по существенному изменению;
+#   Upptime/blog-post-workflow → keepalive против 60-дневного отключения расписаний;
+#   агенты-экосистема (agents.md) → машиночитаемый блок в конце файла.
+# Принципы неизменны: журнал-из-фактов, гомеостаз, только-добавление, смещённый ритм.
 
 on:
   schedule:
     - cron: "17 4 * * 1"
   workflow_dispatch:
 
-# Второй параллельный замер дождётся первого и выйдет по идемпотентности
 concurrency:
   group: pulse
   cancel-in-progress: false
@@ -25,8 +26,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Checkout (полная история — для метрик)
-        uses: actions/checkout@v4
+      - name: Checkout (пин по SHA — учитель OpenSSF Scorecard)
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           fetch-depth: 0
 
@@ -34,21 +35,32 @@ jobs:
         run: |
           set -euo pipefail
 
-          NOW="$(date -u '+%Y-%m-%d %H:%M UTC')"
+          NOW_TS="$(date +%s)"
           BRANCH="${GITHUB_REF_NAME:-$(git branch --show-current)}"
-          COMMITS="$(git rev-list --count HEAD)"
-          FIRST="$(git log --reverse --format=%cs | sed -n '1p')"  # sed дочитывает поток до EOF — SIGPIPE невозможен под pipefail
-          LAST="$(git log -1 --format=%cs)"
-          FILES="$(git ls-files | wc -l | tr -d ' ')"
-          DEBT="$( { git grep -InE 'TODO|FIXME' || true; } | wc -l | tr -d ' ' )"
+          # Счётчики — содержательные: кардиограмма не подкармливает сама себя (урок смоук-теста:
+          # пульсовый коммит сам менял счётчики и порождал шумовые коммиты каждый замер)
+          COMMITS="$(git rev-list --count HEAD -- . ':(exclude)PULSE.md')"
+          FIRST="$(git log --reverse --format=%cs | sed -n '1p')"
+          FILES="$(git ls-files -- . ':(exclude)PULSE.md' | wc -l | tr -d ' ')"
+          DEBT="$( { git grep -InE 'TODO|FIXME' -- . ':(exclude)PULSE.md' || true; } | wc -l | tr -d ' ' )"
+
+          # Свежесть по содержательному коммиту: собственные пульсовые коммиты не считаются
+          # (честность: кардиограмма не должна себя подкармливать)
+          LAST_CONTENT_TS="$(git log -1 --format=%ct -- . ':(exclude)PULSE.md' || true)"
+          if [ -z "$LAST_CONTENT_TS" ]; then LAST_CONTENT_TS="$(git log -1 --format=%ct)"; fi
+          FRESH_DAYS=$(( (NOW_TS - LAST_CONTENT_TS) / 86400 ))
+          LAST_CONTENT_DATE="$(date -u -d "@$LAST_CONTENT_TS" '+%Y-%m-%d')"
+
+          # Возраст репо для keepalive (учитель: Upptime/blog-post-workflow)
+          AGE_DAYS=$(( (NOW_TS - $(git log -1 --format=%ct)) / 86400 ))
 
           has() { for p in "$@"; do [ -e "$p" ] && return 0; done; return 1; }
           mark() { if has "$@"; then echo '✓'; else echo '✗'; fi; }
 
           m_readme=✗
-          if [ -n "$(find . -maxdepth 1 -iname 'README*' -not -path './.git/*' | head -n 1)" ]; then m_readme=✓; fi
+          if [ -n "$(find . -maxdepth 1 -iname 'README*' -not -path './.git/*' | sed -n '1p')" ]; then m_readme=✓; fi
           m_license=✗
-          if [ -n "$(find . -maxdepth 1 -iname 'LICENSE*' | head -n 1)" ]; then m_license=✓; fi
+          if [ -n "$(find . -maxdepth 1 -iname 'LICENSE*' | sed -n '1p')" ]; then m_license=✓; fi
           m_gitignore="$(mark .gitignore)"
           m_security="$(mark SECURITY.md .github/SECURITY.md)"
           m_contrib="$(mark CONTRIBUTING.md .github/CONTRIBUTING.md)"
@@ -56,23 +68,65 @@ jobs:
           m_agents="$(mark AGENTS.md)"
           m_depbot="$(mark .github/dependabot.yml)"
           m_ci=✗
-          if [ -n "$(find .github/workflows -maxdepth 1 \( -name '*.yml' -o -name '*.yaml' \) ! -name 'self-audit.yml' 2>/dev/null | head -n 1)" ]; then m_ci=✓; fi
+          if [ -n "$(find .github/workflows -maxdepth 1 \( -name '*.yml' -o -name '*.yaml' \) ! -name 'self-audit.yml' 2>/dev/null | sed -n '1p')" ]; then m_ci=✓; fi
+
+          # Детерминированная пульс-оценка 0-100 (учителя: RepoHealth, Scorecard)
+          # гигиена: 9 компонентов × 10 = 90 очков; свежесть: ≤14 дней = 10, ≤30 = 5, дольше = 0
+          HYGIENE_CNT=0
+          for m in "$m_readme" "$m_license" "$m_gitignore" "$m_security" "$m_contrib" "$m_codeown" "$m_agents" "$m_depbot" "$m_ci"; do
+            if [ "$m" = "✓" ]; then HYGIENE_CNT=$((HYGIENE_CNT + 1)); fi
+          done
+          HYGIENE_PTS=$((HYGIENE_CNT * 10))
+          if   [ "$FRESH_DAYS" -le 14 ]; then FRESH_PTS=10
+          elif [ "$FRESH_DAYS" -le 30 ]; then FRESH_PTS=5
+          else FRESH_PTS=0
+          fi
+          SCORE=$((HYGIENE_PTS + FRESH_PTS))
+
+          # Дельта техдолга по машиночитаемому блоку предыдущего замера
+          # (точный парс: tr -dc склеивал бы цифры всей строки — «debt»: 8, «commits»: 2 → 28)
+          PREV_DEBT="$( { git show HEAD:PULSE.md 2>/dev/null | sed -n 's/.*"debt": \([0-9]*\).*/\1/p' | sed -n '1p'; } || true )"
+          ALARM=""
+          if [ -n "$PREV_DEBT" ] && [ "$DEBT" -gt "$PREV_DEBT" ]; then
+            GROWTH=$(( DEBT - PREV_DEBT ))
+            THRESH=$(( PREV_DEBT / 4 ))
+            if [ "$THRESH" -lt 5 ]; then THRESH=5; fi
+            if [ "$GROWTH" -ge "$THRESH" ]; then
+              ALARM="yes"
+              {
+                echo "## ТРЕВОГА: техдолг вырос"
+                echo
+                echo "TODO/FIXME: $PREV_DEBT → $DEBT строк (+$GROWTH). Причина роста — см. свежие коммиты. Замер не исправляет код, он кричит."
+                echo
+              } >> /tmp/pulse-alarm.md
+            fi
+          fi
 
           {
             echo "# ПУЛЬС"
             echo
-            echo "Живой журнал здоровья репозитория. Заполняется автоматически воркфлоу «ПУЛЬС — еженедельный самоаудит» (.github/workflows/self-audit.yml): репозиторий сам себя обследует и записывает результат сюда."
-            echo "Источник истины — состояние репозитория в момент замера (журнал-из-фактов); ручные правки бессмысленны: следующий замер перепишет файл."
+            echo "Живой журнал здоровья репозитория. ПУЛЬС-протокол v2 (PID1): воркфлоу «ПУЛЬС v2» (.github/workflows/self-audit.yml) еженедельно обследует репозиторий и пишет сюда."
+            echo "Источник истины — состояние репозитория в момент замера (журнал-из-фактов). Ритм без шума: коммит делается только при существенном изменении показаний; строка даты на ритм не влияет."
             echo
             echo "| Замер | Значение |"
             echo "|---|---|"
-            echo "| Дата замера (UTC) | $NOW |"
+            echo "| Дата замера (UTC) | $(date -u '+%Y-%m-%d %H:%M') |"
             echo "| Ветка | $BRANCH |"
-            echo "| Коммитов | $COMMITS |"
-            echo "| Файлов в индексе | $FILES |"
-            echo "| Техдолг (TODO/FIXME, строк) | $DEBT |"
+            echo "| Содержательных коммитов (без пульсовых) | $COMMITS |"
+            echo "| Файлов в индексе (без PULSE.md) | $FILES |"
+            echo "| Техдолг (TODO/FIXME, строк, без PULSE.md) | $DEBT |"
             echo "| Первый коммит | $FIRST |"
-            echo "| Последний коммит | $LAST |"
+            echo "| Последний содержательный коммит | $LAST_CONTENT_DATE |"
+            echo
+            echo "## Пульс-оценка"
+            echo
+            echo "Детерминированная, без ручных суждений: гигиена 9×10 очков + свежесть содержательного коммита (≤14 дн = 10, ≤30 дн = 5, дольше = 0). Техдолг фиксируется, но не штрафуется — честная работа в процессе не наказывается."
+            echo
+            echo "| Компонент | Очки |"
+            echo "|---|---|"
+            echo "| Гигиена ($HYGIENE_CNT из 9) | $HYGIENE_PTS / 90 |"
+            echo "| Свежесть ($FRESH_DAYS дн., содержательный: $LAST_CONTENT_DATE) | $FRESH_PTS / 10 |"
+            echo "| **Итого** | **$SCORE / 100** |"
             echo
             echo "## Гигиенический стек"
             echo
@@ -88,25 +142,54 @@ jobs:
             echo "| dependabot.yml | $m_depbot |"
             echo "| CI-воркфлоу | $m_ci |"
             echo
+            if [ -n "$ALARM" ]; then cat /tmp/pulse-alarm.md; fi
             echo "## Как это работает"
             echo
-            echo "- Каждую неделю (пн 04:17 UTC) воркфлоу заново измеряет репозиторий и перезаписывает этот файл — только если показания изменились."
-            echo "- История файла = кардиограмма репозитория: каждый коммит здесь — один замер."
-            echo "- Воркфлоу работает в режиме «только-добавление»: не трогает ни код, ни другие файлы."
+            echo "- Каждый понедельник 04:17 UTC воркфлоу заново измеряет репозиторий; коммит — только если показания изменились по существу (ритм без шума)."
+            echo "- История PULSE.md = кардиограмма без шума: каждый коммит здесь — реальное событие."
+            echo "- Режим «только-добавление»: не трогает ни код, ни чужие файлы; пин зависимости по SHA; машиночитаемый блок внизу — для агентов и корневого ПУЛЬС-1."
           } > PULSE.md
+
+          {
+            echo
+            echo '```json'
+            echo "{\"pulse_version\": 2, \"score\": $SCORE, \"hygiene\": $HYGIENE_CNT, \"fresh_days\": $FRESH_DAYS, \"debt\": $DEBT, \"commits\": $COMMITS, \"files\": $FILES, \"branch\": \"$BRANCH\"}"
+            echo '```'
+          } >> PULSE.md
 
           echo "--- PULSE.md ---"
           cat PULSE.md
 
-      - name: Запись пульса — идемпотентно
+      - name: Запись пульса — ритм без шума
         run: |
           set -euo pipefail
-          if [ -z "$(git status --porcelain -- PULSE.md)" ]; then
-            echo "Показания не изменились — коммит не требуется (идемпотентность)"
+          # Существенность: сравнение с HEAD без учёта строки даты замера и бакета свежести
+          # (raw fresh_days растёт +7 еженедельно даже на покойном репо — нормализуем до бакета,
+          # иначе «ритм без шума» течёт и keepalive недостижим)
+          PREV="$( { git show HEAD:PULSE.md 2>/dev/null \
+            | sed -E -e 's/^\| Дата замера.*/|D|/' \
+                     -e 's/\| Свежесть \([0-9]+ дн\./| Свежесть (X дн./' \
+                     -e 's/\"fresh_days\": [0-9]+/\"fresh_days\": X/'; } || true )"
+          NEW="$(sed -E -e 's/^\| Дата замера.*/|D|/' \
+                 -e 's/\| Свежесть \([0-9]+ дн\./| Свежесть (X дн./' \
+                 -e 's/\"fresh_days\": [0-9]+/\"fresh_days\": X/' PULSE.md)"
+          AGE_DAYS=$(( ($(date +%s) - $(git log -1 --format=%ct)) / 86400 ))
+
+          if [ "$PREV" = "$NEW" ]; then
+            if [ "$AGE_DAYS" -gt 50 ]; then
+              git config user.name "pulse-bot"
+              git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+              git commit --allow-empty -m "pulse: keepalive — репо живо, показания без изменений [skip ci]"
+              git push
+              echo "Keepalive: репо dormant ${AGE_DAYS} дн. — удар сердца для расписания"
+            else
+              echo "Показания без изменений (возраст ${AGE_DAYS} дн.) — коммит не требуется"
+            fi
             exit 0
           fi
           git config user.name "pulse-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add PULSE.md
-          git commit -m "pulse: еженедельный замер [skip ci]"
+          git commit -m "pulse: замер v2 — показания изменились [skip ci]"
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME:-main}" 2>/dev/null || true
           git push
