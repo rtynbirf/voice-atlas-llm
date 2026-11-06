@@ -1,0 +1,112 @@
+name: "ПУЛЬС — еженедельный самоаудит"
+
+# Принципы «Живого Пульса»:
+#   1. Журнал-из-фактов  — замер собирается только из реального состояния репо;
+#   2. Гомеостаз         — репозиторий сам себя обследует и пишет себе PULSE.md;
+#   3. Только-добавление — воркфлоу ничего не удаляет и не перезаписывает чужое;
+#   4. Смещённый ритм    — не на ровном часу, чтобы не конкурировать с толпой CI.
+
+on:
+  schedule:
+    - cron: "17 4 * * 1"
+  workflow_dispatch:
+
+# Второй параллельный замер дождётся первого и выйдет по идемпотентности
+concurrency:
+  group: pulse
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  pulse:
+    name: Замер и запись пульса
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout (полная история — для метрик)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Замер — журнал-из-фактов
+        run: |
+          set -euo pipefail
+
+          NOW="$(date -u '+%Y-%m-%d %H:%M UTC')"
+          BRANCH="${GITHUB_REF_NAME:-$(git branch --show-current)}"
+          COMMITS="$(git rev-list --count HEAD)"
+          FIRST="$(git log --reverse --format=%cs | sed -n '1p')"  # sed дочитывает поток до EOF — SIGPIPE невозможен под pipefail
+          LAST="$(git log -1 --format=%cs)"
+          FILES="$(git ls-files | wc -l | tr -d ' ')"
+          DEBT="$( { git grep -InE 'TODO|FIXME' || true; } | wc -l | tr -d ' ' )"
+
+          has() { for p in "$@"; do [ -e "$p" ] && return 0; done; return 1; }
+          mark() { if has "$@"; then echo '✓'; else echo '✗'; fi; }
+
+          m_readme=✗
+          if [ -n "$(find . -maxdepth 1 -iname 'README*' -not -path './.git/*' | head -n 1)" ]; then m_readme=✓; fi
+          m_license=✗
+          if [ -n "$(find . -maxdepth 1 -iname 'LICENSE*' | head -n 1)" ]; then m_license=✓; fi
+          m_gitignore="$(mark .gitignore)"
+          m_security="$(mark SECURITY.md .github/SECURITY.md)"
+          m_contrib="$(mark CONTRIBUTING.md .github/CONTRIBUTING.md)"
+          m_codeown="$(mark CODEOWNERS .github/CODEOWNERS docs/CODEOWNERS)"
+          m_agents="$(mark AGENTS.md)"
+          m_depbot="$(mark .github/dependabot.yml)"
+          m_ci=✗
+          if [ -n "$(find .github/workflows -maxdepth 1 \( -name '*.yml' -o -name '*.yaml' \) ! -name 'self-audit.yml' 2>/dev/null | head -n 1)" ]; then m_ci=✓; fi
+
+          {
+            echo "# ПУЛЬС"
+            echo
+            echo "Живой журнал здоровья репозитория. Заполняется автоматически воркфлоу «ПУЛЬС — еженедельный самоаудит» (.github/workflows/self-audit.yml): репозиторий сам себя обследует и записывает результат сюда."
+            echo "Источник истины — состояние репозитория в момент замера (журнал-из-фактов); ручные правки бессмысленны: следующий замер перепишет файл."
+            echo
+            echo "| Замер | Значение |"
+            echo "|---|---|"
+            echo "| Дата замера (UTC) | $NOW |"
+            echo "| Ветка | $BRANCH |"
+            echo "| Коммитов | $COMMITS |"
+            echo "| Файлов в индексе | $FILES |"
+            echo "| Техдолг (TODO/FIXME, строк) | $DEBT |"
+            echo "| Первый коммит | $FIRST |"
+            echo "| Последний коммит | $LAST |"
+            echo
+            echo "## Гигиенический стек"
+            echo
+            echo "| Компонент | Статус |"
+            echo "|---|---|"
+            echo "| README | $m_readme |"
+            echo "| LICENSE | $m_license |"
+            echo "| .gitignore | $m_gitignore |"
+            echo "| SECURITY.md | $m_security |"
+            echo "| CONTRIBUTING.md | $m_contrib |"
+            echo "| CODEOWNERS | $m_codeown |"
+            echo "| AGENTS.md | $m_agents |"
+            echo "| dependabot.yml | $m_depbot |"
+            echo "| CI-воркфлоу | $m_ci |"
+            echo
+            echo "## Как это работает"
+            echo
+            echo "- Каждую неделю (пн 04:17 UTC) воркфлоу заново измеряет репозиторий и перезаписывает этот файл — только если показания изменились."
+            echo "- История файла = кардиограмма репозитория: каждый коммит здесь — один замер."
+            echo "- Воркфлоу работает в режиме «только-добавление»: не трогает ни код, ни другие файлы."
+          } > PULSE.md
+
+          echo "--- PULSE.md ---"
+          cat PULSE.md
+
+      - name: Запись пульса — идемпотентно
+        run: |
+          set -euo pipefail
+          if [ -z "$(git status --porcelain -- PULSE.md)" ]; then
+            echo "Показания не изменились — коммит не требуется (идемпотентность)"
+            exit 0
+          fi
+          git config user.name "pulse-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add PULSE.md
+          git commit -m "pulse: еженедельный замер [skip ci]"
+          git push
