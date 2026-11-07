@@ -1,5 +1,8 @@
 # Атлас-LLM · voice-atlas-llm
 
+<p align="center"><img src=".github/social-preview.png" alt="voice-atlas-llm" width="100%"></p>
+
+
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](./LICENSE) [![Model](https://img.shields.io/badge/model-voice%20clone%20expert-9146FF)](./README.md) [![Corpus](https://img.shields.io/badge/corpus-Voice%20Atlas%202026-FF6EB4)](./README.md) [![Audit](https://img.shields.io/badge/audit-Voice%20Audit%20Pack%200.1.1-success)](./README.md)
 
