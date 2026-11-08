@@ -1,0 +1,1480 @@
+{
+  "schema": "voice-registry/1",
+  "seal_algo": "sha256",
+  "counts": {
+    "source-corpus": 50,
+    "release": 6,
+    "total": 56
+  },
+  "conventions": {
+    "local_samples": "файлы в voices/audio/ регистрируются пломбовщиком voices/seal.py (local_path + live-sha256); линт voices/lint.py считает файл без записи сиротой",
+    "seals": "seal.hex — sha256 в нижнем регистре; при несовпадении файла и пломбы линт красный (fail-closed)",
+    "releases": "для kind=release пломба ставится только по факту доступного asset; иначе seal=null и честный seal_status=unsealed"
+  },
+  "voices": [
+    {
+      "id": "ruvson-src-001",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "01. Where Do the Years Fly By",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1UQFYUcs1kgRcSU-zSpwB0CrN3qP3G_Nt",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "01. Where Do the Years Fly By.mp3",
+        "size_bytes": 7288310,
+        "container": "mp3",
+        "audio_codec": "mp3",
+        "duration_sec": 182.2,
+        "has_video": false
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "e187ee3f799ee04c694d56f54fe72279868474998cfba88da0cbd8cf9e08e2cb"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-002",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "01. Where Do the Years Fly By",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1cH3PBT7nOYBj9l1c_xVaS4I19-kKSbgU",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "01. Where Do the Years Fly By.mp4",
+        "size_bytes": 101506044,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 182.1,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "5579a055b8710f5fa4fa9c00e93ec022db579282265f27e9f450ab364a56591f"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-003",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "02. RUVSON — Two Voices (Premiere 2026)",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1HarV85eSwGfML2y3mq864BkridhhuRUx",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "02. RUVSON — Two Voices (Premiere 2026).mp4",
+        "size_bytes": 104386267,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 177.4,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "ee0f5cea4d264c2c54344260ba2a60d5eaf7df91117fb5b87266e1b7174755e0"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-004",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "03. Where is what's real _ RUVSON (Premiere 2026)",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1RPQbG6Oa9ZDL_zU9kqqEAbt2VOXpMqpS",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "03. Where is what's real _ RUVSON (Premiere 2026).mp3",
+        "size_bytes": 6529,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 0.5,
+        "has_video": false
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "704a5e15ae1068e4df52a8bcff04270efdad595cf685e0eccff86ab335471a46"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-005",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "04. RUVSON — Light in the Darkness ‣ A song for those who are struggling right now",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "15Kjckl_mBNO9_sceEupoNWUt-tAkPQ_s",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "04. RUVSON — Light in the Darkness ‣ A song for those who are struggling right now.mp4",
+        "size_bytes": 106599784,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 186.6,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "037c2e4fc949a8946519e7a99468f3020abbb95809c5b7f2a75c298a44cd1bc1"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-006",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "05. RUVSON — Scream in the Silence ‣ (Remix 2026) ",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1ZinZ-po6HjItCXas4Ut7yJshCCIvCoqd",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "05. RUVSON — Scream in the Silence ‣ (Remix 2026) .mp4",
+        "size_bytes": 79554946,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 222.0,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "b07cbc3a73fe9e8ed338d712e8e90c66d00d349673f920264130566b7a30af2e"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-007",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "06. Cherish the moments remix",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1l_koZrvEATlAE1n0dPZY8suFzlUaRHV5",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "06. Cherish the moments remix.mp4",
+        "size_bytes": 81527008,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 173.7,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "c39660d8c4837a2831c57e53effa3ff5da8652b66b77dcf92158f11afc5ab9ef"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-008",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "07. RUVSON — What If YES ‣ (Remix 2026) ",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1g4QbxcNRLwKSNs7aH0tcF3jGHXRLi5TU",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "07. RUVSON — What If YES ‣ (Remix 2026) .mp4",
+        "size_bytes": 130806650,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 234.9,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "1ece479b523c8acb15594bf94a9b6062ae6618b4ec248727c2e99f56dcd8e9c8"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-009",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "08. What If It Is _ RUVSON (Premiere 2026)",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "12oHyt1_zhAQ9yUO83PcG5cBZ4gqt4vf1",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "08. What If It Is _ RUVSON (Premiere 2026).mp4",
+        "size_bytes": 90829798,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 177.7,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "00df1c6e2e9e3d35eda9bac8e5f1c660ceba5701c1ebb69cdbfeafc4c6273564"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-010",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "09. RUVSON — My Own Worst Enemy _ A song about inner struggle",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "13JXGcM4VLKaZJ3WZpTYhc1LhdgV_zE2y",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "09. RUVSON — My Own Worst Enemy _ A song about inner struggle.mp4",
+        "size_bytes": 67278562,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 201.7,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "a4d073470f974d0885816e86079abd7471d25136f0775842ad9bb6ec797cbc56"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-011",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "10. Live Your Own Way _ RUVSON (2026 Premiere)",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1wfvsvm6bQIrtgFsTm_AAOasR2SJ6xZmV",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "10. Live Your Own Way _ RUVSON (2026 Premiere).mp4",
+        "size_bytes": 136457118,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 234.7,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "e7f1ab013655d0cd89bdf69f5c681ca5a451b66102ec82ea4d8a9f194815a013"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-012",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "11. When You Are Convenient _ RUVSON (2026 Premiere)",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1eRS97vJ6QyipvNQofjG_N3DqiaObKjpt",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "11. When You Are Convenient _ RUVSON (2026 Premiere).mp4",
+        "size_bytes": 45576955,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 265.1,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "f3fc14b13930a4513c76a51cb07e0469bcb1c66b26b9b795f0056f1078f7e870"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-013",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "12. What Do You Dream About _ RUVSON (2026 Premiere)",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "129QyWljKbu8Oo_NjQVQ-SzqvEGvzagFy",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "12. What Do You Dream About _ RUVSON (2026 Premiere).mp4",
+        "size_bytes": 108539710,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 319.7,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "a4a735cbc8d5823cc461744a8935cfbc8984fcb4c327c85a5f623a7b8abee180"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-014",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "13. What's the meaning - A track that changes your outlook on life _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1VGfX4gPB5qOiBZaUUk9HieGnWV_EgTjq",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "13. What's the meaning - A track that changes your outlook on life _ RUVSON.mp4",
+        "size_bytes": 142834582,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 279.5,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "99d367660188af2dbee0da94c4ef3ba54abdd91cd29937ed0ae68a7d7c45d111"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-015",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "14. Where You Are - A Song About Unconditional Love _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "10g5MHh3fT4vH0aE-6HhgUZeodbq-dLnB",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "14. Where You Are - A Song About Unconditional Love _ RUVSON.mp4",
+        "size_bytes": 47923304,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 182.1,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "efd4ac2e3ba67bea89d0b3219c6bf3225a54af75dc495d1ecea1521d38ab2bf0"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-016",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "15. Live In The Now - A track about the life we put off for later _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1lfhJ_m1J1q_v0MKIjQZHPYS6VpraWkAa",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "15. Live In The Now - A track about the life we put off for later _ RUVSON.mp4",
+        "size_bytes": 66119239,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 266.6,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "e444812821e1524386a2c06f482bc33bcc8715ae609614876f0e07b5c10ae5fe"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-017",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "16. RUVSON — Your Voyage Isn't Eternal (Official Music Video)",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1Hkd3zsYlG3eOv0EptA29AKz4wfXH9pX-",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "16. RUVSON — Your Voyage Isn't Eternal (Official Music Video).mp4",
+        "size_bytes": 91822504,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 237.6,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "fc004cc80e5e67c701820ae7db65aec3d54f23eeba068e34df64beba28065a87"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-018",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "17. Unbreakable — A song about freedom of spirit in a world of lies _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1jUbrncQu327eUbq926AbZtRsNnHqIPvk",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "17. Unbreakable — A song about freedom of spirit in a world of lies _ RUVSON.mp4",
+        "size_bytes": 74745309,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 259.6,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "6f68ac41ab545dfd71a3d3c98555582026020a816072051e7d6df7806bce3314"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-019",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "18. RUVSON — Не спеши осуждать (Official Music Video)",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1jMnq62ozU0v5PhvSl1SRGz3DaY-VFpv6",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "18. RUVSON — Не спеши осуждать (Official Music Video).mp4",
+        "size_bytes": 35843019,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 167.7,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "8e16986048861fd2c1f68fdf19b5b680fc2dac7e5bbdb4dfe3337f9006d296de"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-020",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "19. Loss Teaches Us — A track about what makes us Stronger _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1wKneWkGoVTA27WWx4ZkQZWUm3pnNRW1Z",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "19. Loss Teaches Us — A track about what makes us Stronger _ RUVSON.mp4",
+        "size_bytes": 56390495,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 253.1,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "42bcec4902d2d8b9fb60af2fb853bd50f7754da68aba31c6d0b26b877c0e3d41"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-021",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "20. RUVSON — You Don't Live My Life (Official Music Video)",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1xQV4cGu6eJ7RK77PdMZpqk8V-HZpQFrQ",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "20. RUVSON — You Don't Live My Life (Official Music Video).mp4",
+        "size_bytes": 35843019,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 167.7,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "8e16986048861fd2c1f68fdf19b5b680fc2dac7e5bbdb4dfe3337f9006d296de"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-022",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "22. I Am My Own Judge _ RUVSON (2026 Premiere)",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1Is4dXP5kgIIyNf0yRciIr89VHbHk3lfN",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "22. I Am My Own Judge _ RUVSON (2026 Premiere).mp4",
+        "size_bytes": 26170239,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 167.8,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "468e1fa93e32ce1d2cc77b80bd55141c313372066e600fbf3ab901f2087326d3"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-023",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "23. Shadow of the Departed - A Track About Those Who Are Not With Us (Lyric Video) _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1guw_ktirdu7BTn0qCXzsgQhIxJw9ppE-",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "23. Shadow of the Departed - A Track About Those Who Are Not With Us (Lyric Video) _ RUVSON.mp4",
+        "size_bytes": 61115177,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 231.5,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "30a43ada3acd97aee85a1554366e25aafb128cfa1a138a3e762b9ab6d6145c31"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-024",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "24. Out of Range - A Song About Inner Emptiness and Loneliness _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1rQyi8hGXbwDC6GjKasSm6nwH8eMZStRE",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "24. Out of Range - A Song About Inner Emptiness and Loneliness _ RUVSON.mp4",
+        "size_bytes": 118825637,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 207.1,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "0f80509e0433a4e4c4eef2b56a1386aba9d8501968045dcf1315c021d58f9151"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-025",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "25. Don't Miss a Chance - A Track About Missed Moments and Time That Can't Be Returned _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1P8JpOJcRJItVVOCXS9n8XFeBqFpIusBm",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "25. Don't Miss a Chance - A Track About Missed Moments and Time That Can't Be Returned _ RUVSON.mp4",
+        "size_bytes": 92762210,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 150.0,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "edb5941e0a9e1b360232607cbe330caaf901ac4aae88d33bfe7f6f7931569749"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-026",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "26. Act Now - A Track That Will Make You START _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1wQHpyUoBhFhUi1ZVh325II-WsWc6O_-6",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "26. Act Now - A Track That Will Make You START _ RUVSON.mp4",
+        "size_bytes": 80426433,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 153.4,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "1b6fbbee2615cbd94ef681dded325b7366e21c768d3da4c86401a5a7eb86bf9a"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-027",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "27. Just Love - A Song About What Makes Us Real _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1W7HgIRnQC2QZekKsYqHuNMKSyWWZXnbR",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "27. Just Love - A Song About What Makes Us Real _ RUVSON.mp4",
+        "size_bytes": 24192797,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 234.2,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "761464a7c87cd5fde1d22aba09fddc25451c96af4d4557f84aed13d0764c96dd"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-028",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "28. Code of Change - A Track About a Rule-Breaking Reality _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1rbkxayujpj1l18xMmbkgwcm9_bwmMLsD",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "28. Code of Change - A Track About a Rule-Breaking Reality _ RUVSON.mp4",
+        "size_bytes": 96495594,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 188.7,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "a9d1f863b6af5037f4cf8d05040c6f836b402ca4d7e7aec953bc7cebc9adac9b"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-029",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "29. RUVSON - Compass for the House (Official Audio)",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1pceBze-VnQ8VfwslO2XxErAlgrI6vLLY",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "29. RUVSON - Compass for the House (Official Audio).mp4",
+        "size_bytes": 65071912,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 202.9,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "afc4526eaea314e9133f272512245b71718c9b55f131b15d2f1bd9fed5985fcc"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-030",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "30. Start Over - A Track That Motivates You to Never Give Up _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1TGFhewCgNVs5zsadjxeW4muAWpEZutaD",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "30. Start Over - A Track That Motivates You to Never Give Up _ RUVSON.mp4",
+        "size_bytes": 89398075,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 160.7,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "23e7a0d29a1063030aec5d3c3adb010ed5c8a133c5c853b59b0d4650b2227c0c"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-031",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "31. Remain Human (Remix Version) _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1vug6Tc1Bfe_Kl7mWJjLKr0bsh4zF6S2v",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "31. Remain Human (Remix Version) _ RUVSON.mp4",
+        "size_bytes": 58022649,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 177.4,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "552f55dfb5b1af1e372d5bfa8db7e1075ea6bcf2a5462984eecdb3bfdfb7c547"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-032",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "32. Angel Without Wings (Lyric Video) _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1d86aLnjvDpqWHQLbYzUKwPk_hm1pfd98",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "32. Angel Without Wings (Lyric Video) _ RUVSON.mp4",
+        "size_bytes": 52868410,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 246.1,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "839c6c507e3bab0cd77e867a09a789209301bcfb2cdf0c05eb5c63368fe4bb65"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-033",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "33. RUVSON — It All Starts with You (Official Audio)",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1g2lWszRDlW68Iaq0FlrhYSOb6V1TONbN",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "33. RUVSON — It All Starts with You (Official Audio).mp4",
+        "size_bytes": 130891177,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 219.5,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "54c58974f2a399cacbd1b65b99c5c1f93d48a51f32fa95f19a8909806964648f"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-034",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "34. Stay Young - A Song-Message Just for You _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1K7odDFe5ZjHtbroPHxvXN3YOgCE3L1Yu",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "34. Stay Young - A Song-Message Just for You _ RUVSON.mp4",
+        "size_bytes": 148378587,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 255.8,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "6f17eb2241a067986f02aba6f7545c45ddd4155d9771c80141d290da56645cf8"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-035",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "35. The Answer is in the Sky ‣ A Song About Unanswered Questions _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1nj32uzuI16jUrH3ncx-ys_UoVeUvx8Mx",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "35. The Answer is in the Sky ‣ A Song About Unanswered Questions _ RUVSON.mp4",
+        "size_bytes": 21443588,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 208.4,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "aa1cec9c227b9991fd29a06f9d48f68d817d8fc58a739f224c61e6ef8b355898"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-036",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "36. Time Drips (Remix) ‣ Music with Meaning _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1aeyQ8KgbG3aRgstmMwfLJ7K-q_3jKUH4",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "36. Time Drips (Remix) ‣ Music with Meaning _ RUVSON.mp4",
+        "size_bytes": 86392094,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 172.1,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "035f4e4205bc997fc064b45648cdd7d16a9f20d3134b48275d7535dc5750facd"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-037",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "37. Time Like Water - A Song About the Value of Time _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1cSaIKjGjlRFa22-etBQUQiZzl0kjWMuf",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "37. Time Like Water - A Song About the Value of Time _ RUVSON.mp4",
+        "size_bytes": 76350837,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 147.7,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "bc5de313aaaf309bed8c7b52d2398a033fd9f03b437e7399e48c369413581bab"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-038",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "38. Don't Play with Love ‣ A song about how playing with love ruins your life _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1zPiTU779mXhcg8MnkmNMjhVD6CZ3uX9Q",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "38. Don't Play with Love ‣ A song about how playing with love ruins your life _ RUVSON.mp4",
+        "size_bytes": 108957905,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 223.7,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "9e814e22d78ae7bf8448e8566407485c22d8b0e9749c02fce2ee3b320631f407"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-039",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "39. Cherish the Moments - a thought-provoking track _ Music for the Soul",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "10rgExM8hz80hHXzI3vXYiO2tAvxTrbU6",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "39. Cherish the Moments - a thought-provoking track _ Music for the Soul.mp4",
+        "size_bytes": 60845560,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 151.0,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "ada3ac55d2e2e90cfd31e580b71aa4d19204ac74369a1a1222c371f76c46ca70"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-040",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "40. When the Lights Go Out - A track about what's important in life _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1FBfrE7BgQ9El7IpJqe-BZxV_OQuEOlHP",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "40. When the Lights Go Out - A track about what's important in life _ RUVSON.mp4",
+        "size_bytes": 52585185,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 187.1,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "aa3a1fa98203005655f74519ccc9247e79a2965b6a7b186a7726f68d564c89b1"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-041",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "41. The Meaning of Life is Simple - A Song About the Meaning of Life and the Value of Every Day _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1RFK7iVq7fBM75DDUlLWeW98YGxAwKpGP",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "41. The Meaning of Life is Simple - A Song About the Meaning of Life and the Value of Every Day _ RUVSON.mp4",
+        "size_bytes": 90766681,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 163.7,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "1b83c43b6d2afc2fdff7db7ccc516ff6c8b63022a47fb91b95b21421e1593218"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-042",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "42. Prisoners of the Past ‣ A song about how the past influences us _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "166aru5ohH9uU97R-YYty4a80MxyUdEyg",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "42. Prisoners of the Past ‣ A song about how the past influences us _ RUVSON.mp4",
+        "size_bytes": 45379108,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 191.1,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "d84c3dac66d7176ef2bde69906d8a356d808bddd575748814a0fa9450197e1e4"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-043",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "43. Pride is killing us - A song about pride that destroys our lives _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1SyizhVFIrpJiBut1qFmXGh6taBA-sBoW",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "43. Pride is killing us - A song about pride that destroys our lives _ RUVSON.mp4",
+        "size_bytes": 83811090,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 190.6,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "ef7acbc7d2a8e9cf5f3dd9627041d3c1a69fae6a2a3a02e0b9b5fca563092f89"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-044",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "44. Don't Wait for Tomorrow - A Song About the Life We Put Off _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1MF8gv80FIyl4kWcoiYdplmmuhtfsrpei",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "44. Don't Wait for Tomorrow - A Song About the Life We Put Off _ RUVSON.mp4",
+        "size_bytes": 57019662,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 196.1,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "54c48217abb710b306d31eafaeac229b43a6ce93f553855e885c551d668fb766"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-045",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "45. Loneliness Among People ‣ A song about inner loneliness in society _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1tHkc-wVVCrw9Mkb-iTuLFfMurmy0LcXh",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "45. Loneliness Among People ‣ A song about inner loneliness in society _ RUVSON.mp4",
+        "size_bytes": 70279409,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 244.0,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "8bb18dd23b4e8be5e75401a18c172e629f60fdb1e5cba592c421229451771cb0"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-046",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "46. Faith Remains ‣ A Song About the Faith Living Within Us _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1VEEYzBaP5zJ70Jd3aSX9lRfCDyCbxEYp",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "46. Faith Remains ‣ A Song About the Faith Living Within Us _ RUVSON.mp4",
+        "size_bytes": 94256976,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 175.3,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "a39dca11dbb1220e4f42ac58dfe6a44143c7b334ea5658f77faf617815a39b25"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-047",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "47. The essence is simple ‣ A song about what's important in life _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "142eGa7UkA3tnVjWzx-b4Qke-BHr29NOm",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "47. The essence is simple ‣ A song about what's important in life _ RUVSON.mp4",
+        "size_bytes": 91981087,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 201.0,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "5a0bb2a20da6d127075378c935dad2869260746e185cc1b42d431afec8725cc9"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-048",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "48. Fear Is Not Weakness ‣ A Song About Embracing Fear _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1qD_gQeV9Tnkk62uBcj06cjbsaaxqqmt1",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "48. Fear Is Not Weakness ‣ A Song About Embracing Fear _ RUVSON.mp4",
+        "size_bytes": 137096209,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 257.4,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "958313c7fe3eeede196092cabf032cf69a82ccf851a3c0f3194e24941ce18b21"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-049",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "49. When We Lose - a track about true values u200bu200b_ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1kGLoI5_FYnR4jSRqqMbC0XxTojqz_62o",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "49. When We Lose - a track about true values u200bu200b_ RUVSON.mp4",
+        "size_bytes": 73524254,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 250.1,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "e0df6ec56acf431c172a2765a4a2fef48766d8a0c3111717fe8e16c726615d41"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "ruvson-src-050",
+      "kind": "source-corpus",
+      "artist": "RUVSON",
+      "title": "50. Remain Human ‣ A Song About Humanity _ RUVSON",
+      "language": "ru",
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "google-drive",
+        "drive_id": "1SqWEv7pB40SWy8uSrdN0n6l5XNidI5z4",
+        "ref": "data/ruvson/MANIFEST.jsonl"
+      },
+      "file": {
+        "name": "50. Remain Human ‣ A Song About Humanity _ RUVSON.mp4",
+        "size_bytes": 85514265,
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "audio_codec": "aac",
+        "duration_sec": 200.0,
+        "has_video": true
+      },
+      "seal": {
+        "algo": "sha256",
+        "hex": "47956b9c3874601e2606102b7faa73724af48108fa8265d2e21ac916c80921f7"
+      },
+      "seal_status": "sealed-at-ingest (sha256 на приёме; реинжест 50/50 бит-в-бит)",
+      "local_path": null
+    },
+    {
+      "id": "release-voice-result-20261027",
+      "kind": "release",
+      "artist": "RUVSON",
+      "title": "Результат: текст → речь голосом RUVSON (первый прогон)",
+      "language": "multi",
+      "language_count": null,
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "github-release",
+        "repo": "rtynbirf/voice-atlas-llm",
+        "tag": "voice-result-20261027"
+      },
+      "file": null,
+      "seal": null,
+      "seal_status": "unsealed: assets отсутствуют на релизе (API-срез 2026-11-09, волна ×4) — пломба появится после повторной публикации assets и прогона seal.py",
+      "local_path": null,
+      "note": "первый прогон TTS голосом RUVSON"
+    },
+    {
+      "id": "release-voice-20langs-20261027",
+      "kind": "release",
+      "artist": "RUVSON",
+      "title": "RUVSON voice x 20 языков мира (топ-20)",
+      "language": "multi",
+      "language_count": 20,
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "github-release",
+        "repo": "rtynbirf/voice-atlas-llm",
+        "tag": "voice-20langs-20261027"
+      },
+      "file": null,
+      "seal": null,
+      "seal_status": "unsealed: assets отсутствуют на релизе (API-срез 2026-11-09, волна ×4) — пломба появится после повторной публикации assets и прогона seal.py",
+      "local_path": null,
+      "note": "партия v1: регистры разлетались, см. релиз v2"
+    },
+    {
+      "id": "release-singing-20langs-20261027",
+      "kind": "release",
+      "artist": "RUVSON",
+      "title": "RUVSON поёт свою строфу на 20 языках (его мелодия, его тембр)",
+      "language": "multi",
+      "language_count": 20,
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "github-release",
+        "repo": "rtynbirf/voice-atlas-llm",
+        "tag": "singing-20langs-20261027"
+      },
+      "file": null,
+      "seal": null,
+      "seal_status": "unsealed: assets отсутствуют на релизе (API-срез 2026-11-09, волна ×4) — пломба появится после повторной публикации assets и прогона seal.py",
+      "local_path": null,
+      "note": "пение, партия v1"
+    },
+    {
+      "id": "release-one-voice-20langs-20261028",
+      "kind": "release",
+      "artist": "RUVSON",
+      "title": "RUVSON: один голос — 20 языков (v2, приборные проверки)",
+      "language": "multi",
+      "language_count": 20,
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "github-release",
+        "repo": "rtynbirf/voice-atlas-llm",
+        "tag": "one-voice-20langs-20261028"
+      },
+      "file": null,
+      "seal": null,
+      "seal_status": "unsealed: assets отсутствуют на релизе (API-срез 2026-11-09, волна ×4) — пломба появится после повторной публикации assets и прогона seal.py",
+      "local_path": null,
+      "note": "один голос, регистр 240–259 Гц, whisper-раундтрип медиана 0.83 (docs/WORKS.md, Task 19-v2)"
+    },
+    {
+      "id": "release-ruvson-live-vocal-20261028",
+      "kind": "release",
+      "artist": "RUVSON",
+      "title": "RUVSON — его живой вокал, воспроизведённый (голос отдельно)",
+      "language": "multi",
+      "language_count": null,
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "github-release",
+        "repo": "rtynbirf/voice-atlas-llm",
+        "tag": "ruvson-live-vocal-20261028"
+      },
+      "file": null,
+      "seal": null,
+      "seal_status": "unsealed: assets отсутствуют на релизе (API-срез 2026-11-09, волна ×4) — пломба появится после повторной публикации assets и прогона seal.py",
+      "local_path": null,
+      "note": "живой вокал, конверсия голоса"
+    },
+    {
+      "id": "release-ruvson-road-to-hell-20261028",
+      "kind": "release",
+      "artist": "RUVSON",
+      "title": "RUVSON — Дорога в ад (The Road to Hell, Chris Rea) — демо v1",
+      "language": "multi",
+      "language_count": null,
+      "license": "репо (код и датасет) — MIT (LICENSE); корпус RUVSON — авторизованный источник по директиве владельца 2026-10-27 (docs/MISSION.md, docs/DATA_CARD.md §4); права артиста Ruslan Bilous (RUVSON) учтены в docs/RUVSON_VOICE_PLAN.md",
+      "source": {
+        "kind": "github-release",
+        "repo": "rtynbirf/voice-atlas-llm",
+        "tag": "ruvson-road-to-hell-20261028"
+      },
+      "file": null,
+      "seal": null,
+      "seal_status": "unsealed: assets отсутствуют на релизе (API-срез 2026-11-09, волна ×4) — пломба появится после повторной публикации assets и прогона seal.py",
+      "local_path": null,
+      "note": "демо-кавер; права оригинала — Chris Rea, артефакт помечен как демо"
+    }
+  ]
+}
