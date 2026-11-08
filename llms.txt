@@ -1,0 +1,37 @@
+# voice-atlas-llm
+> Атлас-LLM: модель-эксперт по клонированию голоса (дизентанглмент, TTS/VC/SVC/SVS) — LoRA-обучение на корпусе атласа 2026, RAG, гейты качества
+
+Автоген 2026-11-08 · источник: живой GitHub API (номера и файлы не руками) · владелец rtynbirf · ветка `main`
+
+## Мембрана
+- README.md — для человека (Атлас-LLM · voice-atlas-llm)
+- AGENTS.md — есть
+- LICENSE — MIT
+- topics: audio, fine-tuning, llm, lora, python, qwen, rag, ruvson, speech, voice-cloning
+
+## Карта корня
+- .gitattributes
+- .github/
+- .gitignore
+- AGENTS.md
+- CODEOWNERS
+- CODE_OF_CONDUCT.md
+- CONTRIBUTING.md
+- LICENSE
+- PULSE.md
+- README.md
+- SECURITY.md
+- data/
+- docs/
+- evaluation/
+- inference/
+- … ещё 5
+
+## CI
+- workflow: ci
+- workflow: self-audit
+
+## Ссылки
+- [GitHub](https://github.com/rtynbirf/voice-atlas-llm)
+- [README](https://github.com/rtynbirf/voice-atlas-llm/blob/main/README.md)
+- [raw llms.txt](https://raw.githubusercontent.com/rtynbirf/voice-atlas-llm/main/llms.txt)
