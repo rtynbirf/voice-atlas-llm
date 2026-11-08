@@ -35,5 +35,7 @@ jobs:
           python voices/seal.py selftest
       - name: RAG smoke
         run: python inference/retriever.py "чем SVC отличается от SVS" --k 2
+      - name: "П-08 · eval-гейт: RAG-покрытие val30 не хуже baseline (gate.json)"
+        run: python evaluation/eval_gate.py
       - name: Dry chat smoke
         run: python inference/chat_cli.py --dry "пороги качества SIM WER UTMOS" --k 2
