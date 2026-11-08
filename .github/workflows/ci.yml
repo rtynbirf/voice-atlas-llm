@@ -27,7 +27,7 @@ jobs:
         run: python data/build_dataset.py
       - name: Unit tests
         run: pytest tests/ -v
-      - name: П56 — реестр голосов: детерминизм + линт + негативный selftest
+      - name: "П56 — реестр голосов: детерминизм + линт + негативный selftest"
         run: |
           python voices/build_registry.py --check
           python voices/lint.py
