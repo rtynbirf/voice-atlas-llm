@@ -1,0 +1,425 @@
+{
+  "date": "2026-10-27",
+  "task": "RUVSON timbre x 20 languages",
+  "pipeline": "нейтральный TTS (piper/edge-tts) -> OpenVoiceV2 ToneColorConverter; референс — вокал трека 01",
+  "reference": "/home/z/my-project/download/ruvson_voice_clone/reference_ruvson_vocal01_182s.wav",
+  "reference_sha256": "0242c2c35b94640b793be76bc912256f4fb7055d957412ea9944f45dec538f05",
+  "device": "cpu (2 cores / 4 GB RAM)",
+  "duration_window_sec": [
+    10.0,
+    15.0
+  ],
+  "languages": {
+    "en": {
+      "rank": 1,
+      "name_ru": "английский",
+      "text": "Hello! This is a sample of the same voice speaking English. A neural network generates every word you hear, and then a special model converts the sound into the target timbre. Listen carefully and decide for yourself how natural it sounds.",
+      "engine": "piper",
+      "voice": "en_US-lessac-medium",
+      "length_scale": null,
+      "attempts": [
+        "ls=None:13.0s"
+      ],
+      "se_cosine_raw_vs_ref": 0.1084,
+      "se_cosine_output_vs_ref": 0.6432,
+      "duration_final_sec": 13.01,
+      "sample_rate": 22050,
+      "sha256": "fbf5479f1f46d412a446e33b20dc1120373cb83c8d647dc11f197724ae008a3b",
+      "bytes": 573996,
+      "status": "ok",
+      "wall_sec": 11.2
+    },
+    "zh": {
+      "rank": 2,
+      "name_ru": "китайский (мандарин)",
+      "text": "大家好，这是一段中文语音样本。神经网络先把你听到的每个字生成出来，然后由专门的模型把音色转换成目标音色。请仔细听，看看听起来是否自然流畅。",
+      "engine": "piper",
+      "voice": "zh_CN-huayan-medium",
+      "length_scale": null,
+      "attempts": [
+        "ls=None:13.8s"
+      ],
+      "se_cosine_raw_vs_ref": 0.1196,
+      "se_cosine_output_vs_ref": 0.6796,
+      "duration_final_sec": 13.84,
+      "sample_rate": 22050,
+      "sha256": "35b476c72095dcb37d97103246fb1a341964c3ed7aaf13555dee14ef7ab49837",
+      "bytes": 610348,
+      "status": "ok",
+      "wall_sec": 11.5
+    },
+    "hi": {
+      "rank": 3,
+      "name_ru": "хинди",
+      "text": "नमस्ते! यह उसी आवाज़ का हिंदी नमूना है। तंत्रिका जाल पहले आपके सुने हर शब्द को बनाता है, फिर एक विशेष मॉडल ध्वनि को लक्षित आवाज़ में बदल देता है। ध्यान से सुनिए और स्वयं तय कीजिए कि यह कितना स्वाभाविक लगता है।",
+      "engine": "edge",
+      "voice": "hi-IN-SwaraNeural",
+      "rate": "+12%",
+      "attempts": [
+        "rate=None:19.9s",
+        "rate=+12%:17.8s"
+      ],
+      "duration_note": "обрезано с 17.8 до 15.0 c (fade 120 мс)",
+      "se_cosine_raw_vs_ref": 0.0416,
+      "se_cosine_output_vs_ref": 0.7674,
+      "duration_final_sec": 15.0,
+      "sample_rate": 22050,
+      "sha256": "468041cd6eae5436b5fa847318f84d795e076f3b122a0add11402cc48987618d",
+      "bytes": 661036,
+      "status": "ok",
+      "wall_sec": 16.0
+    },
+    "es": {
+      "rank": 4,
+      "name_ru": "испанский",
+      "text": "¡Hola! Esta es una muestra de la misma voz hablando español. Una red neuronal genera cada palabra y después un modelo especial convierte el sonido al timbre objetivo. Escucha con atención y decide tú mismo si suena natural.",
+      "engine": "piper",
+      "voice": "es_MX-ald-medium",
+      "length_scale": null,
+      "attempts": [
+        "ls=None:15.1s"
+      ],
+      "se_cosine_raw_vs_ref": 0.1611,
+      "se_cosine_output_vs_ref": 0.623,
+      "duration_final_sec": 15.13,
+      "sample_rate": 22050,
+      "sha256": "19e11e58c286ebc2fb0e153e28bfaf4f305d0ff74557a92c2b81c91d64fddcbf",
+      "bytes": 667180,
+      "status": "ok",
+      "wall_sec": 11.8
+    },
+    "fr": {
+      "rank": 5,
+      "name_ru": "французский",
+      "text": "Bonjour ! Voici un échantillon de la même voix qui parle français. Un réseau de neurones génère chaque mot, puis un modèle spécial transforme le son vers le timbre cible. Écoutez attentivement et jugez vous-même si cela semble naturel.",
+      "engine": "piper",
+      "voice": "fr_FR-siwis-medium",
+      "length_scale": null,
+      "attempts": [
+        "ls=None:13.6s"
+      ],
+      "se_cosine_raw_vs_ref": -0.0968,
+      "se_cosine_output_vs_ref": 0.7154,
+      "duration_final_sec": 13.62,
+      "sample_rate": 22050,
+      "sha256": "042dbbde0ced2cc00324bfc243e36c2766a27766e28db726b4b29f11ddb2187c",
+      "bytes": 600620,
+      "status": "ok",
+      "wall_sec": 11.2
+    },
+    "ar": {
+      "rank": 6,
+      "name_ru": "арабский",
+      "text": "مرحبًا! هذا نموذج للصوت نفسه يتحدث العربية. تولّد الشبكة العصبية كل كلمة تسمعها، ثم يحوّل نموذج خاص الصوت إلى الطابع الصوتي المطلوب. استمع جيدًا واحكم بنفسك هل يبدو طبيعيًا.",
+      "engine": "piper",
+      "voice": "ar_JO-kareem-medium",
+      "length_scale": 0.9,
+      "attempts": [
+        "ls=None:20.9s",
+        "ls=0.9:19.8s"
+      ],
+      "duration_note": "обрезано с 19.8 до 15.0 c (fade 120 мс)",
+      "se_cosine_raw_vs_ref": 0.1041,
+      "se_cosine_output_vs_ref": 0.7528,
+      "duration_final_sec": 15.0,
+      "sample_rate": 22050,
+      "sha256": "ec785dd4a3bcb5e087185ee068ad0ed46bcb3b672fc34a1e936e963bb1cfd6fd",
+      "bytes": 661036,
+      "status": "ok",
+      "wall_sec": 15.7
+    },
+    "bn": {
+      "rank": 7,
+      "name_ru": "бенгальский",
+      "text": "নমস্কার! এই একই কণ্ঠস্বরের বাংলা নমুনা। নিউরাল নেটওয়ার্ক প্রথমে আপনার শোনা প্রতিটি শব্দ তৈরি করে, তারপর একটি বিশেষ মডেল শব্দটিকে লক্ষ্য কণ্ঠে রূপান্তর করে। মন দিয়ে শুনুন এবং নিজেই বিচার করুন এটি কতটা স্বাভাবিক শোনাচ্ছে।",
+      "engine": "edge",
+      "voice": "bn-BD-NabanitaNeural",
+      "rate": "+12%",
+      "attempts": [
+        "rate=None:16.8s",
+        "rate=+12%:15.0s"
+      ],
+      "se_cosine_raw_vs_ref": 0.0925,
+      "se_cosine_output_vs_ref": 0.8051,
+      "duration_final_sec": 14.98,
+      "sample_rate": 22050,
+      "sha256": "68dd4ebccec802c3126346997e506326eda75ce5b9c954bb30fbf7623c04b71e",
+      "bytes": 660012,
+      "status": "ok",
+      "wall_sec": 31.0
+    },
+    "pt": {
+      "rank": 8,
+      "name_ru": "португальский",
+      "text": "Olá! Esta é uma amostra da mesma voz falando português. Uma rede neural gera cada palavra e depois um modelo especial converte o som para o timbre desejado. Ouça com atenção e decida você mesmo se parece natural.",
+      "engine": "edge",
+      "voice": "pt-BR-AntonioNeural",
+      "rate": "+12%",
+      "attempts": [
+        "rate=None:15.6s",
+        "rate=+12%:14.0s"
+      ],
+      "se_cosine_raw_vs_ref": 0.0341,
+      "se_cosine_output_vs_ref": 0.78,
+      "duration_final_sec": 13.97,
+      "sample_rate": 22050,
+      "sha256": "1b203ed93e93eea17429fbcfc0b370bede96c6f01c04bd1a8e56be4bd93dd60e",
+      "bytes": 615980,
+      "status": "ok",
+      "wall_sec": 15.7
+    },
+    "ru": {
+      "rank": 9,
+      "name_ru": "русский",
+      "text": "Куда летят года — туда и мы летим. Этот голос сохранён, чтобы говорить и после. Теперь он звучит на двадцати языках, но тембр остаётся тем же самым — слушайте и решайте сами, насколько это похоже.",
+      "engine": "piper",
+      "voice": "ru_RU-irina-medium",
+      "length_scale": null,
+      "attempts": [
+        "ls=None:14.9s"
+      ],
+      "se_cosine_raw_vs_ref": -0.1612,
+      "se_cosine_output_vs_ref": 0.7973,
+      "duration_final_sec": 14.93,
+      "sample_rate": 22050,
+      "sha256": "d7d404b2b8f2f3a7ad925fc7930d6b0928add332ce9e252903f02c36db26dd39",
+      "bytes": 658476,
+      "status": "ok",
+      "wall_sec": 11.9
+    },
+    "ur": {
+      "rank": 10,
+      "name_ru": "урду",
+      "text": "سلام! یہ اُسی آواز کا اردو نمونہ ہے۔ عصبی جال پہلے آپ کے سُنے ہوئے ہر لفظ کو بناتا ہے، پھر ایک خاص ماڈل آواز کو مطلوبہ آواز میں بدل دیتا ہے۔ غور سے سنیے اور خود فیصلہ کیجیے کہ یہ کتنا قدرتی لگتا ہے۔",
+      "engine": "edge",
+      "voice": "ur-PK-AsadNeural",
+      "rate": "+12%",
+      "attempts": [
+        "rate=None:16.9s",
+        "rate=+12%:15.1s"
+      ],
+      "se_cosine_raw_vs_ref": 0.1689,
+      "se_cosine_output_vs_ref": 0.803,
+      "duration_final_sec": 15.07,
+      "sample_rate": 22050,
+      "sha256": "25c9c254e5281e0fefe9d59c2c121fc6e77e617d3c7e2a8cdb22c61741c9c88a",
+      "bytes": 664620,
+      "status": "ok",
+      "wall_sec": 21.0
+    },
+    "id": {
+      "rank": 11,
+      "name_ru": "индонезийский",
+      "text": "Halo! Ini adalah sampel suara yang sama berbahasa Indonesia. Jaringan saraf menghasilkan setiap kata yang Anda dengar, lalu model khusus mengubah suaranya menjadi timbre target. Dengarkan baik-baik dan nilai sendiri apakah terdengar alami.",
+      "engine": "edge",
+      "voice": "id-ID-ArdiNeural",
+      "rate": "+12%",
+      "attempts": [
+        "rate=None:15.7s",
+        "rate=+12%:14.1s"
+      ],
+      "se_cosine_raw_vs_ref": 0.1355,
+      "se_cosine_output_vs_ref": 0.8292,
+      "duration_final_sec": 14.06,
+      "sample_rate": 22050,
+      "sha256": "926e7fbb1d4bb6541b2705a733504d26a0099e16af2146b10ab4251f9acd1623",
+      "bytes": 620076,
+      "status": "ok",
+      "wall_sec": 48.3
+    },
+    "de": {
+      "rank": 12,
+      "name_ru": "немецкий",
+      "text": "Hallo! Das ist eine Probe derselben Stimme auf Deutsch. Ein neuronales Netz erzeugt jedes Wort, danach wandelt ein spezielles Modell den Klang in den Ziel-Timbre um. Höre genau hin und entscheide selbst, wie natürlich das klingt.",
+      "engine": "piper",
+      "voice": "de_DE-thorsten-medium",
+      "length_scale": null,
+      "attempts": [
+        "ls=None:12.6s"
+      ],
+      "se_cosine_raw_vs_ref": 0.0932,
+      "se_cosine_output_vs_ref": 0.7297,
+      "duration_final_sec": 12.57,
+      "sample_rate": 22050,
+      "sha256": "46cca8026769b9be3c947f83245299bb94d5b51b6bc6203630b9faf247843900",
+      "bytes": 554540,
+      "status": "ok",
+      "wall_sec": 10.4
+    },
+    "ja": {
+      "rank": 13,
+      "name_ru": "японский",
+      "text": "こんにちは！これは同じ声色による日本語のサンプルです。ニューラルネットワークがまず聞こえる言葉をすべて生成し、そのあと特別なモデルが音声を目標の声色に変換します。よく聞いて、自然に聞こえるか自分で判断してください。",
+      "engine": "edge",
+      "voice": "ja-JP-KeitaNeural",
+      "rate": "+12%",
+      "attempts": [
+        "rate=None:18.3s",
+        "rate=+12%:16.3s"
+      ],
+      "duration_note": "обрезано с 16.3 до 15.0 c (fade 120 мс)",
+      "se_cosine_raw_vs_ref": 0.1002,
+      "se_cosine_output_vs_ref": 0.8265,
+      "duration_final_sec": 15.0,
+      "sample_rate": 22050,
+      "sha256": "d1c584b269d29b8436ac8d8e963eb859412f7568b78c975303801df32bb312e2",
+      "bytes": 661036,
+      "status": "ok",
+      "wall_sec": 15.3
+    },
+    "mr": {
+      "rank": 14,
+      "name_ru": "маратхи",
+      "text": "नमस्कार! हा त्याच आवाजाचा मराठी नमुना आहे. मज्जातंत्रजाल प्रथम तुम्ही ऐकत असलेला प्रत्येक शब्द तयार करते, आणि नंतर एक विशेष मॉडेल आवाजाला लक्ष्य आवाजात रूपांतरित करते. लक्षपूर्वक ऐका आणि ते किती नैसर्गिक वाटते ते स्वतः ठरवा.",
+      "engine": "edge",
+      "voice": "mr-IN-ManoharNeural",
+      "rate": "+12%",
+      "attempts": [
+        "rate=None:21.6s",
+        "rate=+12%:19.3s"
+      ],
+      "duration_note": "обрезано с 19.3 до 15.0 c (fade 120 мс)",
+      "se_cosine_raw_vs_ref": 0.0705,
+      "se_cosine_output_vs_ref": 0.7529,
+      "duration_final_sec": 15.0,
+      "sample_rate": 22050,
+      "sha256": "23be000095241dc9fa97faf17665856d5f011242648132fb0ef6cf57374d5e77",
+      "bytes": 661036,
+      "status": "ok",
+      "wall_sec": 21.6
+    },
+    "te": {
+      "rank": 15,
+      "name_ru": "телугу",
+      "text": "నమస్కారం! ఇది అదే స్వరం యొక్క తెలుగు నమూనా. న్యూరల్ నెట్‌వర్క్ ముందుగా మీరు వినే ప్రతి పదాన్ని సృష్టిస్తుంది, తర్వాత ప్రత్యేక మోడల్ శబ్దాన్ని లక్ష్య స్వరంగా మార్చుతుంది. జాగ్రత్తగా విని, అది ఎంత సహజంగా ఉందో మీరే నిర్ణయించండి.",
+      "engine": "edge",
+      "voice": "te-IN-MohanNeural",
+      "rate": "+12%",
+      "attempts": [
+        "rate=None:18.0s",
+        "rate=+12%:16.1s"
+      ],
+      "duration_note": "обрезано с 16.1 до 15.0 c (fade 120 мс)",
+      "se_cosine_raw_vs_ref": 0.0822,
+      "se_cosine_output_vs_ref": 0.8019,
+      "duration_final_sec": 15.0,
+      "sample_rate": 22050,
+      "sha256": "1bfe16af7a384c1d91a93bb8e9c221a1219555e669c5ba7d4ae6767d83372918",
+      "bytes": 661036,
+      "status": "ok",
+      "wall_sec": 18.2
+    },
+    "tr": {
+      "rank": 16,
+      "name_ru": "турецкий",
+      "text": "Merhaba! Bu, aynı sesin Türkçe örneğidir. Bir sinir ağı önce duyduğunuz her kelimeyi üretir, sonra özel bir model sesi hedef tınıya dönüştürür. Dikkatle dinleyin ve ne kadar doğal durduğuna kendiniz karar verin.",
+      "engine": "piper",
+      "voice": "tr_TR-dfki-medium",
+      "length_scale": null,
+      "attempts": [
+        "ls=None:14.2s"
+      ],
+      "se_cosine_raw_vs_ref": 0.1183,
+      "se_cosine_output_vs_ref": 0.739,
+      "duration_final_sec": 14.15,
+      "sample_rate": 22050,
+      "sha256": "33dc67d51cd9059dfcc943e5aec97523d12cecc05e8d5121d0421680867d3588",
+      "bytes": 624172,
+      "status": "ok",
+      "wall_sec": 15.0
+    },
+    "ta": {
+      "rank": 17,
+      "name_ru": "тамильский",
+      "text": "வணக்கம்! இது அதே குரலின் தமிழ் மாதிரி. நரம்பியல் வலையமைப்பு முதலில் நீங்கள் கேட்கும் ஒவ்வொரு சொல்லையும் உருவாக்குகிறது, பின்னர் ஒரு சிறப்பு மாதிரி ஒலியை இலக்கு குரலாக மாற்றுகிறது. கவனமாகக் கேட்டு, அது எவ்வளவு இயல்பானது என்று நீங்களே முடிவு செய்யுங்கள்.",
+      "engine": "edge",
+      "voice": "ta-IN-ValluvarNeural",
+      "rate": "+12%",
+      "attempts": [
+        "rate=None:20.1s",
+        "rate=+12%:17.9s"
+      ],
+      "duration_note": "обрезано с 17.9 до 15.0 c (fade 120 мс)",
+      "se_cosine_raw_vs_ref": 0.1642,
+      "se_cosine_output_vs_ref": 0.8631,
+      "duration_final_sec": 15.0,
+      "sample_rate": 22050,
+      "sha256": "53f4406915110026a4a627bde30d0cb9178b715c753a56b81abae5e429a0d66b",
+      "bytes": 661036,
+      "status": "ok",
+      "wall_sec": 33.5
+    },
+    "vi": {
+      "rank": 18,
+      "name_ru": "вьетнамский",
+      "text": "Xin chào! Đây là mẫu của cùng một giọng nói bằng tiếng Việt. Mạng nơ-ron tạo ra từng từ bạn nghe, sau đó một mô hình đặc biệt chuyển âm thanh sang giọng mục tiêu. Hãy lắng nghe kỹ và tự đánh giá xem nó có tự nhiên không.",
+      "engine": "piper",
+      "voice": "vi_VN-vais1000-medium",
+      "length_scale": null,
+      "attempts": [
+        "ls=None:10.4s"
+      ],
+      "se_cosine_raw_vs_ref": 0.137,
+      "se_cosine_output_vs_ref": 0.6623,
+      "duration_final_sec": 10.43,
+      "sample_rate": 22050,
+      "sha256": "4d61f892a0340a9a5057358cb526fdfbf9fa86bfdbb2ea5df272e803b6d9228c",
+      "bytes": 459820,
+      "status": "ok",
+      "wall_sec": 8.0
+    },
+    "ko": {
+      "rank": 19,
+      "name_ru": "корейский",
+      "text": "안녕하세요! 이것은 같은 음색으로 말하는 한국어 샘플입니다. 신경망이 먼저 여러분이 듣는 모든 단어를 생성하고, 그다음 특별한 모델이 음성을 목표 음색으로 변환합니다. 잘 들어 보고 얼마나 자연스러운지 직접 판단해 보세요.",
+      "engine": "edge",
+      "voice": "ko-KR-InJoonNeural",
+      "rate": "+12%",
+      "attempts": [
+        "rate=None:20.6s",
+        "rate=+12%:18.4s"
+      ],
+      "duration_note": "обрезано с 18.4 до 15.0 c (fade 120 мс)",
+      "se_cosine_raw_vs_ref": 0.1354,
+      "se_cosine_output_vs_ref": 0.9026,
+      "duration_final_sec": 15.0,
+      "sample_rate": 22050,
+      "sha256": "39b5457b940f12c47396dc3db425d6cf6d2289855b6626374e1de0734a6aa137",
+      "bytes": 661036,
+      "status": "ok",
+      "wall_sec": 15.1
+    },
+    "sw": {
+      "rank": 20,
+      "name_ru": "суахили",
+      "text": "Habari! Hii ni sampuli ya sauti ileile inayozungumza Kiswahili. Mtandao wa neva kwanza hutengeneza kila neno unalosikia, kisha mfumo maalum unabadilisha sauti kuwa sauti inayolengwa. Sikiliza kwa makini na uamue wewe mwenyewe kama inasikia kama asilia.",
+      "engine": "piper",
+      "voice": "sw_CD-lanfrica-medium",
+      "length_scale": 0.9,
+      "attempts": [
+        "ls=None:16.3s",
+        "ls=0.9:16.0s"
+      ],
+      "duration_note": "обрезано с 16.0 до 15.0 c (fade 120 мс)",
+      "se_cosine_raw_vs_ref": 0.1341,
+      "se_cosine_output_vs_ref": 0.7248,
+      "duration_final_sec": 15.0,
+      "sample_rate": 22050,
+      "sha256": "46e4f8bc2d16f1316a9c51da28620bfc2091cfb0d20f2450fc87da8b7368b9fb",
+      "bytes": 661036,
+      "status": "ok",
+      "wall_sec": 15.8
+    }
+  },
+  "summary": {
+    "languages_ok": 20,
+    "languages_total": 20,
+    "engines": {
+      "piper": 10,
+      "edge": 10,
+      "espeak-ng": 0
+    },
+    "total_wall_sec": 407.4,
+    "honesty": "переносится ТОЛЬКО тембр (спектральная огибающая); высота тона и интонация наследуются от базового TTS-голоса каждого языка; арабский — модель kareem (иорданский арабский), текст — MSA; испанский — латиноамериканский (es_MX); суахили включён по прямому запросу владельца (в Ethnologue top-20 вместо него кантонский юэ); демо-тексты написаны ассистентом, не носителем (возможны шероховатости в ta/te/mr/bn/ur); прослушивание в песочнице невозможно — вердикт по уху за владельцем; метрики — прокси (SE-энкодер OpenVoice), WER по 20 языкам не считался: whisper-small для te/ta/sw/bn ненадёжен."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "metric": "mean_rag_coverage",
+  "operator": ">=",
+  "threshold": 0.8334610292588626,
+  "mode": "retrieval_only",
+  "samples": 30,
+  "baseline": "evaluation/report_retrieval.json",
+  "baseline_value": 0.8334610292588626,
+  "purpose": "П-08 (polimat-hub#26): eval-гейт влития proven-recipes — метрика RAG-покрытия на val30 не хуже baseline до и после влития. Прогон детерминирован (TF-IDF retrieval, без модели), поэтому порог = точный baseline.",
+  "created": "2026-11-09",
+  "created_by": "POLYMATH-SWARM · волна ×5-ХОЗЯИН · issue voice-atlas-llm#6 п.2"
+}
