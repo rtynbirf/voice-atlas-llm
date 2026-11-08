@@ -27,6 +27,12 @@ jobs:
         run: python data/build_dataset.py
       - name: Unit tests
         run: pytest tests/ -v
+      - name: П56 — реестр голосов: детерминизм + линт + негативный selftest
+        run: |
+          python voices/build_registry.py --check
+          python voices/lint.py
+          python voices/lint.py --selftest
+          python voices/seal.py selftest
       - name: RAG smoke
         run: python inference/retriever.py "чем SVC отличается от SVS" --k 2
       - name: Dry chat smoke
