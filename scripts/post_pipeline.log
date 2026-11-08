@@ -1,0 +1,37 @@
+=== 1. Артефакты обучения ===
+total 45604
+drwxrwxr-x 2 z z     4096 Oct 26 15:28 .
+drwxrwxr-x 6 z z     4096 Oct 26 14:03 ..
+-rw-rw-r-- 1 z z     5222 Oct 26 15:28 README.md
+-rw-rw-r-- 1 z z     1190 Oct 26 15:28 adapter_config.json
+-rw------- 1 z z 35237104 Oct 26 15:28 adapter_model.safetensors
+-rw-rw-r-- 1 z z     2507 Oct 26 15:28 chat_template.jinja
+-rw-rw-r-- 1 z z      867 Oct 26 15:28 system_prompt.txt
+-rw-rw-r-- 1 z z 11421892 Oct 26 15:28 tokenizer.json
+-rw-rw-r-- 1 z z      693 Oct 26 15:28 tokenizer_config.json
+-rw-rw-r-- 1 z z     3599 Oct 26 15:28 training_report.json
+device: cpu | elapsed: 5098.7 s
+train: 154 val: 9 | trainable: 8.8 M
+val_loss by epoch: [3.1061, 2.9012, 2.8305, 2.8237]
+first/last train step loss: 3.6086 / 1.3778
+=== 2. Eval на held-out val (9 вопросов, генерация) ===
+{
+  "mean_token_f1": 0.20490575231673594,
+  "mean_keyword_coverage": 0.1768564956191731,
+  "honest_uncertainty_rate": 0.1111111111111111,
+  "n": 9,
+  "elapsed_sec": 210.6
+}
+[eval] отчёт: /home/z/my-project/voice-atlas-llm/evaluation/report_full.json
+=== 3. Демо-генерации (3 вопроса) ===
+--- Вопрос: чем SVC отличается от SVS?
+[chat] загрузка модели models/_base/Qwen2.5-0.5B-Instruct ...
+[chat] подключение адаптера models/atlas-qwen-0.5b
+=== Атлас-LLM ===
+SVC → текст → поёт как ты, без персонального редактора. Сравнение с SVS: SVS → готовый исполнитель, с ручной редакцией.
+
+=== Источники атласа ===
+- 02_taxonomy.md#1 (score=0.095)
+- 07_layer_d_tts.md#2 (score=0.089)
+- 08_layer_e_svs.md#0 (score=0.068)
+--- Вопрос: какие пороги SIM считаются хорошими?
