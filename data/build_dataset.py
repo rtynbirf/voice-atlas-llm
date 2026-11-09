@@ -21,6 +21,10 @@
 Запуск:
     python data/build_dataset.py [--seed 42] [--val-frac 0.06] [--split-mode group|random]
         [--auto glossary|full]   # full = глоссарий + таблицы/законы/термины (auto_qa)
+        [--v3] [--out-dir data/dataset_v3]
+        # v3 (MODEL_CARD §3): + процедурные QA (этапы гл. 12, эталон-псевдокод),
+        # кэп table_qa ≈ 30% (взвешенное сэмплирование), парафразы авто-типов,
+        # вал заморожен = вале-30 v2 (A/B честный). Сплит-флаги игнорируются.
 
 Выход:
     data/dataset/train.jsonl
@@ -42,6 +46,55 @@ OUT_DIR = ROOT / "data" / "dataset"
 
 MIN_OUTPUT_LEN = 25
 MIN_INSTRUCTION_LEN = 8
+
+# Корпус v3 (MODEL_CARD §3): целевая доля table_qa в train.
+V3_TABLE_CAP = 0.30
+# Главы вале-30 (заморозка): все их пары не попадают в train (антиутечка тем).
+V3_VAL_CHAPTERS = {"9", "14"}
+
+# Парафраз-шаблоны (v3): вторая формулировка вопроса при том же эталоне.
+# Выбор варианта — sha256(instruction), детерминирован без seed-коллизий.
+PARAPHRASES = {
+    "law_qa": ["Что утверждает закон {num} атласа?", "Раскрой содержание закона {num} «{name}»."],
+    "glossary_auto": ["Расшифруй аббревиатуру {term} из атласа.", "Что скрывается за аббревиатурой {term}?"],
+    "bold_qa": ["Объясни, что такое {term}.", "Дай определение термина {term} (атлас)."],
+    "stage_qa": ["Опиши этап {num} универсального алгоритма.", "Что делается на шаге {num} универсального алгоритма?"],
+}
+
+
+def _para_fields(s: dict) -> dict | None:
+    """Парафраз инструкции для пары (v3) либо None, если тип не шаблонизируется."""
+    topic = s.get("meta", {}).get("topic", "")
+    instr, out = s["instruction"], s["output"]
+    if topic == "law_qa":
+        m = re.search(r"закон (\d+)[^«]*«([^»]+)»", instr)
+        num = m.group(1) if m else None
+        name = m.group(2) if m else ""
+        if not num:
+            return None
+        t = PARAPHRASES["law_qa"][int(hashlib.sha256(instr.encode()).hexdigest(), 16) % 2]
+        return {"instruction": t.format(num=num, name=name)}
+    if topic == "glossary_auto":
+        m = re.search(r"аббревиатура ([^?]+)\?", instr)
+        if not m:
+            return None
+        term = m.group(1).strip()
+        t = PARAPHRASES["glossary_auto"][int(hashlib.sha256(instr.encode()).hexdigest(), 16) % 2]
+        return {"instruction": t.format(term=term)}
+    if topic == "bold_qa":
+        m = re.search(r"Что такое ([^(]+) \(атлас", instr)
+        if not m:
+            return None
+        term = m.group(1).strip()
+        t = PARAPHRASES["bold_qa"][int(hashlib.sha256(instr.encode()).hexdigest(), 16) % 2]
+        return {"instruction": t.format(term=term)}
+    if topic == "stage_qa":
+        m = re.search(r"этап[а-яё]*\s+(\d+)", instr)
+        if not m or "по порядку" in instr or "обязательны" in instr.lower():
+            return None
+        t = PARAPHRASES["stage_qa"][int(hashlib.sha256(instr.encode()).hexdigest(), 16) % 2]
+        return {"instruction": t.format(num=m.group(1))}
+    return None
 
 
 def load_curated() -> list[dict]:
@@ -168,18 +221,101 @@ def main() -> int:
     ap.add_argument("--auto", choices=("glossary", "full"), default="full",
                     help="glossary: только глоссарий (воспроизведение v1); "
                          "full: глоссарий + таблицы/законы/термины (волна «Гибрид»)")
+    ap.add_argument("--v3", action="store_true",
+                    help="корпус v3 (MODEL_CARD §3): процедурные QA + кэп "
+                         "table_qa 30% + парафразы; вал заморожен = вале-30 v2")
+    ap.add_argument("--out-dir", default="data/dataset",
+                    help="каталог вывода (v3 использует data/dataset_v3)")
     args = ap.parse_args()
 
     curated = load_curated()
     auto = generate_glossary_qa()
     extra: dict[str, list] = {}
     if args.auto == "full":
-        extra = auto_qa.extract_all(ATLAS_DIR)
+        extra = auto_qa.extract_all(ATLAS_DIR, v3=args.v3)
     all_samples = curated + auto + [s for part in extra.values() for s in part]
 
     ok, warns = validate(all_samples)
     for w in warns:
         print(f"  WARN {w}")
+
+    out_dir = ROOT / args.out_dir
+
+    if args.v3:
+        # ---- КОРПУС v3 (MODEL_CARD §3) ----
+        # 1. Вал заморожен: те же 30 инструкций, что в вале v2 (A/B честный).
+        v2_val_path = ROOT / "data" / "dataset" / "val.jsonl"
+        frozen = [json.loads(l) for l in v2_val_path.open(encoding="utf-8") if l.strip()]
+        frozen_instr = [s["instruction"] for s in frozen]
+        pool_by_instr = {}
+        for s in ok:
+            pool_by_instr.setdefault(s["instruction"], []).append(s)
+        missing = [q for q in frozen_instr if q not in pool_by_instr]
+        if missing:
+            print(f"ОШИБКА: {len(missing)} вале-инструкций не найдены в пуле v3 "
+                  f"(вал не собрать — fail-loud): {missing[:3]}", file=sys.stderr)
+            return 2
+        val = [pool_by_instr[q][0] for q in frozen_instr]
+        val_instr = set(frozen_instr)
+
+        # 2. Train: пул минус вале-пары минус все пары вале-глав (антиутечка тем).
+        train = [s for s in ok
+                 if s["instruction"] not in val_instr
+                 and str(s.get("meta", {}).get("chapter")) not in V3_VAL_CHAPTERS]
+
+        # 3. Взвешенное сэмплирование: кэп table_qa = 30% train.
+        tables = [s for s in train if s.get("meta", {}).get("topic") == "table_qa"]
+        rest = [s for s in train if s.get("meta", {}).get("topic") != "table_qa"]
+        n_table_keep = min(len(tables), int(V3_TABLE_CAP * len(rest) / (1 - V3_TABLE_CAP)))
+        rng3 = random.Random(args.seed)
+        rng3.shuffle(tables)
+        dropped_tables = len(tables) - n_table_keep
+        train = rest + tables[:n_table_keep]
+
+        # 4. Парафразы авто-типов (те же эталоны, другая формулировка вопроса).
+        paras = []
+        for s in train:
+            pf = _para_fields(s)
+            if pf:
+                paras.append({"instruction": pf["instruction"], "output": s["output"],
+                              "meta": dict(s["meta"], topic=s["meta"]["topic"] + "_para")})
+        paras_ok, paras_warns = validate(paras)
+        train = train + paras_ok
+
+        # Близнецы: нормализованная инструкция в train и val = утечка.
+        train_keys = {s["instruction"].strip().lower() for s in train}
+        twins = [q for q in frozen_instr if q.strip().lower() in train_keys]
+        for t in twins:
+            print(f"  LEAK близнец train/val: {t[:70]!r}")
+
+        out_dir.mkdir(parents=True, exist_ok=True)
+        for name, part in (("train.jsonl", train), ("val.jsonl", val)):
+            with (out_dir / name).open("w", encoding="utf-8") as f:
+                for s in part:
+                    f.write(json.dumps(s, ensure_ascii=False) + "\n")
+
+        topics: dict[str, int] = {}
+        for s in train:
+            tp = s.get("meta", {}).get("topic", "?")
+            topics[tp] = topics.get(tp, 0) + 1
+        table_share = topics.get("table_qa", 0) / max(len(train), 1)
+        stats = {
+            "version": "v3",
+            "total": len(train) + len(val), "train": len(train), "val": len(val),
+            "frozen_val": True, "val_chapters": sorted(V3_VAL_CHAPTERS),
+            "table_cap": V3_TABLE_CAP, "table_kept": n_table_keep,
+            "table_dropped": dropped_tables, "table_share_train": round(table_share, 4),
+            "paraphrases": len(paras_ok), "paraphrases_dropped": len(paras) - len(paras_ok),
+            "topics_train": dict(sorted(topics.items())),
+            "seed": args.seed, "twin_overlap_train_val": len(twins),
+        }
+        (out_dir / "dataset_stats.json").write_text(
+            json.dumps(stats, ensure_ascii=False, indent=2), encoding="utf-8")
+        print(json.dumps(stats, ensure_ascii=False, indent=2))
+        if table_share > V3_TABLE_CAP + 0.02:
+            print("ОШИБКА: кэп table_qa не сработал", file=sys.stderr)
+            return 2
+        return 0
 
     rng = random.Random(args.seed)
     if args.split_mode == "group":
