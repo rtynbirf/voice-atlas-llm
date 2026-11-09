@@ -1,0 +1,38 @@
+# Кровь: пульс клетки voice-atlas-llm — КОНЕЦ цепи пульса (волна ×9
+# «рой из модели в кровь»). Запуск — ТОЛЬКО событие (repository_dispatch
+# от cell-rs), не таймер (закон 1: угадчик — яд). Клетка сверяет конверт
+# со своим живым github.sha и дописывает эхо в клеточную летопись роя
+# (cell-swarm/blood/CELLS-LEDGER.jsonl). Ядро крови вендорено из
+# runtime-protocol (tooling/blood/kernel/, провенанс и sha256 — рядом).
+name: blood
+
+permissions:
+  contents: read
+
+on:
+  repository_dispatch:
+    types: [blood-pulse]
+  workflow_dispatch:
+
+jobs:
+  beat:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: кровь — сверка конверта и эхо в летопись роя
+        if: ${{ github.event_name == 'repository_dispatch' }}
+        env:
+          BLOOD_ENVELOPE: ${{ toJson(github.event.client_payload.envelope) }}
+          CELL_NAME: voice-atlas-llm
+          CELL_SHA: ${{ github.sha }}
+          GH_TOKEN: ${{ secrets.CELL_SWARM_DISPATCH_TOKEN }}
+        run: python3 tooling/blood/kernel/blood_cell.py
+
+      - name: ручной прогон — сверка летописи живьём (кровь вслепую не льётся)
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        env:
+          CELL_NAME: voice-atlas-llm
+          CELL_SHA: ${{ github.sha }}
+          GH_TOKEN: ${{ secrets.CELL_SWARM_DISPATCH_TOKEN }}
+        run: python3 tooling/blood/kernel/blood_cell.py --manual-check
