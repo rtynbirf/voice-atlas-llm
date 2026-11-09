@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="banner.png" alt="voice-atlas-llm — Модель-эксперт по клонированию голоса" width="100%">
+</div>
+
 # Атлас-LLM · voice-atlas-llm
 
 <p align="center"><img src=".github/social-preview.png" alt="voice-atlas-llm" width="100%"></p>
