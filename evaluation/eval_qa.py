@@ -25,7 +25,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from inference.retriever import TfidfRetriever, load_corpus  # noqa: E402
-from training.prompt_format import build_prompt, split_generated  # noqa: E402
+from training.prompt_format import (  # noqa: E402
+    build_prompt, split_generated, make_context, grounded_system)
 
 STOP_RU = {"и", "в", "не", "на", "что", "это", "как", "по", "из", "у", "же",
            "то", "за", "с", "а", "о", "к", "от", "до", "для", "при", "или"}
@@ -125,10 +126,9 @@ def main() -> int:
 
         for row in rows[args.start:]:
             hits = retriever.search(row["instruction"], 3)
-            ctx = "\n\n".join(f"[{h['id']}] {h['text']}" for h in hits)[:2400]
-            grounded = (system.strip()
-                        + "\n\nСправка из атласа (используй, но не выдумывай сверх неё):\n"
-                        + ctx)
+            # v4: формат справки — единый источник правды (prompt_format),
+            # байт-в-байт тот же, что и в RAFT-корпусе v4 при обучении
+            grounded = grounded_system(system, make_context(hits))
             prompt = build_prompt(grounded, row["instruction"])
             inputs = tokenizer(prompt, return_tensors="pt").to(device)
             with torch.no_grad():

@@ -6,8 +6,40 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from training.prompt_format import build_prompt, build_training_pair, split_generated  # noqa: E402
+from training.prompt_format import (  # noqa: E402
+    build_prompt, build_training_pair, split_generated,
+    make_context, grounded_system, GROUNDING_HEADER,
+)
 from inference.retriever import TfidfRetriever, chunk_markdown  # noqa: E402
+
+
+def test_grounded_matches_inference_format():
+    """v4 RAFT: grounding в train == grounding на инференсе, байт-в-байт."""
+    system, ctx = "Ты эксперт.", "[a#0] Текст справки."
+    expected = (system.strip()
+                + "\n\nСправка из атласа (используй, но не выдумывай сверх неё):\n"
+                + ctx)
+    assert grounded_system(system, ctx) == expected
+    assert GROUNDING_HEADER == "\n\nСправка из атласа (используй, но не выдумывай сверх неё):\n"
+
+
+def test_make_context_cap_and_ids():
+    hits = [{"id": f"a#{i}", "text": "x" * 1500} for i in range(3)]
+    ctx = make_context(hits)
+    assert len(ctx) == 2400
+    assert ctx.startswith("[a#0] ")
+    assert "[a#1]" in ctx
+
+
+def test_training_pair_with_context():
+    pt, at = build_training_pair("Ты эксперт.", "Вопрос?", "Ответ.",
+                                 context="[a#0] Справка.")
+    assert "Справка из атласа" in pt
+    assert pt.endswith("Ответ:")
+    assert at.startswith(" Ответ.")
+    # без контекста — прежний вслотный формат
+    pt2, _ = build_training_pair("Ты эксперт.", "Вопрос?", "Ответ.")
+    assert "Справка из атласа" not in pt2
 
 
 def test_prompt_format_roundtrip():
