@@ -286,6 +286,12 @@ def main() -> int:
     train_params = {k for k, p in model.named_parameters() if p.requires_grad}
 
     def _save_resume(epoch: int, bidx: int) -> None:
+        # Снимок накопленных градиентов: срез окна посреди grad_accum не теряет
+        # ни одного backward — продолжение бит-в-байт как у непрерывного прогона.
+        grads = {n: p.grad.detach().cpu().clone()
+                 for n, p in model.named_parameters()
+                 if p.requires_grad and p.grad is not None}
+        tmp = out_dir / "resume_state.pt.tmp"
         torch.save({
             "lora": {k: v.detach().cpu().clone()
                      for k, v in model.state_dict().items() if k in train_params},
@@ -296,8 +302,10 @@ def main() -> int:
             "gstep": gstep, "running": running,
             "epoch": epoch, "bidx": bidx,
             "history": history,
+            "grads": grads,
             "elapsed_sec": history.get("elapsed_sec", 0.0) + (time.time() - t0),
-        }, out_dir / "resume_state.pt")
+        }, tmp)
+        os.replace(tmp, out_dir / "resume_state.pt")  # атомарно: килл не портит файл
 
     if args.resume:
         rs_path = out_dir / "resume_state.pt"
@@ -306,6 +314,10 @@ def main() -> int:
             model.load_state_dict(rs["lora"], strict=False)
             optimizer.load_state_dict(rs["optimizer"])
             scheduler.load_state_dict(rs["scheduler"])
+            named = dict(model.named_parameters())
+            for n, g in (rs.get("grads") or {}).items():
+                if n in named and named[n].requires_grad:
+                    named[n].grad = g.clone()
             torch.set_rng_state(rs["torch_rng"])
             random.setstate(rs["py_rng"])
             gstep, running = rs["gstep"], rs["running"]
@@ -351,6 +363,13 @@ def main() -> int:
                     print(f"[chunk] окно {args.max_minutes} мин: чекпоинт "
                           f"gstep={gstep} epoch={epoch} bidx={i} сохранён, чистый выход")
                     return 0
+            elif args.max_minutes and (time.time() - chunk_t0) > args.max_minutes * 60:
+                # Жёсткий срез посреди grad_accum: градиенты уходят в чекпоинт,
+                # резюм продолжит ровно с этого пакета (бит-в-байт).
+                _save_resume(epoch, i)
+                print(f"[chunk] окно {args.max_minutes} мин: срез на пакете "
+                      f"{i} (градиенты сохранены), чистый выход")
+                return 0
         start_bidx = 0
         vl = eval_loss(model, val_loader, device)
         history["val_loss"].append({"epoch": epoch, "loss": vl})
