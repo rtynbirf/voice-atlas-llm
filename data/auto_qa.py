@@ -149,7 +149,56 @@ def extract_bold_terms(atlas_dir: Path) -> list[dict]:
     return samples
 
 
-def extract_all(atlas_dir: Path) -> dict[str, list[dict]]:
+STAGE = re.compile(r"\*\*Этап\s+(\d+)\.\s*([^*]+?)\.\*\*\s*([^\n]+)")
+
+
+def extract_stages(atlas_dir: Path) -> list[dict]:
+    """Процедурные QA (корпус v3, MODEL_CARD §3): этапы универсального алгоритма
+    (глава 12) — «что происходит на этапе N» + сводный псевдокод-эталон
+    «перечисли 10 этапов по порядку». Эталон — упорядоченный список названий,
+    форма ответа = псевдокод процедуры."""
+    samples = []
+    for fp in sorted(atlas_dir.glob("12_*.md")):
+        text = fp.read_text(encoding="utf-8")
+        found: dict[int, tuple[str, str]] = {}
+        for m in STAGE.finditer(text):
+            num, name, body = int(m.group(1)), m.group(2).strip(), m.group(3).strip()
+            found[num] = (name, body)
+        if len(found) < 10:
+            raise ValueError(f"{fp.name}: найдено этапов {len(found)} (<10) — "
+                             "разметка главы изменилась (fail-loud)")
+        for num in sorted(found):
+            name, body = found[num]
+            samples.append({
+                "instruction": f"Что происходит на этапе {num} универсального алгоритма?",
+                "output": f"Этап {num} («{name}»): {body}",
+                "meta": {"chapter": 12, "topic": "stage_qa", "source": fp.name},
+            })
+            samples.append({
+                "instruction": f"Этап {num} «{name}» — как его выполнить?",
+                "output": f"Порядок действий (этап {num}, «{name}»): {body}",
+                "meta": {"chapter": 12, "topic": "stage_qa", "source": fp.name},
+            })
+        # сводный эталон-псевдокод: все этапы одним списком
+        chain = "; ".join(f"{n}) {found[n][0]}" for n in sorted(found))
+        samples.append({
+            "instruction": "Перечисли все этапы универсального алгоритма по порядку (псевдокод).",
+            "output": f"Универсальный алгоритм, 10 этапов: {chain}.",
+            "meta": {"chapter": 12, "topic": "stage_qa", "source": fp.name},
+        })
+        samples.append({
+            "instruction": "Какие этапы обязательны в универсальном алгоритме и почему?",
+            "output": ("Обязательны этапы 9–10 (гейт и защита): именно они превращают "
+                       "«эксперимент» в «копию», которую можно показывать людям и "
+                       "обновлять, не боясь испортить. Этап 9 — метрический гейт "
+                       "(SIM, WER, UTMOS, слепой CMOS), этап 10 — защита и "
+                       "версионирование (вотермарк, лог, золотой мастер отдельно)."),
+            "meta": {"chapter": 12, "topic": "stage_qa", "source": fp.name},
+        })
+    return samples
+
+
+def extract_all(atlas_dir: Path, v3: bool = False) -> dict[str, list[dict]]:
     tables = extract_tables(atlas_dir)
     laws = extract_laws(atlas_dir)
     bolds = extract_bold_terms(atlas_dir)
@@ -159,4 +208,10 @@ def extract_all(atlas_dir: Path) -> dict[str, list[dict]]:
         raise ValueError("extract_laws: 0 пар")
     if not bolds:
         raise ValueError("extract_bold_terms: 0 пар")
-    return {"table_qa": tables, "law_qa": laws, "bold_qa": bolds}
+    out = {"table_qa": tables, "law_qa": laws, "bold_qa": bolds}
+    if v3:
+        stages = extract_stages(atlas_dir)
+        if not stages:
+            raise ValueError("extract_stages: 0 пар")
+        out["stage_qa"] = stages
+    return out
