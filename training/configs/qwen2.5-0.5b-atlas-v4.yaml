@@ -21,7 +21,10 @@ system_prompt_file: data/curated/system_prompt.txt
 max_len: 1792
 allow_gpu: true
 bf16: true
-gradient_checkpointing: true
+# gradient_checkpointing: false — на этой машине (2 ядра / 4 ГБ, свободно 3.5 ГБ)
+# прямое хранение активаций при батче 1 и seq<=1590 токенов влезает (~2.8 ГБ пик)
+# и экономит ~30% времени окна; математика идентична (чекпоинтинг = память за время).
+gradient_checkpointing: false
 seed: 42
 load_dtype_cpu: bfloat16
 neftune_alpha: 5
