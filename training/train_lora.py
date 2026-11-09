@@ -56,7 +56,8 @@ class SFTDataset(Dataset):
         dropped = 0
         for row in rows:
             prompt_text, answer_text = build_training_pair(
-                system, row["instruction"], row["output"])
+                system, row["instruction"], row["output"],
+                context=row.get("context"))
             prompt_ids = tokenizer(prompt_text, add_special_tokens=False)["input_ids"]
             ans = tokenizer(answer_text, add_special_tokens=False)["input_ids"] + tail
             # Ответ должен поместиться целиком: промпт режем СЛЕВА.
@@ -157,6 +158,23 @@ def eval_loss(model, loader: DataLoader, device: str) -> float:
     return total / max(ntok, 1)
 
 
+def enable_neftune(model, alpha: float) -> None:
+    """NEFTune (arXiv:2310.05914): аддитивный шум на входных эмбеддингах
+    ТОЛЬКО во время обучения (module.training), mag = alpha / sqrt(T*H) —
+    как в канонической реализации TRL. Уменьшает переобучение на малом
+    корпусе; на инференсе шума нет (model.eval())."""
+    emb = model.get_input_embeddings()
+
+    def _hook(_module, _args, output):
+        if not _module.training:
+            return output
+        dims = output.size(1) * output.size(-1)
+        mag = alpha / (dims ** 0.5)
+        return output + torch.zeros_like(output).uniform_(-mag, mag)
+
+    emb.register_forward_hook(_hook)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", required=True)
@@ -205,8 +223,13 @@ def main() -> int:
         bias="none",
         task_type="CAUSAL_LM",
         target_modules=cfg["lora"]["target_modules"],
+        use_rslora=bool(cfg["lora"].get("use_rslora", False)),
     )
     model = get_peft_model(model, lora_cfg)
+    if cfg.get("neftune_alpha"):
+        enable_neftune(model, float(cfg["neftune_alpha"]))
+        print(f"[train] NEFTune: alpha={cfg['neftune_alpha']} "
+              "(шум на эмбеддингах, только train)")
     model.train()
     if cfg.get("gradient_checkpointing", False):
         # Явно use_reentrant=False: при reentrant-варианте чекпоинтинг с

@@ -1,0 +1,17 @@
+{
+  "version": "v4-raft",
+  "recipe": "RAFT (arXiv:2403.10131), P_oracle=0.6, дистракторы=3 чужих глав",
+  "train": 308,
+  "val": "бит-в-байт data/dataset/val.jsonl",
+  "modes": {
+    "rag": 180,
+    "memory": 128
+  },
+  "oracle_share_rag": 0.8222,
+  "rag_union_cover_mean": 0.7728,
+  "rag_union_cover_median": 0.9672,
+  "rag_union_cover_min": 0.0,
+  "ctx_chars_mean": 2360.0,
+  "ctx_chars_max": 2400,
+  "determinism": "sha256(instruction): режим и выбор дистракторов"
+}

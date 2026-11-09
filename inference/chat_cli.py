@@ -20,15 +20,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from inference.retriever import TfidfRetriever, load_corpus  # noqa: E402
-from training.prompt_format import build_prompt, split_generated  # noqa: E402
-
-
-def make_context(hits: list[dict], max_chars: int = 2400) -> str:
-    parts = []
-    for h in hits:
-        parts.append(f"[{h['id']}] {h['text']}")
-    ctx = "\n\n".join(parts)
-    return ctx[:max_chars]
+from training.prompt_format import (  # noqa: E402
+    build_prompt, split_generated, make_context, grounded_system)
 
 
 def answer_dry(query: str, k: int) -> int:
@@ -49,11 +42,7 @@ def answer_llm(query: str, base: str, adapter: str | None, k: int,
     retriever = TfidfRetriever(load_corpus())
     hits = retriever.search(query, k)
     context = make_context(hits)
-    grounded_system = (
-        system.strip()
-        + "\n\nСправка из атласа (используй, но не выдумывай сверх неё):\n"
-        + context
-    )
+    grounded = grounded_system(system, context)
 
     print(f"[chat] загрузка модели {base} ...", file=sys.stderr)
     tokenizer = AutoTokenizer.from_pretrained(base, trust_remote_code=True)
@@ -68,15 +57,12 @@ def answer_llm(query: str, base: str, adapter: str | None, k: int,
         sp = Path(adapter) / "system_prompt.txt"
         if sp.exists():
             system_saved = sp.read_text(encoding="utf-8")
-            grounded_system = (
-                system_saved.strip()
-                + "\n\nСправка из атласа (используй, но не выдумывай сверх неё):\n"
-                + context)
+            grounded = grounded_system(system_saved, context)
     model.eval()
     device = "cuda" if torch.cuda.is_available() else "cpu"
     model.to(device)
 
-    prompt = build_prompt(grounded_system, query)
+    prompt = build_prompt(grounded, query)
     inputs = tokenizer(prompt, return_tensors="pt").to(device)
     with torch.no_grad():
         out = model.generate(
@@ -85,7 +71,7 @@ def answer_llm(query: str, base: str, adapter: str | None, k: int,
             pad_token_id=tokenizer.pad_token_id or tokenizer.eos_token_id)
     text = tokenizer.decode(out[0], skip_special_tokens=True)
     print("=== Атлас-LLM ===")
-    print(split_generated(text, grounded_system))
+    print(split_generated(text, grounded))
     print("\n=== Источники атласа ===")
     for h in hits:
         print(f"- {h['id']} (score={h['score']:.3f})")

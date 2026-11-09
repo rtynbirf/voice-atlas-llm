@@ -1,0 +1,45 @@
+# Полное обучение Атлас-LLM v4 (волна «RAFT-Гибрид», 2026-11-10): закрытие
+# разрыва train/inference по мировой практике RAFT (Berkeley, arXiv:2403.10131).
+# v1-v3 учились всплоту (без справки), а инференс ВСЕГДА грундит top-3 ретривера
+# (eval_qa.py) — адаптер обучался не на том распределении, на котором его меряют.
+# Корпус v4 (data/build_raft.py): те же 308 пар v3, каждая со справкой:
+#   60% «rag» — реальный top-3 ретривера, байт-в-байт как на инференсе
+#   (prompt_format.make_context, кэп 2400 симв.);
+#   40% «memory» (RAFT 1-P) — 3 чужих чанка: ответ из доменной памяти + честность.
+# + NEFTune (arXiv:2310.05914, alpha=5): шум на эмбеддингах только в train —
+#   меньше переобучения, лучше обобщение (150+ цитирований).
+# LoRA остаётся vanilla r=16/alpha=32: alpha=2r по Raschka; «Vanilla LoRA May
+# Suffice» (arXiv 2026): варианты (DoRA/RSLoRA/...) не бьют vanilla при
+# настроенном lr. use_rslora: false зафиксирован честно, флаг в тренере есть.
+# max_len 1792: промпт вырос (система 867 B + справка до 2400 B + QA; резерв).
+# Шаги: 308/16 = 20/эпоху x 3 = 60 (~55-75 мин CPU; окна --resume --max-minutes 7).
+# A/B протокол тот же: eval_qa.py --adapter models/atlas-qwen-0.5b-v4
+#   --base models/_base/Qwen2.5-0.5B-Instruct --out evaluation/report_v4_on_val30.json
+base_model: models/_base/Qwen2.5-0.5B-Instruct
+output_dir: models/atlas-qwen-0.5b-v4
+system_prompt_file: data/curated/system_prompt.txt
+max_len: 1792
+allow_gpu: true
+bf16: true
+gradient_checkpointing: true
+seed: 42
+load_dtype_cpu: bfloat16
+neftune_alpha: 5
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  use_rslora: false
+  target_modules: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+data:
+  train: data/dataset_v4/train.jsonl
+  val: data/dataset_v4/val.jsonl
+training:
+  epochs: 3
+  batch_size: 1
+  grad_accum: 16
+  lr: 0.0002
+  weight_decay: 0.01
+  warmup_frac: 0.06
+  log_every: 5
+  max_grad_norm: 1.0
