@@ -1,0 +1,18 @@
+{
+  "schema": "swarm-doctrine/1",
+  "account": "rtynbirf",
+  "repo": "rtynbirf/voice-atlas-llm",
+  "integrated_at": "2026-11-09T01:01:33Z",
+  "integrated_by": "polimat · мандат Хозяина TH-DOCT-04",
+  "doctrine_canon": {
+    "repo": "rtynbirf/repo-doctrine",
+    "commit": "a67184bc9527db5e688a90d0a77202a6918450aa",
+    "must_read": [
+      "04-конвенции-агентов.md",
+      "20-грабли-и-золотая-середина-агентов-2026-11-09.md §2–§3"
+    ],
+    "laws_count": 11
+  },
+  "law_11_token_probe": "токен без живой пробы — не ключ: GET /user с ключом → HTTP 200 + github-authentication-token-expiration ДО первой операции мандата; 401/403 = честный ноль",
+  "checklist": "файл 20 §3 «10 касаний» — прогон перед каждым действием"
+}
