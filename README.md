@@ -1,5 +1,8 @@
 <div align="center">
+  <picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/forge-banner-voice-atlas.svg" />
   <img src="banner.png" alt="voice-atlas-llm — Модель-эксперт по клонированию голоса" width="100%">
+</picture>
 </div>
 
 # Атлас-LLM · voice-atlas-llm
