@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1344" height="360" viewBox="0 0 1344 360">
+
+<defs>
+  <linearGradient id="gGold" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#F2C464"/>
+    <stop offset="0.55" stop-color="#D9A441"/>
+    <stop offset="1" stop-color="#8A6420"/>
+  </linearGradient>
+  <linearGradient id="gGoldX" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#8A6420"/>
+    <stop offset="0.5" stop-color="#F2C464"/>
+    <stop offset="1" stop-color="#8A6420"/>
+  </linearGradient>
+  <radialGradient id="gVig" cx="0.5" cy="0.42" r="0.75">
+    <stop offset="0" stop-color="#191410"/>
+    <stop offset="0.6" stop-color="#12100C"/>
+    <stop offset="1" stop-color="#0B0A08"/>
+  </radialGradient>
+  <linearGradient id="gFade" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0"    stop-color="#D9A441" stop-opacity="0"/>
+    <stop offset="0.5"  stop-color="#D9A441" stop-opacity="1"/>
+    <stop offset="1"    stop-color="#D9A441" stop-opacity="0"/>
+  </linearGradient>
+</defs>
+
+<rect width="1344" height="360" fill="url(#gVig)"/>
+<line x1="672" y1="185" x2="1642" y2="321" stroke="url(#gGoldX)" stroke-width="1.1" opacity="0.07"/><line x1="672" y1="185" x2="1444" y2="788" stroke="url(#gGoldX)" stroke-width="1.1" opacity="0.07"/><line x1="672" y1="185" x2="1039" y2="1094" stroke="url(#gGoldX)" stroke-width="1.1" opacity="0.07"/><line x1="672" y1="185" x2="536" y2="1155" stroke="url(#gGoldX)" stroke-width="1.1" opacity="0.07"/><line x1="672" y1="185" x2="69" y2="957" stroke="url(#gGoldX)" stroke-width="1.1" opacity="0.07"/><line x1="672" y1="185" x2="-237" y2="552" stroke="url(#gGoldX)" stroke-width="1.1" opacity="0.07"/><line x1="672" y1="185" x2="-298" y2="49" stroke="url(#gGoldX)" stroke-width="1.1" opacity="0.07"/><line x1="672" y1="185" x2="-100" y2="-418" stroke="url(#gGoldX)" stroke-width="1.1" opacity="0.07"/><line x1="672" y1="185" x2="305" y2="-724" stroke="url(#gGoldX)" stroke-width="1.1" opacity="0.07"/><line x1="672" y1="185" x2="808" y2="-785" stroke="url(#gGoldX)" stroke-width="1.1" opacity="0.07"/><line x1="672" y1="185" x2="1275" y2="-587" stroke="url(#gGoldX)" stroke-width="1.1" opacity="0.07"/><line x1="672" y1="185" x2="1581" y2="-182" stroke="url(#gGoldX)" stroke-width="1.1" opacity="0.07"/>
+<rect x="10" y="10" width="1324" height="340" fill="none" stroke="#3A2E14" stroke-width="1.5"/>
+
+  <path d="M 24 52 V 22 H 54" stroke="#D9A441" stroke-width="2.5" fill="none"/>
+  <path d="M 1290 22 H 1320 V 52" stroke="#D9A441" stroke-width="2.5" fill="none"/>
+  <path d="M 1320 308 V 338 H 1290" stroke="#D9A441" stroke-width="2.5" fill="none"/>
+  <path d="M 54 338 H 24 V 308" stroke="#D9A441" stroke-width="2.5" fill="none"/>
+
+<text x="66" y="64" font-family="Georgia, 'Times New Roman', serif" font-size="13" letter-spacing="7" fill="#C9C2B4">ЖИВОЙ ШТАНДАРТ ФЛОТА</text>
+<text x="66" y="152" font-family="Georgia, 'Times New Roman', serif" font-size="56" font-weight="bold" letter-spacing="3" fill="url(#gGold)">VOICE ATLAS LLM</text>
+<path d="M 52 137.5 L 57.5 143 L 52 148.5 L 46.5 143 Z" fill="#E8722A" opacity="1.0"/>
+<text x="66" y="188" font-family="'Courier New', monospace" font-size="15" letter-spacing="2" fill="#C9C2B4">МОДЕЛЬ-ЭКСПЕРТ · КЛОНИРОВАНИЕ ГОЛОСА</text>
+<text x="66" y="216" font-family="'Courier New', monospace" font-size="12.5" letter-spacing="1.5" fill="#8A6420">PYTHON · 163 MIB · TTS/VC/SVC/SVS · LoRA</text>
+
+<clipPath id="cWave"><rect x="66" y="236" width="880" height="104"/></clipPath>
+<g clip-path="url(#cWave)">
+  <path d="M 0,284.6 L 16,282.5 L 32,282.1 L 48,282.5 L 64,282.9 L 80,282.2 L 96,280.0 L 112,276.1 L 128,270.9 L 144,265.2 L 160,260.2 L 176,257.0 L 192,256.1 L 208,258.0 L 224,262.2 L 240,267.9 L 256,274.2 L 272,279.8 L 288,284.0 L 304,286.4 L 320,287.1 L 336,286.8 L 352,286.4 L 368,286.9 L 384,288.9 L 400,292.7 L 416,298.0 L 432,304.0 L 448,309.7 L 464,313.9 L 480,315.9 L 496,315.2 L 512,312.0 L 528,307.0 L 544,301.2 L 560,295.7 L 576,291.3 L 592,288.7 L 608,287.7 L 624,287.9 L 640,288.4 L 656,288.1 L 672,286.4 L 688,282.9 L 704,277.6 L 720,271.4 L 736,265.1 L 752,259.9 L 768,256.8 L 784,256.4 L 800,258.5 L 816,262.6 L 832,267.9 L 848,273.3 L 864,277.6 L 880,280.4 L 896,281.6 L 912,281.4 L 928,280.9 L 944,280.8 L 960,282.2 L 976,285.4 L 992,290.5 L 1008,296.8 L 1024,303.5 L 1040,309.5 L 1056,313.6 L 1072,315.3 L 1088,314.3 L 1104,311.0 L 1120,306.4 L 1136,301.4 L 1152,297.1 L 1168,294.2 L 1184,293.0 L 1200,293.0 L 1216,293.7 L 1232,294.1 L 1248,293.2 L 1264,290.4 L 1280,285.6 L 1296,279.3 L 1312,272.3 L 1328,265.7 L 1344,260.6 L 1360,257.9 L 1376,257.8 L 1392,260.0 L 1408,263.9 L 1424,268.5 L 1440,272.6 L 1456,275.5 L 1472,276.8 L 1488,276.7 L 1504,275.9 L 1520,275.2 L 1536,275.6 L 1552,277.8 L 1568,282.2 L 1584,288.3 L 1600,295.4 L 1616,302.5 L 1632,308.4 L 1648,312.2 L 1664,313.5 L 1680,312.2 L 1696,309.1" fill="none" stroke="#D9A441" stroke-width="1.8" opacity="0.6">
+    <animateTransform attributeName="transform" type="translate" values="0 0;-856 0" dur="9s" repeatCount="indefinite"/>
+  </path>
+  <path d="M 0,278.4 L 16,279.0 L 32,277.8 L 48,275.0 L 64,271.8 L 80,269.9 L 96,271.0 L 112,275.6 L 128,282.6 L 144,290.3 L 160,296.5 L 176,299.8 L 192,299.8 L 208,297.8 L 224,295.3 L 240,293.9 L 256,294.4 L 272,296.2 L 288,297.8 L 304,297.4 L 320,294.0 L 336,287.8 L 352,280.2 L 368,273.4 L 384,269.2 L 400,268.5 L 416,270.9 L 432,274.8 L 448,278.4 L 464,280.4 L 480,280.5 L 496,279.6 L 512,279.4 L 528,281.5 L 544,286.2 L 560,292.8 L 576,299.5 L 592,304.3 L 608,305.6 L 624,303.3 L 640,298.5 L 656,293.0 L 672,288.8 L 688,286.7 L 704,286.5 L 720,287.0 L 736,286.3 L 752,283.5 L 768,278.6 L 784,272.7 L 800,268.0 L 816,266.1 L 832,268.0 L 848,273.1 L 864,279.7 L 880,285.8 L 896,289.8 L 912,291.2 L 928,290.9 L 944,290.3 L 960,291.0 L 976,293.8 L 992,298.0 L 1008,302.2 L 1024,304.3 L 1040,303.1 L 1056,298.3 L 1072,291.3 L 1088,284.0 L 1104,278.4 L 1120,275.6 L 1136,275.6 L 1152,277.1 L 1168,278.3 L 1184,278.0 L 1200,275.9 L 1216,273.0 L 1232,271.0 L 1248,271.5 L 1264,275.4 L 1280,282.1 L 1296,289.8 L 1312,296.5 L 1328,300.4 L 1344,301.0 L 1360,299.0 L 1376,296.1 L 1392,294.0 L 1408,293.7 L 1424,294.9 L 1440,296.4 L 1456,296.4 L 1472,293.7 L 1488,288.1 L 1504,280.8 L 1520,273.8 L 1536,269.0 L 1552,267.7 L 1568,269.8 L 1584,273.9 L 1600,278.1 L 1616,280.9 L 1632,281.7 L 1648,281.1 L 1664,280.7 L 1680,282.1 L 1696,286.1" fill="none" stroke="#E8722A" stroke-width="1.4" opacity="0.45">
+    <animateTransform attributeName="transform" type="translate" values="-856 0;0 0" dur="14s" repeatCount="indefinite"/>
+  </path>
+  <line x1="66" y1="286" x2="946" y2="286" stroke="#3A2E14" stroke-width="1"/>
+</g>
+<text x="66" y="346" font-family="'Courier New', monospace" font-size="11" letter-spacing="2" fill="#8A6420" opacity="0.85">OBSIDIAN &amp; MOLTEN GOLD · ВОЛНА, КОТОРАЯ НИКОГДА НЕ МОЛЧИТ</text>
+<path d="M 1128 147.5 C 1122.9 167.0 1122.3 188.0 1128 204.5 C 1133.7 188.0 1133.1 167.0 1128 147.5 Z" fill="url(#gGold)" opacity="1.0" />
+<path d="M 1125.6 174.5 C 1109.4 167.0 1096.8 155.0 1089.6 136.4 C 1099.2 147.2 1114.8 161.0 1126.2 168.2 Z" fill="url(#gGold)" opacity="1.0" />
+<path d="M 1130.4 174.5 C 1146.6 167.0 1159.2 155.0 1166.4 136.4 C 1156.8 147.2 1141.2 161.0 1129.8 168.2 Z" fill="url(#gGold)" opacity="1.0" />
+<path d="M 1125.9 182.6 C 1114.8 183.2 1105.8 179.0 1101.6 170.0 C 1111.2 174.8 1119.6 178.4 1126.5 180.8 Z" fill="url(#gGoldX)" opacity="1.0" />
+<path d="M 1130.1 182.6 C 1141.2 183.2 1150.2 179.0 1154.4 170.0 C 1144.8 174.8 1136.4 178.4 1129.5 180.8 Z" fill="url(#gGoldX)" opacity="1.0" />
+<path d="M 1128 200.0 C 1123.8 212.0 1120.2 221.0 1116.6 229.4 C 1123.2 224.0 1126.2 216.5 1128 209.0 Z" fill="url(#gGold)" opacity="1.0" />
+<path d="M 1128 201.5 C 1129.8 215.0 1128.6 225.5 1128 234.5 C 1127.4 225.5 1126.2 215.0 1128 201.5 Z" fill="url(#gGoldX)" opacity="1.0" />
+<path d="M 1128 200.0 C 1132.2 212.0 1135.8 221.0 1139.4 229.4 C 1132.8 224.0 1129.8 216.5 1128 209.0 Z" fill="url(#gGold)" opacity="1.0" />
+<path d="M 1128 147.5 c -2.6999999999999997 -0.6 -3.9 -3.0 -3.3 -5.3999999999999995 c 2.4 1.5 4.2 1.5 6.6 0.0 c 0.6 2.4 -0.6 4.5 -3.3 5.3999999999999995 Z" fill="url(#gGold)" opacity="1.0" />
+<path d="M 1128 142.4 C 1126.2 138.8 1127.4 136.4 1128.6 134.0 C 1129.8 137.0 1129.5 140.0 1128 142.4 Z" fill="#E8722A" opacity="1.0" />
+<circle cx="1072" cy="276" r="2.4353080004866015" fill="#E8722A" opacity="0"><animate attributeName="cy" values="276;92" dur="4.77s" begin="-1.29s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.9;0.75;0" keyTimes="0;0.15;0.6;1" dur="4.77s" begin="-1.29s" repeatCount="indefinite"/></circle>
+<circle cx="1221" cy="276" r="1.6378640127120818" fill="#F2C464" opacity="0"><animate attributeName="cy" values="276;92" dur="3.87s" begin="-4.72s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.9;0.75;0" keyTimes="0;0.15;0.6;1" dur="3.87s" begin="-4.72s" repeatCount="indefinite"/></circle>
+<circle cx="1225" cy="276" r="2.2471791819855524" fill="#F2C464" opacity="0"><animate attributeName="cy" values="276;92" dur="3.88s" begin="-0.18s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.9;0.75;0" keyTimes="0;0.15;0.6;1" dur="3.88s" begin="-0.18s" repeatCount="indefinite"/></circle>
+<circle cx="1042" cy="276" r="1.68717996744853" fill="#E8722A" opacity="0"><animate attributeName="cy" values="276;92" dur="4.84s" begin="-3.91s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.9;0.75;0" keyTimes="0;0.15;0.6;1" dur="4.84s" begin="-3.91s" repeatCount="indefinite"/></circle>
+<circle cx="1189" cy="276" r="1.7573698970596656" fill="#F2C464" opacity="0"><animate attributeName="cy" values="276;92" dur="5.52s" begin="-1.83s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.9;0.75;0" keyTimes="0;0.15;0.6;1" dur="5.52s" begin="-1.83s" repeatCount="indefinite"/></circle>
+<circle cx="1096" cy="276" r="1.2900276498339878" fill="#F2C464" opacity="0"><animate attributeName="cy" values="276;92" dur="4.40s" begin="-2.59s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.9;0.75;0" keyTimes="0;0.15;0.6;1" dur="4.40s" begin="-2.59s" repeatCount="indefinite"/></circle>
+<circle cx="1189" cy="276" r="2.4243048275413344" fill="#E8722A" opacity="0"><animate attributeName="cy" values="276;92" dur="5.89s" begin="-3.98s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.9;0.75;0" keyTimes="0;0.15;0.6;1" dur="5.89s" begin="-3.98s" repeatCount="indefinite"/></circle>
+<circle cx="1034" cy="276" r="2.055546003653648" fill="#F2C464" opacity="0"><animate attributeName="cy" values="276;92" dur="6.02s" begin="-3.09s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.9;0.75;0" keyTimes="0;0.15;0.6;1" dur="6.02s" begin="-3.09s" repeatCount="indefinite"/></circle>
+<line x1="1000" y1="322" x2="1256" y2="322" stroke="url(#gFade)" stroke-width="1.2"/>
+</svg>
