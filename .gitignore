@@ -20,3 +20,4 @@ secrets.env
 # ОС
 .DS_Store
 Thumbs.db
+**/resume_state.pt
