@@ -124,7 +124,8 @@ def main() -> int:
         device = "cuda" if torch.cuda.is_available() else "cpu"
         model.to(device)
 
-        for row in rows[args.start:]:
+        for qi, row in enumerate(rows[args.start:]):
+            tq = time.time()
             hits = retriever.search(row["instruction"], 3)
             # v4: формат справки — единый источник правды (prompt_format),
             # байт-в-байт тот же, что и в RAFT-корпусе v4 при обучении
@@ -150,6 +151,9 @@ def main() -> int:
             out_path.write_text(json.dumps(
                 {"mode": "partial", "n_done": len(results), "results": results},
                 ensure_ascii=False, indent=2), encoding="utf-8")
+            print(f"[eval {args.start + qi + 1}/{len(rows)}] "
+                  f"{time.time() - tq:.0f}s f1={results[-1]['token_f1']:.3f} "
+                  f"pred_len={len(pred)}", flush=True)
 
     agg = {}
     if results and "token_f1" in results[0]:
