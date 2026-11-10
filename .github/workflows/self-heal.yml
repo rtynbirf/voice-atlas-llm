@@ -1,0 +1,67 @@
+name: "Доктор гейтов — самозажив транзиентов (волна 7)"
+
+# КЛАСС КОСЯКА (вскрыт байтами волной 7, 2026-11-11, на телах singulyar и
+# uace-pml): красный гейта при ЗДОРОВОМ теле — транзиент инфраструктуры.
+# Инцидент хранилища GitHub Actions 2026-11-10 10:01–15:47 UTC: Azure
+# <Code>BlobNotFound</Code> в «Set up job» за 2 секунды без единого шага,
+# error_count:10 + «Timeout reached» на Upload artifact при живом дереве —
+# тот же SHA зелёный повторным прогоном (диспатчи/attempt 2).
+# ПРИКАЗ ХОЗЯИНА (волна 8, 2026-11-11): «прикрутить Доктора к остальным
+# телам роя» — класс лечится классом, одной машиной для всего дома.
+# ЛЕКАРСТВО (класс, не симптом): ровно ОДИН автоматический реран упавших
+# jobs смотримого гейта.
+# КОНЕЧНЫЙ АВТОМАТ (закон дома): attempt=1 красный → реран → attempt=2 —
+#   ФИНАЛЬНОЕ состояние (не лечится никогда); event=workflow_run не лечится
+#   (доктор доктора запрещён). Терминация доказана условием if.
+# ТИШИНА (I0): реран не создаёт нотификаций, не пишет issue/комментарии.
+# ЧЕСТНОСТЬ: если API отклонил реран — причина ложится в лог, доктор выходит 0;
+#   основной гейт остаётся красным — ничто не подмазывается.
+# ГЕЙТЫ: список ниже — активные воркфлоу default-ветки этого тела, сняты
+#   с живого API волной 8 (числа никогда руками). Не смотрятся: воркфлоу в
+#   состоянии disabled/мануально выключенные. Новый гейт вписывается в
+#   список следующей сменой ритуала.
+
+on:
+  workflow_run:
+    workflows:
+      - "CI"
+      - "CodeQL"
+      - "Dependabot Updates"
+      - "Dependency Graph"
+      - "Scorecard analysis"
+      - "blood"
+      - "ПУЛЬС v2 — еженедельный самоаудит"
+    types: [completed]
+permissions:
+  actions: write
+
+concurrency:
+  group: doctor-${{ github.event.workflow_run.id }}
+  cancel-in-progress: false
+
+jobs:
+  heal:
+    name: "Один реран упавших jobs (attempt 2 — финал)"
+    if: >-
+      github.event.workflow_run.conclusion == 'failure' &&
+      github.event.workflow_run.run_attempt == 1 &&
+      github.event.workflow_run.event != 'workflow_run'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: "Реран упавших jobs (только API, без checkout)"
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          rid="${{ github.event.workflow_run.id }}"
+          code=$(curl -s -o /tmp/heal.json -w "%{http_code}" -X POST \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "User-Agent: polimat-wave7-doctor" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/runs/${rid}/rerun-failed-jobs")
+          echo "доктор: rerun-failed-jobs(run=$rid) -> HTTP $code"
+          head -c 300 /tmp/heal.json; echo
+          case "$code" in
+            201|202) echo "доктор: реран принят — attempt 2 пошёл (финальная попытка)" ;;
+            *) echo "доктор: реран отклонён (HTTP $code) — честно остаёмся в логе, гейт не подмазан" ;;
+          esac
