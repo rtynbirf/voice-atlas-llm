@@ -11,7 +11,7 @@
 # CUDA-сборка torch для RTX 3060+ (та же версия):
 #   pip install torch==2.15.0 --index-url https://download.pytorch.org/whl/cu121
 torch==2.15.0
-transformers==5.22.1
+transformers==5.22.2
 peft==0.21.2
 accelerate>=0.33
 safetensors>=0.4
