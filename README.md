@@ -5,6 +5,15 @@
 </picture>
 </div>
 
+<!--ФОРЖ:МУЗА:НАЧАЛО-->
+<div align="center">
+  <img src="repo-muse.svg" width="100%" alt="Муза voice-atlas-llm: картина кузни ПОЛИМАТ, раунд 9" />
+  <br/>
+  <img src="forge-divider.svg" width="62%" alt="разделитель кузни ПОЛИМАТ" />
+</div>
+<!--ФОРЖ:МУЗА:КОНЕЦ-->
+
+
 # Атлас-LLM · voice-atlas-llm
 
 <p align="center"><img src=".github/social-preview.png" alt="voice-atlas-llm" width="100%"></p>
@@ -176,3 +185,10 @@ python evaluation/eval_qa.py --adapter models/atlas-qwen-0.5b --max-samples 40
 MIT (код и датасет). Базовые модели сохраняют свои лицензии
 (Qwen2.5 — Apache-2.0). Клонируйте голоса только с письменного согласия
 носителя — закон 7 и глава 17 атласа.
+
+<!--ФОРЖ:ПОДВАЛ-->
+---
+
+<div align="center">
+  <sub>◆ картина и штандарт — ручная ковка <a href="https://github.com/rtynbirf">КУЗНИ ПОЛИМАТ</a> · ЧЕЛОВЕК=АККАУНТ=PID1 ◆</sub>
+</div>
