@@ -1,13 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 60" width="800" height="60" role="img">
-<defs><linearGradient id="dg" x1="0" y1="0" x2="1" y2="0">
-<stop offset="0" stop-color="#5C554A" stop-opacity="0"/><stop offset=".28" stop-color="#B0A890"/>
-<stop offset=".5" stop-color="#E8E4D8"/><stop offset=".72" stop-color="#B0A890"/>
-<stop offset="1" stop-color="#5C554A" stop-opacity="0"/></linearGradient></defs>
-<line x1="20" y1="30" x2="330" y2="30" stroke="url(#dg)" stroke-width="1.4"/>
-<line x1="470" y1="30" x2="780" y2="30" stroke="url(#dg)" stroke-width="1.4"/>
-<g transform="translate(400 30)">
-<path d="M0 -13 L13 0 L0 13 L-13 0 Z" fill="none" stroke="#E8E4D8" stroke-width="1.6"/>
-<path d="M0 -7 L7 0 L0 7 L-7 0 Z" fill="#E8E4D8"/>
-<circle cx="0" cy="-19" r="1.8" fill="#B0A890"/><circle cx="0" cy="19" r="1.8" fill="#B0A890"/>
-<circle cx="-19" cy="0" r="1.8" fill="#B0A890"/><circle cx="19" cy="0" r="1.8" fill="#B0A890"/>
-</g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 46" width="1200" height="46">
+  <defs>
+    <linearGradient id="gd_voice_atlas_llm" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8A5E6C" stop-opacity="0"/>
+      <stop offset="0.16" stop-color="#8A5E6C"/>
+      <stop offset="0.84" stop-color="#8A5E6C"/>
+      <stop offset="1" stop-color="#8A5E6C" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <line x1="40" y1="23" x2="540" y2="23" stroke="url(#gd_voice_atlas_llm)" stroke-width="1.6"/>
+  <line x1="660" y1="23" x2="1160" y2="23" stroke="url(#gd_voice_atlas_llm)" stroke-width="1.6"/>
+  <path d="M 600 8 L 615 23 L 600 38 L 585 23 Z" fill="#B08D3E"/>
+  <path d="M 600 14 L 609 23 L 600 32 L 591 23 Z" fill="#F2C464"/>
+  <path d="M 556 17 L 564 23 L 556 29 L 548 23 Z" fill="#B08D3E" opacity="0.85"/>
+  <path d="M 644 17 L 652 23 L 644 29 L 636 23 Z" fill="#B08D3E" opacity="0.85"/>
+  <line x1="40" y1="9" x2="40" y2="37" stroke="#B08D3E" stroke-width="1.4" opacity="0.7"/>
+  <line x1="1160" y1="9" x2="1160" y2="37" stroke="#B08D3E" stroke-width="1.4" opacity="0.7"/>
+</svg>
