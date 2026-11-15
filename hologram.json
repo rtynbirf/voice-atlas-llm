@@ -1,0 +1,286 @@
+{
+ "hologram": 1,
+ "root": "9d9c679c7b3873b43217266d89b7bd77c43b65f35abc42d64c7f735d9a7dbc03",
+ "n": 66,
+ "r": 3,
+ "self": {
+  "name": "voice-atlas-llm",
+  "desc": "Атлас-LLM: модель-эксперт по клонированию голоса (дизентанглмент, TTS/VC/SVC/SVS) — LoRA-обучение на корпусе атласа 2026, RAG, гейты качества",
+  "lang": "Python",
+  "cluster": "ATLASES"
+ },
+ "index": [
+  {
+   "name": ".github",
+   "hash": "349a71a6570f9a86946311fa1e8685b94300d0f807b8da6e2ddec429f1307165"
+  },
+  {
+   "name": "H-PE11-PHOENIX",
+   "hash": "870ad1fb751b8b663497ed4722dbcd46f80b14dff4c606aa208e41d7904a700d"
+  },
+  {
+   "name": "POLYMATH-ATLAS-GESTALT-CANON",
+   "hash": "2f1b0f9a0779c2aa1885afcd5cd1af1090a4d625274c5edb06ae7e47219710eb"
+  },
+  {
+   "name": "agryp",
+   "hash": "9907a01f32b61e9fe0ab2d3211ff6e71ef3efd587307a09a9714fcacc9be0406"
+  },
+  {
+   "name": "cell-rs",
+   "hash": "c4c52122ff4354cef24c6a7c8be82bfdccbeb8fdabc467f21b8ecaa40dbd8e57"
+  },
+  {
+   "name": "cell-swarm",
+   "hash": "63bc4d61eea6c39dea04b243c0a93d160ac79e29160d04d22842e121754ae043"
+  },
+  {
+   "name": "cell65-host",
+   "hash": "0011a84a18f983586b4dffacd2effa6457b55ff208b569acee8fc4bff7ee6ef4"
+  },
+  {
+   "name": "combain-v2",
+   "hash": "f07fc5cbe21485fa26e3dd710f7e0a9fe13a09c11b4a386da402d16cfc72b257"
+  },
+  {
+   "name": "commons",
+   "hash": "00bf7a48c328bf939c5ec37f413b7ef4ab7a23f8618e57bd916cdc57ece83942"
+  },
+  {
+   "name": "domovenok",
+   "hash": "e56a46c74ad51bcbb2320cb1e22f7682707ce78591845558ac713659a1453f17"
+  },
+  {
+   "name": "domovoy",
+   "hash": "cb1596077fbd7de9c6eb4ee186d3083d7b32f9f9d3623c4e768e1eeb71350d12"
+  },
+  {
+   "name": "domovoy-ritual",
+   "hash": "ce638aab00e7055809b4079a026a5ffc75275d628eed806adf7aa85bf1cfc1b3"
+  },
+  {
+   "name": "domovoy-tweaker",
+   "hash": "00810f6f4ab8ee130c788939728a87e1cb9de44721963ab40b50373b1c3dc397"
+  },
+  {
+   "name": "door-zero",
+   "hash": "c356af39db7ffcff0e6126c45788efdb3f9ab1beb4a012c1e2b84bae8eb26e7f"
+  },
+  {
+   "name": "edinyy-svod",
+   "hash": "d3eea421ef31030b1ca19ebfc8f539473d450b96d1414dc680cfc8266facfd4b"
+  },
+  {
+   "name": "ekonomika",
+   "hash": "9eba7c28ae898b3542107abdda3c71adae5fb2ba3b97e5a79805e13b23e6abb8"
+  },
+  {
+   "name": "ekspozicii",
+   "hash": "750ab23a4fc0f56ca89707239f474bc1a96897f029480948e42d2afc285d33dc"
+  },
+  {
+   "name": "free-man",
+   "hash": "07cb74446195a0bea132d23b75e557d74fc6d53e4aa236317eee67f9bf1360eb"
+  },
+  {
+   "name": "github-doctrine",
+   "hash": "0260a0facea87359410b615cd4f3f7ace373d28b244f0d484a5204f45233389b"
+  },
+  {
+   "name": "github-runbook",
+   "hash": "b43c56fbd53cef44fcf11652a1947c2cebc2aa3b616a806ecc66730bd1169751"
+  },
+  {
+   "name": "global-video-platforms-registry",
+   "hash": "c2ebb3ad4f5e61889665fa4eecaf3529fb3bd7f6aac205a3c4ad16bd5eef0870"
+  },
+  {
+   "name": "hologram",
+   "hash": "0f949366ccd47c33a83fa4541208e5d5a0ce9151729aef754eaa57fbfe81066f"
+  },
+  {
+   "name": "index",
+   "hash": "10fe1d26ed92e1d2ae38c8bea3cb33af6dcebc6f0688e2361a0b5276af79b50d"
+  },
+  {
+   "name": "karaoke-dream",
+   "hash": "50394affadfef6882d31ffbb7febe3621a8e5a3897eb6fd22146055410ef1796"
+  },
+  {
+   "name": "khozyain",
+   "hash": "780bb998e0f25765395aeaabb67fe45f16f6087a0c6fb6b028fba264ff3a791c"
+  },
+  {
+   "name": "language-through-the-ages",
+   "hash": "bd1d6d0c4b6d42a745e9fa0def89e93c3137570ab3eff6111ac1ec2bd2fae37f"
+  },
+  {
+   "name": "lean-canon",
+   "hash": "3d926ab6bae3e67e934cac324ca26c8f7f2f5713fce07bb58dee394d86157b59"
+  },
+  {
+   "name": "linguistic-code",
+   "hash": "ff5c35ab7719a757e42f2e4a667538b3cd9e9cc3de9bfd69233909979f097941"
+  },
+  {
+   "name": "markitdown",
+   "hash": "45ce8d2f592c9021f47dce13600da787b425f2ee8f02ddf06e44b8274ef0d666"
+  },
+  {
+   "name": "neutral-browser",
+   "hash": "b0de5f29c3fa7c8120dc175e44bfa1376841f0e5bcfeaa60feaa768084365b26"
+  },
+  {
+   "name": "nous",
+   "hash": "9219d8358f892d9e08665fb74e0325c18daa2882dec77d0f42b25b938b01be58"
+  },
+  {
+   "name": "os-forge",
+   "hash": "c0d1093ec3d176aba1dcc3e645c46349605fc63a969c0be23f03267dd686ea42"
+  },
+  {
+   "name": "polimat-hub",
+   "hash": "7186714886ff5d117064c81d3e5492e60b1851f0978229ed3038f54603af6025"
+  },
+  {
+   "name": "polimat-task174",
+   "hash": "a884e6d60ac4097a1b0b4daf3d5dcfcc60f683fc65218869ae5e33fbc69a4ecb"
+  },
+  {
+   "name": "polymat-hive",
+   "hash": "3a80fccce16edbd58597140ef7604f34ccc1ae5b7abb3ef6d246b84999ee6700"
+  },
+  {
+   "name": "polymath-atlas",
+   "hash": "1441788ff6b02b0f5d56e19d8327161bad3234bc195ed92b6e1c9f4065e44bb7"
+  },
+  {
+   "name": "polymath-atlas-v107",
+   "hash": "5b8f1ef14a195c50b713d0605b07231d015942de8c6be4b674cb70c1033bc3ed"
+  },
+  {
+   "name": "polymath-core",
+   "hash": "ad419478f8879f0d3ad7e9809020ff0f93f21a40394d998c77a22eb0975318b7"
+  },
+  {
+   "name": "polymath-gen",
+   "hash": "c0b61ea9c443033d674e9c5ad106b08afb9b6a87e1789a4132ce18ff7986fd2b"
+  },
+  {
+   "name": "polymath-multiagent",
+   "hash": "a804046020eeef8813323cd4114636907a36533997e7be21f0d294703a42cb05"
+  },
+  {
+   "name": "polymath-os",
+   "hash": "0ca17f8b4601d25027aa6328c01007f08d21ab65d9954aa313ebe3f5636faefb"
+  },
+  {
+   "name": "polymath-stckg-core",
+   "hash": "26f162c58415f38fb98dc2881b18144ac47c3a804d91339b2004381073a5322b"
+  },
+  {
+   "name": "polymath-tools-atlas",
+   "hash": "4c39d20bd6af837f71ac1781123d23225978922ff387c86e0766ba3b835091df"
+  },
+  {
+   "name": "red-thread-debt-audit",
+   "hash": "738246536bc3708b974314056ab9c13659ece7cb2796376b438214717f74cf8f"
+  },
+  {
+   "name": "release-vault",
+   "hash": "494dd2efef3c3883fec2128fc65b86bdb9c29efe031c057ba59f741717d3ed9d"
+  },
+  {
+   "name": "rent-mechanism-q43",
+   "hash": "d37a8fbbbc87f017ba4a98c44d02bf938299c009e495121e062af497403f06d4"
+  },
+  {
+   "name": "repo-doctrine",
+   "hash": "2274ff600e5e3f3e3d3c7149ea49828486e5c36d7f504f22660f218358ee3288"
+  },
+  {
+   "name": "revo",
+   "hash": "9eb83e26cdc7a79e7df8ec6d0b46a775e046291ab8c6928c8e1adc0cbd6dfbeb"
+  },
+  {
+   "name": "rtynbirf",
+   "hash": "d846f50f08c1360dea81b5493286ee832d95190767871912e7f5c9dbbf66843b"
+  },
+  {
+   "name": "rtynbirf.github.io",
+   "hash": "d273d2c45a682faa2b5eae66eb22f98d4405c643768c6c8b8014eddc1bb0b464"
+  },
+  {
+   "name": "rumu",
+   "hash": "d4e2091cdbfbdb63890186503fff6f8d40cb0070da3946f010482e48bd7bd6d8"
+  },
+  {
+   "name": "runtime-protocol",
+   "hash": "ad9e4317fcad3ade3129ff946035a7e0234cc9eb958301b2b187c14e62c53442"
+  },
+  {
+   "name": "ruvson",
+   "hash": "179468d0d334504f4752490c1288de125220c93e467685ca12d65343cf1e3b28"
+  },
+  {
+   "name": "ruvson-lyrics",
+   "hash": "ddeca7cfed5320981e6bf0087740dc056c36da009d72433a605af532cab82fd4"
+  },
+  {
+   "name": "ruvson-rse2",
+   "hash": "0d70632812cb36cc9cbf07831723683780e47dc1e98e1c6318ff8fef573c4713"
+  },
+  {
+   "name": "singulyar",
+   "hash": "21ba5a463af47e1c06a22fda648ee9ad0e5ddd59136eda965ef3127854b41ff5"
+  },
+  {
+   "name": "singulyar-llm",
+   "hash": "459de4126c0b9d0ea6c5687799441e0610c09589a02659b24697520a06d3e29e"
+  },
+  {
+   "name": "task-graph-propagator",
+   "hash": "2e60d7c2423cf0064b1b01822520e7646af2c5f8d3a81e593221edb610e614db"
+  },
+  {
+   "name": "uace",
+   "hash": "d42629864b989e55c465dccaf84b742825d433e88f291f882c2b514848e2330e"
+  },
+  {
+   "name": "uace-pml",
+   "hash": "acb38501d820c486bd7e342a5ad9ef090dbd1cc32ad9f51bc76050d3b4e01722"
+  },
+  {
+   "name": "uace-polymat",
+   "hash": "2f0a0a18becd529b2b90ed742161c6fa71b144eebad573904c1ca3af4dbe9f51"
+  },
+  {
+   "name": "universal-agent",
+   "hash": "39de7a4df9fd4c0d968fcfa7c332de5a32a549dd76519e15efd9092ced8feb14"
+  },
+  {
+   "name": "voice-atlas-llm",
+   "hash": "316d2de26112e98b9cd10bda4949b1533916d0a949b94dc02a46d1c0498c936c"
+  },
+  {
+   "name": "web-evolution-1991-2026",
+   "hash": "9244559d293106cc0c38df641465f8fce6d626100f511f2a8219cf63d4a8ca2d"
+  },
+  {
+   "name": "windows-chronicle",
+   "hash": "1d96419185ba27170bf599249e7bcaf3be74d2cfb7931f01adf0f9ff14eea3bc"
+  },
+  {
+   "name": "yazyk-skvoz-epohi",
+   "hash": "de0df46af273e6d90efb2731a14536ac56381bd3680d442fbe68512e93167bdd"
+  }
+ ],
+ "flesh": [
+  {
+   "name": "uace",
+   "desc": "КНИГА UACE",
+   "lang": "JavaScript",
+   "cluster": ""
+  }
+ ]
+}
