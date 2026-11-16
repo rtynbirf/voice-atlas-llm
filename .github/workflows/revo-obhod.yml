@@ -1,0 +1,29 @@
+name: РЕВО АВТОПИЛОТ
+on:
+  schedule:
+    - cron: "30 5 * * 1"
+  push:
+    branches: ["**"]
+  workflow_dispatch:
+permissions:
+  contents: write
+  issues: write
+jobs:
+  revo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: дежурный обход (пять вещей)
+        run: |
+          if [ -f revo_obhod.py ]; then python3 revo_obhod.py || true; else echo "revo_obhod.py отсутствует — пропуск"; fi
+      - name: ковка паспорта страницы по контенту
+        run: python3 revo_autopilot.py
+      - name: самозапись изменений
+        run: |
+          git config user.name "revo[bot]"
+          git config user.email "revo[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "автопилот РЕВО: паспорт страницы перекован по контенту — REVE=РЕВО"
+          git push
