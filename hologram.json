@@ -1,7 +1,7 @@
 {
  "hologram": 1,
- "root": "9d9c679c7b3873b43217266d89b7bd77c43b65f35abc42d64c7f735d9a7dbc03",
- "n": 66,
+ "root": "c223bd4a2f6a56783c1fbdb1b1f671fa61c3150ecf320c82796ea5763043a696",
+ "n": 73,
  "r": 3,
  "self": {
   "name": "voice-atlas-llm",
@@ -24,7 +24,7 @@
   },
   {
    "name": "agryp",
-   "hash": "9907a01f32b61e9fe0ab2d3211ff6e71ef3efd587307a09a9714fcacc9be0406"
+   "hash": "f4fdbf72bd0a622df673964e775c550028fa8bd70e2604ffb25be859ac81c5ca"
   },
   {
    "name": "cell-rs",
@@ -37,6 +37,10 @@
   {
    "name": "cell65-host",
    "hash": "0011a84a18f983586b4dffacd2effa6457b55ff208b569acee8fc4bff7ee6ef4"
+  },
+  {
+   "name": "code",
+   "hash": "90b123ca1739cca2640a20e06fbd6ce2d02d31c665d088339f24c76bdeb4c1c8"
   },
   {
    "name": "combain-v2",
@@ -64,11 +68,11 @@
   },
   {
    "name": "door-zero",
-   "hash": "c356af39db7ffcff0e6126c45788efdb3f9ab1beb4a012c1e2b84bae8eb26e7f"
+   "hash": "8ab13f437a502d9d150e5d81a9b52a9a7578a5b4934c8f1ea3eb8e5fe74324d9"
   },
   {
    "name": "edinyy-svod",
-   "hash": "d3eea421ef31030b1ca19ebfc8f539473d450b96d1414dc680cfc8266facfd4b"
+   "hash": "34d9882b7449e65ad6f64cb42e6592336a0aa8ad06f579c291618e3657b011b3"
   },
   {
    "name": "ekonomika",
@@ -79,8 +83,12 @@
    "hash": "750ab23a4fc0f56ca89707239f474bc1a96897f029480948e42d2afc285d33dc"
   },
   {
+   "name": "fond-host",
+   "hash": "867d6c9d8784f8a304d1b96c0ead4de69880be20137f27debf82d2cf39af1a5c"
+  },
+  {
    "name": "free-man",
-   "hash": "07cb74446195a0bea132d23b75e557d74fc6d53e4aa236317eee67f9bf1360eb"
+   "hash": "1a4781b6d50aaa74d06be8b6ff61ff34911c288c1881e59b86cd9b4cfd70be2a"
   },
   {
    "name": "github-doctrine",
@@ -103,8 +111,20 @@
    "hash": "10fe1d26ed92e1d2ae38c8bea3cb33af6dcebc6f0688e2361a0b5276af79b50d"
   },
   {
+   "name": "invariant-manifest",
+   "hash": "36c15fc1c5501eb95fd84da6f760c33f1feeff77218a5313e57c002227c07d13"
+  },
+  {
    "name": "karaoke-dream",
    "hash": "50394affadfef6882d31ffbb7febe3621a8e5a3897eb6fd22146055410ef1796"
+  },
+  {
+   "name": "karta",
+   "hash": "e7a4b97f3a4d8327768bbd8b35efff4ad7467d2452b477c50ffc0b40ecfaa149"
+  },
+  {
+   "name": "kb",
+   "hash": "0ee4a10fcc0879fe793de6299496e21e10fee967e0d7c80b33bd3387f297ec6b"
   },
   {
    "name": "khozyain",
@@ -117,6 +137,10 @@
   {
    "name": "lean-canon",
    "hash": "3d926ab6bae3e67e934cac324ca26c8f7f2f5713fce07bb58dee394d86157b59"
+  },
+  {
+   "name": "lex-naturae",
+   "hash": "d9a4220807d9784b7accefe55fbd64922b0c9d73b947bc44c77eafb6e4b60b89"
   },
   {
    "name": "linguistic-code",
@@ -136,7 +160,7 @@
   },
   {
    "name": "os-forge",
-   "hash": "c0d1093ec3d176aba1dcc3e645c46349605fc63a969c0be23f03267dd686ea42"
+   "hash": "a0f0c7b3ed53edb309ca692c0d9b293a0ef5d6ad185f41cc3d0376d6331c805e"
   },
   {
    "name": "polimat-hub",
@@ -148,11 +172,11 @@
   },
   {
    "name": "polymat-hive",
-   "hash": "3a80fccce16edbd58597140ef7604f34ccc1ae5b7abb3ef6d246b84999ee6700"
+   "hash": "96c65ab80a74a3b453370b2db80721a3e9a2a0da89d1e7cdb989a0efce602b0f"
   },
   {
    "name": "polymath-atlas",
-   "hash": "1441788ff6b02b0f5d56e19d8327161bad3234bc195ed92b6e1c9f4065e44bb7"
+   "hash": "e482ab6906daadb2e1b7a156c4a9a8296e3687fde72b092316ed6a35f0917757"
   },
   {
    "name": "polymath-atlas-v107",
@@ -160,7 +184,7 @@
   },
   {
    "name": "polymath-core",
-   "hash": "ad419478f8879f0d3ad7e9809020ff0f93f21a40394d998c77a22eb0975318b7"
+   "hash": "3d7d9accd4d5052bd15b857f88fd369658f84ca6cc3fef9d1ba132938341f8f2"
   },
   {
    "name": "polymath-gen",
@@ -212,7 +236,7 @@
   },
   {
    "name": "rumu",
-   "hash": "d4e2091cdbfbdb63890186503fff6f8d40cb0070da3946f010482e48bd7bd6d8"
+   "hash": "e25744beaef64ad6c5437f8b190406099455ddfdc0a1a9105c679684d1e9107a"
   },
   {
    "name": "runtime-protocol",
@@ -232,7 +256,11 @@
   },
   {
    "name": "singulyar",
-   "hash": "21ba5a463af47e1c06a22fda648ee9ad0e5ddd59136eda965ef3127854b41ff5"
+   "hash": "2d89b831f2d129c2e7667e858da6559d16e6f99b3a3269c378e99823e5d5fc5e"
+  },
+  {
+   "name": "singulyar-a0-audit",
+   "hash": "d2f9950c58669e2ca12dfcf83258495f85b01174e7f8595dd91dcc5cb8df8444"
   },
   {
    "name": "singulyar-llm",
