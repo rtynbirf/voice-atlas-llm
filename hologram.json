@@ -2,7 +2,7 @@
  "hologram": 1,
  "root": "c223bd4a2f6a56783c1fbdb1b1f671fa61c3150ecf320c82796ea5763043a696",
  "n": 73,
- "storage": 68,
+ "storage": 36,
  "r": 3,
  "self": {
   "name": "voice-atlas-llm",
@@ -305,6 +305,30 @@
   }
  ],
  "flesh": [
+  {
+   "name": "ekonomika",
+   "desc": "КНИГА ЭКОНОМИКИ",
+   "lang": "Python",
+   "cluster": ""
+  },
+  {
+   "name": "polymath-atlas",
+   "desc": "Operational System Atlas - Lean 4 Gestalt audit: 7 modules, zero sorry, verbatim imperial session archive",
+   "lang": "Python",
+   "cluster": ""
+  },
+  {
+   "name": "polymath-tools-atlas",
+   "desc": "ПОЛИМАТ · TOOLS-ATLAS — каталог 665 AI-инструментов по контракту ГОЛОГРАММА v1 (6 слоёв, 3 статуса, закон цепочек). 147 local vs 151 cloud. 3 конфигурации железа. 12 софт-компонентов. Пломбы SHA256. П",
+   "lang": "HTML",
+   "cluster": "ATLASES"
+  },
+  {
+   "name": "singulyar-a0-audit",
+   "desc": "SINGULYAR × A0 — independent audit (PACKAGE VALID + BRIDGE VALID) and R4 port design",
+   "lang": "Python",
+   "cluster": ""
+  },
   {
    "name": "uace",
    "desc": "КНИГА UACE",
