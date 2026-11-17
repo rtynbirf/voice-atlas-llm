@@ -2,6 +2,7 @@
  "hologram": 1,
  "root": "c223bd4a2f6a56783c1fbdb1b1f671fa61c3150ecf320c82796ea5763043a696",
  "n": 73,
+ "storage": 68,
  "r": 3,
  "self": {
   "name": "voice-atlas-llm",
