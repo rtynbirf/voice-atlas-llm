@@ -1,10 +1,17 @@
 name: РЕВО АВТОПИЛОТ
+# Протокол тишины A-HUSH (волна ×1176, 2026-11-18):
+#  Зуб 1 — самозапись получает 3 попытки fetch+rebase+push (гонка ботов за main);
+#  Зуб 2 — «тревога однажды»: issue alarm:revo открывается один раз,
+#  разряжается при зелёной записи.
 on:
   schedule:
     - cron: "30 5 * * 1"
   push:
     branches: ["**"]
   workflow_dispatch:
+concurrency:
+  group: revo-obhod
+  cancel-in-progress: false
 permissions:
   contents: write
   issues: write
@@ -20,11 +27,44 @@ jobs:
           if [ -f revo_obhod.py ]; then python3 revo_obhod.py || true; else echo "revo_obhod.py отсутствует — пропуск"; fi
       - name: ковка паспорта страницы по контенту
         run: python3 revo_autopilot.py
-      - name: самозапись изменений
+      - name: самозапись изменений (3 попытки — гонка за main, зуб A-HUSH)
         run: |
           git config user.name "revo[bot]"
           git config user.email "revo[bot]@users.noreply.github.com"
           git add -A
           git diff --cached --quiet || git commit -m "автопилот РЕВО: паспорт страницы перекован по контенту — REVE=РЕВО"
-          git pull --rebase origin main
-          git push
+          pushed=0
+          for attempt in 1 2 3; do
+            git fetch origin main --quiet || true
+            git rebase --autostash origin/main --quiet || git rebase --abort || true
+            if git push; then
+              echo "запись легла с попытки $attempt"
+              pushed=1
+              break
+            fi
+            echo "гонка за main: территория ушла во время записи — перечитать и повторить (попытка $attempt)"
+            sleep 15
+          done
+          [ "$pushed" -eq 1 ] || { echo "main не принял запись за 3 попытки — честный красный"; exit 1; }
+      - name: разоружение (запись легла — страж молчит и снова вооружён)
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue list -R "$GITHUB_REPOSITORY" --state open --label "alarm:revo" --json number -q '.[].number' \
+            | while read n; do gh issue close "$n" -R "$GITHUB_REPOSITORY" -c "запись легла (run ${{ github.run_id }}) — страж разряжен, тревога снята"; done
+      - name: тревога однажды (circuit breaker)
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create "alarm:revo" -R "$GITHUB_REPOSITORY" --color b60205 --description "РЕВО: запись не легла надлого" --force 2>/dev/null || true
+          open=$(gh issue list -R "$GITHUB_REPOSITORY" --state open --label "alarm:revo" --json number -q 'length')
+          if [ "$open" -eq 0 ]; then
+            gh issue create -R "$GITHUB_REPOSITORY" \
+              -t "ALARM: РЕВО не смог записаться" \
+              -b "run ${{ github.run_id }} — 3 попытки fetch+rebase+push исчерпаны; проверить конфликты на main. Пока issue открыта — страж молчит (протокол A-HUSH)." \
+              -l "alarm:revo"
+          else
+            echo "тревога уже открыта ($open) — молчим"
+          fi
