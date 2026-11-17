@@ -1,23 +1,9 @@
-# Python
-__pycache__/
-*.py[cod]
-.venv/
-venv/
-.pytest_cache/
-
-# Модели и артефакты (в репо остаются только отчёты и конфиги)
-models/
 *.safetensors
-*.bin
-*.pt
-*.ckpt
-
-# Данные, которые не должны попадать в git
-data/dataset/*.jsonl.bak
-secrets.env
-*.token
-
-# ОС
+*.wav
+*.mp3
+*.zip
+*.wasm
+__pycache__/
+*.pyc
 .DS_Store
-Thumbs.db
-**/resume_state.pt
+social-preview.png
