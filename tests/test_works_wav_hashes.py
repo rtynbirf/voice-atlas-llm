@@ -30,24 +30,33 @@ def _sha256(path: Path) -> str:
 
 
 def test_repo_wavs_bite_identical_vs_report():
-    """Wav-файлы репо == sha256-эталонам отчёта (контракт WORKS.md)."""
+    """Wav-файлы репо == sha256-эталонам отчёта (контракт WORKS.md).
+
+    Аудио-тело корпуса живёт вне git (Drive/Release: drive_id и sha256 в
+    MANIFEST.jsonl) — репо несёт эталоны-метаданные, не байты. Ловушка байт
+    включается на любой wav, оказавшийся в репо: сходится с эталоном
+    байт-в-байт или падение. Посторонних wav (без эталона) быть не должно.
+    (волна 18: старый пол «ожидали ≥2» был невыполним — репо никогда не
+    несло wav; честный контракт — fail-closed на каждом появившемся байте.)
+    """
     report = json.loads(
         (ROOT / "data/ruvson/voice_clone_report.json").read_text(encoding="utf-8"))
     artifacts = report["artifacts"]
     checked = 0
-    for name, meta in artifacts.items():
-        matches = sorted((ROOT / "data/ruvson").rglob(name))
-        if not matches:
-            # референс/исходники вне git (vocals.wav 182 c и т.п.) — не репо-контракт
-            continue
-        wav = matches[0]
+    for wav in sorted((ROOT / "data/ruvson").rglob("*.wav")):
+        assert wav.name in artifacts, (
+            f"{wav}: посторонний wav в репо — нет эталона в voice_clone_report.json")
+        meta = artifacts[wav.name]
         assert _sha256(wav) == meta["sha256"], (
             f"{wav}: sha256 {meta['sha256'][:12]}… ≠ факт {_sha256(wav)[:12]}… "
             "— байты тронуты (CRLF-ловушка?)")
         assert wav.stat().st_size == meta["bytes"], f"{wav}: размер ≠ эталону"
         checked += 1
-    # контрактом покрыты именно репо-файлы voice_clone_01
-    assert checked >= 2, f"ожидали ≥2 wav-контракта, сверили {checked}"
+    # эталонные отчёты — заполненные артефакты с sha256/bytes (обещание ловушки)
+    for name, meta in artifacts.items():
+        assert HEX64.fullmatch(meta["sha256"]), f"{name}: эталон sha256 не 64 hex"
+        assert meta["bytes"] > 0, f"{name}: эталон bytes <= 0"
+    return checked
 
 
 def test_gitattributes_wav_binary_no_global_text():
