@@ -155,7 +155,7 @@ def patch_readme(md, facts):
     block = (
         "<!--ФОРЖ:ПАСПОРТ:НАЧАЛО-->\n"
         '<div align="center">\n'
-        f'  <img src="revo-page.svg" width="100%" alt="РЕВО-паспорт страницы {CFG["name"]}: строение файлов, лексикон, числа — по фактическому контенту" />\n'
+        f'  <img src="https://cdn.jsdelivr.net/gh/rtynbirf/voice-atlas-llm@main/revo-page.svg" width="100%" alt="РЕВО-паспорт страницы {CFG["name"]}: строение файлов, лексикон, числа — по фактическому контенту" />\n'
         "</div>\n\n"
         "| ФАЙЛОВ | ПАПОК | КОММИТОВ | ОБНОВЛЕНО | РЕЛИЗОВ |\n"
         "|---:|---:|---:|---|---:|\n"
