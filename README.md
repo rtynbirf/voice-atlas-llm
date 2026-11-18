@@ -27,7 +27,7 @@
 
 # Атлас-LLM · voice-atlas-llm
 
-<p align="center"><img src=".github/social-preview.png" alt="voice-atlas-llm" width="100%"></p>
+<p align="center"><img src="https://cdn.jsdelivr.net/gh/rtynbirf/rtynbirf@main/.github/social-preview.png" alt="voice-atlas-llm" width="100%"></p>
 
 
 
