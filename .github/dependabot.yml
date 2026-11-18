@@ -2,7 +2,8 @@
 # Доктрина аккаунта: зависимости обновляются автоматически, фиксы — тоже
 version: 2
 updates:
-  - package-ecosystem: "pip"
+  - package-ecosystem:
+    open-pull-requests-limit: 0  # версионный шум Dependabot выключен (чистка аккаунта 2026-11-18) "pip"
     directory: "/"
     schedule:
       interval: "weekly"
