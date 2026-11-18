@@ -1,15 +1,15 @@
 <div align="center">
   <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/forge-banner-voice-atlas.svg" />
-  <img src="banner.png" alt="voice-atlas-llm — Модель-эксперт по клонированию голоса" width="100%">
+  <img src="https://cdn.jsdelivr.net/gh/rtynbirf/voice-atlas-llm@main/banner.png" alt="voice-atlas-llm — Модель-эксперт по клонированию голоса" width="100%">
 </picture>
 </div>
 
 <!--ФОРЖ:МУЗА:НАЧАЛО-->
 <div align="center">
-  <img src="repo-muse.svg" width="100%" alt="Муза voice-atlas-llm: мастерская АРФА ГОЛОСОВ, кузня ПОЛИМАТ, раунд 12 · REVE=РЕВО" />
+  <img src="https://cdn.jsdelivr.net/gh/rtynbirf/voice-atlas-llm@main/repo-muse.svg" width="100%" alt="Муза voice-atlas-llm: мастерская АРФА ГОЛОСОВ, кузня ПОЛИМАТ, раунд 12 · REVE=РЕВО" />
   <br/>
-  <img src="forge-divider.svg" width="62%" alt="делитель мастерской АРФА ГОЛОСОВ" />
+  <img src="https://cdn.jsdelivr.net/gh/rtynbirf/voice-atlas-llm@main/forge-divider.svg" width="62%" alt="делитель мастерской АРФА ГОЛОСОВ" />
 </div>
 <!--ФОРЖ:МУЗА:КОНЕЦ-->
 
