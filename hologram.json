@@ -1,6 +1,6 @@
 {
  "hologram": 1,
- "root": "c223bd4a2f6a56783c1fbdb1b1f671fa61c3150ecf320c82796ea5763043a696",
+ "root": "580e8eda06b917e76da74522880053de2795b236b26cd42a7e6b2eefe1cd38d6",
  "n": 73,
  "storage": 36,
  "r": 3,
@@ -257,7 +257,7 @@
   },
   {
    "name": "singulyar",
-   "hash": "2d89b831f2d129c2e7667e858da6559d16e6f99b3a3269c378e99823e5d5fc5e"
+   "hash": "b04e18c55171659f094d9e410ff899bfd027a966f8eec1f051800a447990ae87"
   },
   {
    "name": "singulyar-a0-audit",
