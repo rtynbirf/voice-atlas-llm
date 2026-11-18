@@ -7,7 +7,7 @@ on:
   schedule:
     - cron: "30 5 * * 1"
   push:
-    branches: ["**"]
+    branches: ["main"]
   workflow_dispatch:
 concurrency:
   group: revo-obhod
@@ -27,25 +27,31 @@ jobs:
           if [ -f revo_obhod.py ]; then python3 revo_obhod.py || true; else echo "revo_obhod.py отсутствует — пропуск"; fi
       - name: ковка паспорта страницы по контенту
         run: python3 revo_autopilot.py
-      - name: самозапись изменений (3 попытки — гонка за main, зуб A-HUSH)
+      - name: самозапись изменений (регенерация на свежем main, 5 попыток — гонка снята, зуб A-HUSH)
         run: |
           git config user.name "revo[bot]"
           git config user.email "revo[bot]@users.noreply.github.com"
-          git add -A
-          git diff --cached --quiet || git commit -m "автопилот РЕВО: паспорт страницы перекован по контенту — REVE=РЕВО"
           pushed=0
-          for attempt in 1 2 3; do
+          for attempt in 1 2 3 4 5; do
             git fetch origin main --quiet || true
-            git rebase --autostash origin/main --quiet || git rebase --abort || true
-            if git push; then
+            git reset --hard -q origin/main
+            [ -f revo_autopilot.py ] && python3 revo_autopilot.py || echo "revo_autopilot.py отсутствует — пропуск генерации"
+            git add -A
+            if git diff --cached --quiet; then
+              echo "паспорт на main уже свежий — писать нечего (попытка $attempt)"
+              pushed=1
+              break
+            fi
+            git commit -q -m "автопилот РЕВО: паспорт страницы перекован по контенту — REVE=РЕВО"
+            if git push origin HEAD:main --quiet; then
               echo "запись легла с попытки $attempt"
               pushed=1
               break
             fi
-            echo "гонка за main: территория ушла во время записи — перечитать и повторить (попытка $attempt)"
+            echo "гонка за main: территория ушла — перечитать, перегенерировать и повторить (попытка $attempt)"
             sleep 15
           done
-          [ "$pushed" -eq 1 ] || { echo "main не принял запись за 3 попытки — честный красный"; exit 1; }
+          [ "$pushed" -eq 1 ] || { echo "main не принял запись за 5 попыток — честный красный"; exit 1; }
       - name: разоружение (запись легла — страж молчит и снова вооружён)
         if: success()
         env:
@@ -63,7 +69,7 @@ jobs:
           if [ "$open" -eq 0 ]; then
             gh issue create -R "$GITHUB_REPOSITORY" \
               -t "ALARM: РЕВО не смог записаться" \
-              -b "run ${{ github.run_id }} — 3 попытки fetch+rebase+push исчерпаны; проверить конфликты на main. Пока issue открыта — страж молчит (протокол A-HUSH)." \
+              -b "run ${{ github.run_id }} — 5 попыток fetch+regen+push исчерпаны; проверить конфликты на main. Пока issue открыта — страж молчит (протокол A-HUSH)." \
               -l "alarm:revo"
           else
             echo "тревога уже открыта ($open) — молчим"
