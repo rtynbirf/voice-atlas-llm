@@ -1,0 +1,23 @@
+name: РЕВО-АВТОМАТ КАНОНА
+# Конечный автомат Ornamental Mytho-Realism (издание r19).
+# Закон переходов: ПЕПЕЛ→ПРОБУЖДЕНИЕ→СВЕРКА→(дефекты)ДРЕЙФ→КУЗНЯ→ЗДРАВИЕ.
+# Лекарство дрейфа одно и предопределённое: перековка паспорта движком revo_autopilot.py.
+# Доказательство работы: automaton-state.json (гейты, лента переходов, факты) — коммитится циклом.
+on:
+  schedule:
+    - cron: "42 3 * * *"
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  revomat:
+    runs-on: ubuntu-latest
+    env:
+      GH_REPO: ${ github.repository }
+      REVOMAT_NUM: "59"
+    steps:
+      - uses: actions/checkout@v4
+      - name: СВЕРКА гейтов канона → КУЗНЯ/ЗДРАВИЕ
+        run: python3 revomat.py
