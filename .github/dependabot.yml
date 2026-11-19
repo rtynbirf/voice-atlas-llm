@@ -1,0 +1,14 @@
+# Dependabot — автоматические обновления зависимостей и экшенов (волна ×41)
+# SHA-пины в workflow имеют комментарий версии — Dependabot бампит их корректно.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+  - package-ecosystem: pip
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
