@@ -1,0 +1,12 @@
+name: летопись-страж
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  strazh:
+    uses: rtynbirf/assembly-protocol/.github/workflows/ledger-guard.yml@main
