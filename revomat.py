@@ -71,8 +71,12 @@ def gates(facts):
     g = {}
     passport = open("revo-page.svg", encoding="utf-8", errors="ignore").read() if os.path.exists("revo-page.svg") else ""
     g["G1_паспорт_канон"] = (CANON in passport)
-    b = os.path.exists("banner.png") and os.path.getsize("banner.png") > 1000
-    g["G2_баннер"] = bool(b)
+    # G2 требует настоящую PNG-магию: base64-текст в .png — класс дефекта «пропали картинки»
+    png_magic = False
+    if os.path.exists("banner.png"):
+        with open("banner.png", "rb") as bf:
+            png_magic = bf.read(8) == b"\x89PNG\r\n\x1a\n"
+    g["G2_баннер_png"] = bool(png_magic)
     g["G3_ссылки_цельны"] = all(os.path.exists(p) for p in facts["links"])
     engine = open("revo_autopilot.py", encoding="utf-8", errors="ignore").read() if os.path.exists("revo_autopilot.py") else ""
     g["G4_движок_канон"] = bool(engine) and (CANON in engine)
