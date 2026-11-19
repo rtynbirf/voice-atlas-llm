@@ -1,0 +1,6 @@
+name: protocol-verify
+on: [push, pull_request]
+
+jobs:
+  protocol:
+    uses: rtynbirf/assembly-protocol/.github/workflows/protocol.yml@main
