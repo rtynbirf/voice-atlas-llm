@@ -1,8 +1,8 @@
 {
  "hologram": 1,
- "root": "fa0d45027377525990ab301a5564049ca3663229e7ac80e3fb1503a69500ccf7",
- "n": 73,
- "storage": 37,
+ "root": "7875a6989a59a76c2886f3ffc5c0f0ae5122b02fef518c8bdf8b8cd74e64d401",
+ "n": 76,
+ "storage": 41,
  "r": 3,
  "self": {
   "name": "voice-atlas-llm",
@@ -26,6 +26,10 @@
   {
    "name": "agryp",
    "hash": "f4fdbf72bd0a622df673964e775c550028fa8bd70e2604ffb25be859ac81c5ca"
+  },
+  {
+   "name": "assembly-protocol",
+   "hash": "58684d06c787d19b3db7ac27360514c173f6e06457a2e896d8fdcd4819df104d"
   },
   {
    "name": "cell-rs",
@@ -144,6 +148,10 @@
    "hash": "d9a4220807d9784b7accefe55fbd64922b0c9d73b947bc44c77eafb6e4b60b89"
   },
   {
+   "name": "lfs-core",
+   "hash": "8b295e4bf241e936af78fc09b21b37d022816f4a8217f2bf6851bceec9fac7e0"
+  },
+  {
    "name": "linguistic-code",
    "hash": "ff5c35ab7719a757e42f2e4a667538b3cd9e9cc3de9bfd69233909979f097941"
   },
@@ -222,6 +230,10 @@
   {
    "name": "repo-doctrine",
    "hash": "2274ff600e5e3f3e3d3c7149ea49828486e5c36d7f504f22660f218358ee3288"
+  },
+  {
+   "name": "repo-seed",
+   "hash": "de07258dc4f5946bd0e2af1473cf4eb4182540987f82ec03d11092d11d3533f1"
   },
   {
    "name": "revo",
@@ -310,18 +322,6 @@
    "desc": "КНИГА ЭКОНОМИКИ",
    "lang": "Python",
    "cluster": ""
-  },
-  {
-   "name": "polymath-atlas",
-   "desc": "Operational System Atlas - Lean 4 Gestalt audit: 7 modules, zero sorry, verbatim imperial session archive",
-   "lang": "Python",
-   "cluster": ""
-  },
-  {
-   "name": "polymath-tools-atlas",
-   "desc": "ПОЛИМАТ · TOOLS-ATLAS — каталог 665 AI-инструментов по контракту ГОЛОГРАММА v1 (6 слоёв, 3 статуса, закон цепочек). 147 local vs 151 cloud. 3 конфигурации железа. 12 софт-компонентов. Пломбы SHA256. П",
-   "lang": "HTML",
-   "cluster": "ATLASES"
   },
   {
    "name": "singulyar-a0-audit",
