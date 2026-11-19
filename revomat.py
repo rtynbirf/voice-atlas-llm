@@ -115,7 +115,8 @@ def write_state(repo, num, state, gates_d, facts, log, defects):
 
 
 def self_commit(msg):
-    """Самозапись по закону дома (зуб A-HUSH): 3 попытки fetch+rebase+push."""
+    """Самозапись по закону дома (зуб A-HUSH): push первым; при отказе —
+    fetch + pull --rebase (shallow-безопасно) и повтор. 3 попытки."""
     sh(["git", "config", "user.name", "revo[bot]"])
     sh(["git", "config", "user.email", "revo[bot]@users.noreply.github.com"])
     sh(["git", "add", "-A"])
@@ -123,14 +124,14 @@ def self_commit(msg):
         return "без изменений"
     sh(["git", "commit", "-m", msg])
     for attempt in range(1, 4):
-        sh(["git", "fetch", "origin", "main", "--quiet"])
-        r = subprocess.run(["git", "rebase", "origin/main"], capture_output=True, text=True)
-        if r.returncode != 0:
-            subprocess.run(["git", "rebase", "--abort"], capture_output=True)
-            continue
         p = subprocess.run(["git", "push", "origin", "HEAD"], capture_output=True, text=True)
         if p.returncode == 0:
             return f"записано (попытка {attempt})"
+        sh(["git", "fetch", "origin", "main", "--quiet"])
+        r = subprocess.run(["git", "pull", "--rebase=merges", "origin", "main"],
+                           capture_output=True, text=True)
+        if r.returncode != 0:
+            subprocess.run(["git", "rebase", "--abort"], capture_output=True)
     return "не записано — тревога (основной гейт остаётся красным)"
 
 
