@@ -1,8 +1,8 @@
 {
  "hologram": 1,
- "root": "7875a6989a59a76c2886f3ffc5c0f0ae5122b02fef518c8bdf8b8cd74e64d401",
- "n": 76,
- "storage": 41,
+ "root": "28036a5c37634fc8e6a4a22efe518d62fec7f3ad5d45d434e01a27206e2bdd4d",
+ "n": 77,
+ "storage": 42,
  "r": 3,
  "self": {
   "name": "voice-atlas-llm",
@@ -54,6 +54,10 @@
   {
    "name": "commons",
    "hash": "00bf7a48c328bf939c5ec37f413b7ef4ab7a23f8618e57bd916cdc57ece83942"
+  },
+  {
+   "name": "dogovor",
+   "hash": "8a6dd9dbaf6739777e4b216a9ddb4ea20d501c32ccff03c44be917db7e7a92ac"
   },
   {
    "name": "domovenok",
