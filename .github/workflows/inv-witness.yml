@@ -1,0 +1,73 @@
+name: INV-WITNESS — свидетель инвентаризации
+on:
+  schedule:
+    - cron: "18 2 * * 1"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  witness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: СВИДЕТЕЛЬСТВО (живой счёт, ни одной цифры из README без сверки)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import json, os, re, time, urllib.request
+          T = os.environ.get("GITHUB_TOKEN", "")
+          REPO = os.environ["GITHUB_REPOSITORY"]
+          def api(u):
+              r = urllib.request.Request(u, headers={"User-Agent": "inv-witness", "Accept": "application/vnd.github+json"})
+              if T: r.add_header("Authorization", "Bearer " + T)
+              with urllib.request.urlopen(r, timeout=30) as x:
+                  return x.read(), dict(x.headers)
+          b, h = api(f"https://api.github.com/repos/{REPO}/commits?per_page=1")
+          lst = json.loads(b) if b else []
+          m = re.search(r'[&?]page=(\d+)>; rel="last"', h.get("Link", "") or h.get("link", ""))
+          commits = int(m.group(1)) if m else len(lst)
+          head = lst[0]["sha"][:12] if lst else "-"
+          tree_sha = lst[0]["commit"]["tree"]["sha"] if lst else "HEAD"
+          b2, _ = api(f"https://api.github.com/repos/{REPO}/git/trees/{tree_sha}?recursive=1")
+          files = trunc = 0
+          if b2:
+              t = json.loads(b2)
+              files = sum(1 for e in t.get("tree", []) if e["type"] == "blob")
+              trunc = int(bool(t.get("truncated")))
+          readme = ""
+          try:
+              rr = urllib.request.Request(f"https://raw.githubusercontent.com/{REPO}/HEAD/README.md", headers={"User-Agent": "inv-witness"})
+              readme = urllib.request.urlopen(rr, timeout=30).read().decode("utf-8", "replace")
+          except Exception:
+              pass
+          KW = {"repositories": r"репозитор|repositor|репо\b", "commits": r"коммит(?:ов|а|у|е|ом|ам|ами|ах|ы|и)?\b|commit", "songs": r"песен|песни|song", "languages": r"язык|language", "tools": r"инструмент|tool", "tests": r"тест|test", "worlds": r"миров|world"}
+          claims = []
+          for line in readme.splitlines():
+              line = line.strip()
+              if not line or len(line) > 300 or any(x in line for x in ("<", "{", "}", "shields.io", "![", "width=")):
+                  continue
+              if re.match(r"^\|?\s*v\d+\.\d+", line):
+                  continue
+              for q, k in KW.items():
+                  mm = re.search(r"(?<![./\w-])(\d[\d\s\u00a0.,]{0,9})\s*\+?\s*(?:" + k + r")", line, re.I)
+                  if mm:
+                      try:
+                          v = int(re.sub(r"[\s\u00a0,.]", "", mm.group(1)))
+                      except Exception:
+                          continue
+                      if v and v < 10**7:
+                          claims.append({"qty": q, "value": v})
+                      break
+          rec = {"ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "repo": REPO, "head": head, "commits": commits, "files": files, "tree_truncated": trunc, "claims": claims[:12]}
+          with open("INV_LEDGER.jsonl", "a", encoding="utf-8") as f:
+              f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+          print("WITNESS:", json.dumps(rec, ensure_ascii=False)[:400])
+          PY
+      - name: Коммит свидетельства (append-only)
+        run: |
+          git config user.name "inv-witness[bot]"
+          git config user.email "inv-witness@users.noreply.github.com"
+          git add INV_LEDGER.jsonl
+          git commit -m "inv-witness: свидетельство $(date -u '+%F')" || echo "нет изменений"
+          git push
