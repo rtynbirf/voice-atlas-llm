@@ -1,8 +1,8 @@
 {
  "hologram": 1,
- "root": "f9cae3a874a9064bc1ccba9db8e0255366799943b735f2a8be5b259b79316d23",
+ "root": "4bcb8a068871f9158f688c6941bf4b381477a19c0c45283c73811c92000edb94",
  "n": 79,
- "storage": 44,
+ "storage": 74,
  "r": 3,
  "self": {
   "name": "voice-atlas-llm",
@@ -109,7 +109,7 @@
   },
   {
    "name": "global-practice-atlas",
-   "hash": "a67f05603d13bf1c7da83d003c8bc9e48ea60dd0e166e1fd2eea58b60f9dd304"
+   "hash": "420b94983834f6bc6de962c180368b34a79340d2a0e638eeeddc040fd7717feb"
   },
   {
    "name": "global-video-platforms-registry",
@@ -329,18 +329,6 @@
   }
  ],
  "flesh": [
-  {
-   "name": "ekonomika",
-   "desc": "КНИГА ЭКОНОМИКИ",
-   "lang": "Python",
-   "cluster": ""
-  },
-  {
-   "name": "singulyar-a0-audit",
-   "desc": "SINGULYAR × A0 — independent audit (PACKAGE VALID + BRIDGE VALID) and R4 port design",
-   "lang": "Python",
-   "cluster": ""
-  },
   {
    "name": "uace",
    "desc": "КНИГА UACE",
