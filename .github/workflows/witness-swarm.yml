@@ -1,0 +1,11 @@
+name: witness of the swarm
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  witness:
+    # SSOT: rtynbirf/khozyain · автомат свидетеля · НОСИТЕЛЬ СМЕРТЕН = КОММИТ НЕТ
+    uses: rtynbirf/khozyain/.github/workflows/witness.yml@main
