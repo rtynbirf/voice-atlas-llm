@@ -1,8 +1,8 @@
 {
  "hologram": 1,
- "root": "28036a5c37634fc8e6a4a22efe518d62fec7f3ad5d45d434e01a27206e2bdd4d",
- "n": 77,
- "storage": 42,
+ "root": "88c83f1dad581bebdcaa22f2db11d044bef11e41d219c5c25d71a86d5dd33b7a",
+ "n": 79,
+ "storage": 44,
  "r": 3,
  "self": {
   "name": "voice-atlas-llm",
@@ -106,6 +106,10 @@
   {
    "name": "github-runbook",
    "hash": "b43c56fbd53cef44fcf11652a1947c2cebc2aa3b616a806ecc66730bd1169751"
+  },
+  {
+   "name": "global-practice-atlas",
+   "hash": "ec167ef434fab65ae3f0f27af06ae4c50c382a1a0c4375275c3aec9abf94cf2d"
   },
   {
    "name": "global-video-platforms-registry",
@@ -226,6 +230,10 @@
   {
    "name": "release-vault",
    "hash": "494dd2efef3c3883fec2128fc65b86bdb9c29efe031c057ba59f741717d3ed9d"
+  },
+  {
+   "name": "relomat",
+   "hash": "acf2518a7fd4acd1b1ed76222247b172843b454a9e13027578990cffad131705"
   },
   {
    "name": "rent-mechanism-q43",
