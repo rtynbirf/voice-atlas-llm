@@ -22,3 +22,6 @@ jobs:
         run: |
           python3 dogovor_fsm.py --selftest
           python3 dogovor_fsm.py --check kartochki
+      - name: КВ-ФСМ · самотест автомата проверки утверждений (там, где вкачан)
+        if: ${{ hashFiles('ДОМ/claim_verifier_fsm.py') != '' }}
+        run: python3 ДОМ/claim_verifier_fsm.py --selftest
