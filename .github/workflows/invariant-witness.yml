@@ -22,7 +22,7 @@ jobs:
             echo "}"
           } > witness/WITNESS.json
           cat witness/WITNESS.json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: invariant-witness
           path: witness/WITNESS.json
