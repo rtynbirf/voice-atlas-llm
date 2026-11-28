@@ -1,8 +1,7 @@
 <div align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/forge-banner-voice-atlas.svg" />
-  <img src="https://cdn.jsdelivr.net/gh/rtynbirf/voice-atlas-llm@main/banner.png" alt="voice-atlas-llm — Модель-эксперт по клонированию голоса" width="100%">
-</picture>
+
+<a href="https://github.com/rtynbirf/voice-atlas-llm"><img src="banner.png" width="100%" alt="voice-atlas-llm — штандарт мастерской в каноне ORNAMENTAL MYTHO-REALISM"></a>
+
 </div>
 
 <!--ФОРЖ:МУЗА:НАЧАЛО-->
@@ -15,13 +14,26 @@
 
 <!--ФОРЖ:ПАСПОРТ:НАЧАЛО-->
 <div align="center">
-  <img src="revo-page.svg" width="100%" alt="РЕВО-паспорт страницы voice-atlas-llm в каноне ORNAMENTAL MYTHO-REALISM: орнаментальная решётка, медальон-миф, строение файлов, лексикон — по фактическому контенту" />
+  <img src="revo-page.svg" width="100%" alt="РЕВО-паспорт страницы voice-atlas-llm №59 в каноне ORNAMENTAL MYTHO-REALISM: орнаментальная решётка, медальон-миф, строение файлов, лексикон — по фактическому контенту" />
 </div>
 
 | ФАЙЛОВ | ПАПОК | КОММИТОВ | ОБНОВЛЕНО | РЕЛИЗОВ |
 |---:|---:|---:|---|---:|
-| 194 | 25 | 220 | 2026-11-28 | 8 |
+| 194 | 27 | 1 | 2026-11-28 | 8 |
 <!--ФОРЖ:ПАСПОРТ:КОНЕЦ-->
+
+# voice-atlas-llm
+
+<div align="center">
+  <picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/forge-banner-voice-atlas.svg" />
+  <img src="https://cdn.jsdelivr.net/gh/rtynbirf/voice-atlas-llm@main/banner.png" alt="voice-atlas-llm — Модель-эксперт по клонированию голоса" width="100%">
+</picture>
+</div>
+
+
+
+
 
 
 
